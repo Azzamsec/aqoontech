@@ -1,21 +1,10 @@
 # ============================================================
 #  AQOON TECH — Netlify Configuration
 # ============================================================
-
 [build]
   publish = "."
 
 [[redirects]]
-  from = "/"
-  to   = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/pages/*"
-  to   = "/pages/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/admin/"
+  from = "/admin"
   to   = "/admin/index.html"
   status = 200
