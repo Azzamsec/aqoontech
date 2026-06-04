@@ -1,9 +1,6 @@
 /* ============================================================
    AQOON TECH — Newsletter / Mailchimp Integration
    ============================================================ */
-
-const MAILCHIMP_URL = 'https://gmail.us14.list-manage.com/subscribe/post?u=6dde8e895252daeaff20a55bf&id=321921169aa926cdf9f420002';
-
 function handleNewsletter(form) {
   const emailInput = form.querySelector('input[type="email"]');
   const submitBtn  = form.querySelector('button[type="submit"]');
@@ -11,60 +8,35 @@ function handleNewsletter(form) {
 
   if (!email) return;
 
-  submitBtn.textContent = '...';
-  submitBtn.disabled = true;
-  emailInput.disabled = true;
-
+  /* Send to Mailchimp */
   const formEl = document.createElement('form');
-  formEl.action  = MAILCHIMP_URL;
+  formEl.action  = 'https://gmail.us14.list-manage.com/subscribe/post?u=6dde8e895252daeaff20a55bf&id=321921169aa926cdf9f420002';
   formEl.method  = 'POST';
-  formEl.target  = 'mailchimp-iframe';
+  formEl.target  = 'mc_iframe';
   formEl.style.display = 'none';
 
-  const emailField   = document.createElement('input');
-  emailField.type    = 'hidden';
-  emailField.name    = 'EMAIL';
-  emailField.value   = email;
-
-  const honeypot     = document.createElement('input');
-  honeypot.type      = 'hidden';
-  honeypot.name      = 'b_6dde8e895252daeaff20a55bf_321921169aa926cdf9f420002';
-  honeypot.value     = '';
-
-  formEl.appendChild(emailField);
-  formEl.appendChild(honeypot);
+  const e = document.createElement('input');
+  e.type = 'hidden'; e.name = 'EMAIL'; e.value = email;
+  formEl.appendChild(e);
   document.body.appendChild(formEl);
 
-  let iframe = document.getElementById('mailchimp-iframe');
-  if (!iframe) {
-    iframe = document.createElement('iframe');
-    iframe.name  = 'mailchimp-iframe';
-    iframe.id    = 'mailchimp-iframe';
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
+  let f = document.getElementById('mc_iframe');
+  if (!f) {
+    f = document.createElement('iframe');
+    f.name = 'mc_iframe';
+    f.id   = 'mc_iframe';
+    f.style.display = 'none';
+    document.body.appendChild(f);
   }
 
   formEl.submit();
   document.body.removeChild(formEl);
-
   localStorage.setItem('aqoon-subscribed', '1');
 
-setTimeout(() => {
-    window.location.href = 'https://aqoontech.netlify.app/pages/subscribed.html';
-  }, 1000);
+  /* Show success message */
+  emailInput.value       = '';
+  submitBtn.textContent  = '✅ Waad ku guuleysatay!';
+  submitBtn.style.background = 'var(--green)';
+  submitBtn.disabled     = false;
+  emailInput.placeholder = 'Mahadsanid — toddobaadkii waxaad heli doontaa maqaallada!';
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-  if (localStorage.getItem('aqoon-subscribed') === '1') {
-    document.querySelectorAll('.newsletter-form').forEach(form => {
-      const lang = localStorage.getItem('aqoon-lang') || 'so';
-      const msg  = document.createElement('p');
-      msg.style.cssText = 'font-size:13px;color:green;text-align:center;padding:8px 0;';
-      msg.textContent = lang === 'so'
-        ? '✅ Waxaad horay u diiwaan gelisay — mahadsanid!'
-        : '✅ You\'re already subscribed — thank you!';
-      form.parentNode.insertBefore(msg, form);
-      form.style.display = 'none';
-    });
-  }
-});
