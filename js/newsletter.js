@@ -47,19 +47,16 @@ function handleNewsletter(form) {
   formEl.submit();
   document.body.removeChild(formEl);
 
+  localStorage.setItem('aqoon-subscribed', '1');
+
   setTimeout(() => {
-    const lang = localStorage.getItem('aqoon-lang') || 'so';
-    const successMsg = document.createElement('div');
-    successMsg.style.cssText = 'display:flex;align-items:center;gap:12px;background:rgba(34,197,94,.12);border:1.5px solid rgba(34,197,94,.3);border-radius:12px;padding:16px 20px;font-size:14px;color:#16a34a;margin-top:8px;';
-    successMsg.innerHTML = '<span style="font-size:22px;">✅</span><div><div style="font-weight:700;margin-bottom:3px;">' +
-      (lang === 'so' ? 'Waad ku guuleysatay!' : 'You\'re subscribed!') +
-      '</div><div style="opacity:.8;font-size:12.5px;">' +
-      (lang === 'so' ? 'Mahadsanid — waxaad heli doontaa maqaallada Aqoon Tech toddobaadkii.' : 'Thank you — you\'ll receive Aqoon Tech articles every week.') +
-      '</div></div>';
-    form.parentNode.insertBefore(successMsg, form);
-    form.style.display = 'none';
-    localStorage.setItem('aqoon-subscribed', '1');
-  }, 1200);
+    const isRoot = window.location.pathname === '/' || window.location.pathname.endsWith('index.html');
+    if (isRoot) {
+      window.location.href = 'pages/subscribed.html';
+    } else {
+      window.location.href = 'subscribed.html';
+    }
+  }, 1000);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -68,7 +65,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const lang = localStorage.getItem('aqoon-lang') || 'so';
       const msg  = document.createElement('p');
       msg.style.cssText = 'font-size:13px;color:green;text-align:center;padding:8px 0;';
-      msg.textContent = lang === 'so' ? '✅ Waxaad horay u diiwaan gelisay — mahadsanid!' : '✅ You\'re already subscribed — thank you!';
+      msg.textContent = lang === 'so'
+        ? '✅ Waxaad horay u diiwaan gelisay — mahadsanid!'
+        : '✅ You\'re already subscribed — thank you!';
       form.parentNode.insertBefore(msg, form);
       form.style.display = 'none';
     });
