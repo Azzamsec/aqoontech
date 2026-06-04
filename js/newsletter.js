@@ -49,13 +49,8 @@ function handleNewsletter(form) {
 
   localStorage.setItem('aqoon-subscribed', '1');
 
-  setTimeout(() => {
-    const isRoot = window.location.pathname === '/' || window.location.pathname.endsWith('index.html');
-    if (isRoot) {
-      window.location.href = 'pages/subscribed.html';
-    } else {
-      window.location.href = 'subscribed.html';
-    }
+ setTimeout(() => {
+    window.location.href = '/pages/subscribed.html';
   }, 1000);
 }
 
