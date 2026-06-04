@@ -49,8 +49,8 @@ function handleNewsletter(form) {
 
   localStorage.setItem('aqoon-subscribed', '1');
 
- setTimeout(() => {
-    window.location.href = '/pages/subscribed.html';
+setTimeout(() => {
+    window.location.href = 'https://aqoontech.netlify.app/pages/subscribed.html';
   }, 1000);
 }
 
