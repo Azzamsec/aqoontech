@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="so" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waad ku guuleysatay — Aqoon Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Montserrat:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/buttons.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/sections.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <style>
+    .thankyou-wrap {
+      min-height: calc(100vh - var(--nav-h));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+    }
+    .thankyou-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: clamp(2rem, 6vw, 4rem);
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      animation: fadeUp .6s ease both;
+    }
+    .thankyou-emoji {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      display: block;
+      animation: bounce 1s ease .4s both;
+    }
+    @keyframes bounce {
+      0%   { transform: scale(0); opacity: 0; }
+      60%  { transform: scale(1.2); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .thankyou-title {
+      font-family: var(--font-brand);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--text);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .thankyou-title span { color: var(--blue); }
+    .thankyou-desc {
+      font-size: 15px;
+      color: var(--text-2);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .thankyou-divider {
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+      border-radius: 2px;
+      margin: 1.5rem auto;
+    }
+    .thankyou-what {
+      background: var(--bg-alt);
+      border-radius: var(--r);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+    .thankyou-what-title {
+      font-family: var(--font-brand);
+      font-size: 13px;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: .75rem;
+    }
+    .thankyou-what-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--text-2);
+      padding: 6px 0;
+      line-height: 1.5;
+    }
+    .thankyou-what-item span:first-child { flex-shrink: 0; }
+    .thankyou-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .lang-note {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-top: 1.5rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<nav class="navbar" id="navbar">
+  <a href="../index.html" class="nav-logo">
+    <div class="logo-mark">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A90D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2.5"/><path d="M8 21h8M12 17v4"/>
+        <circle cx="12" cy="10" r="3.2"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-name">AQOON <span>TECH</span></span>
+      <span class="logo-tagline">Technology</span>
+    </div>
+  </a>
+  <div class="nav-actions">
+    <div class="lang-switch">
+      <button class="lang-btn active" id="lang-so" onclick="setLang('so')">SO</button>
+      <button class="lang-btn"        id="lang-en" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="btn-theme" id="theme-toggle" onclick="toggleTheme()">🌙</button>
+  </div>
+</nav>
+
+<div class="thankyou-wrap">
+  <div class="thankyou-card">
+
+    <span class="thankyou-emoji">🎉</span>
+
+    <h1 class="thankyou-title">
+      <span data-so="Waad ku" data-en="You're">Waad ku</span>
+      <span data-so="Guuleysatay!" data-en="Subscribed!">Guuleysatay!</span>
+    </h1>
+
+    <p class="thankyou-desc"
+       data-so="Mahadsanid inaad ku biirtay Aqoon Tech! Waxaad hadda ka mid tahay dadka helaya maqaallada teknoolajiyada Af-Soomaali toddobaadkii."
+       data-en="Thank you for joining Aqoon Tech! You're now among the people receiving Somali tech articles every week.">
+      Mahadsanid inaad ku biirtay Aqoon Tech! Waxaad hadda ka mid tahay
+      dadka helaya maqaallada teknoolajiyada Af-Soomaali toddobaadkii.
+    </p>
+
+    <div class="thankyou-divider"></div>
+
+    <div class="thankyou-what">
+      <div class="thankyou-what-title"
+           data-so="Maxaad heli doontaa toddobaadkii:"
+           data-en="What you'll receive every week:">
+        Maxaad heli doontaa toddobaadkii:
+      </div>
+      <div class="thankyou-what-item">
+        <span>📰</span>
+        <span data-so="Maqaallada ugu cusub ee teknoolajiyada — Af-Soomaali" data-en="The latest technology articles — in Somali">Maqaallada ugu cusub ee teknoolajiyada — Af-Soomaali</span>
+      </div>
+      <div class="thankyou-what-item">
+        <span>💡</span>
+        <span data-so="Tilmaamo fudud oo aad adeegsanayso maalintooda" data-en="Simple tips you can use every day">Tilmaamo fudud oo aad adeegsanayso maalintooda</span>
+      </div>
+      <div class="thankyou-what-item">
+        <span>🔒</span>
+        <span data-so="Xogta amniga dijitaalka iyo sida naftaada looga ilaaliyo" data-en="Digital security tips to keep yourself safe">Xogta amniga dijitaalka iyo sida naftaada looga ilaaliyo</span>
+      </div>
+      <div c
