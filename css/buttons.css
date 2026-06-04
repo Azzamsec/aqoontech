@@ -1,0 +1,198 @@
+/* ============================================================
+   AQOON TECH  —  Buttons & Badges  (css/buttons.css)
+   Every interactive button variant, badge pill, and chip
+   ============================================================ */
+
+/* ════════════════════════════
+   BASE BUTTON
+════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s2);
+  font-family: var(--font-ui);
+  font-size: var(--size-sm);
+  font-weight: 600;
+  letter-spacing: .15px;
+  white-space: nowrap;
+  user-select: none;
+  border-radius: var(--r);
+  border: 1.5px solid transparent;
+  padding: 13px 26px;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background   var(--t) var(--ease),
+    color        var(--t) var(--ease),
+    border-color var(--t) var(--ease),
+    transform    var(--t) var(--ease-spring),
+    box-shadow   var(--t) var(--ease);
+}
+.btn:active { transform: scale(.97) !important; }
+
+/* ── Sizes ── */
+.btn-xs  { padding:  6px 14px; font-size: 11px;            border-radius: var(--r-sm); }
+.btn-sm  { padding:  9px 18px; font-size: 12px;            border-radius: var(--r-sm); }
+.btn-lg  { padding: 15px 34px; font-size: var(--size-base); border-radius: var(--r-lg); }
+.btn-xl  { padding: 18px 44px; font-size: var(--size-md);   border-radius: var(--r-lg); }
+.btn-full{ width: 100%; }
+
+/* ── Primary (blue filled) ── */
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+  box-shadow: var(--shadow-blue);
+}
+.btn-primary:hover {
+  background: var(--blue-dark);
+  border-color: var(--blue-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-blue-lg);
+}
+
+/* ── Secondary (outlined) ── */
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border-2);
+}
+.btn-secondary:hover {
+  background: var(--blue-light);
+  border-color: var(--blue);
+  color: var(--blue);
+}
+[data-theme="dark"] .btn-secondary:hover { background: rgba(74,144,217,.09); }
+
+/* ── Ghost (blue text + border) ── */
+.btn-ghost {
+  background: transparent;
+  color: var(--blue);
+  border-color: var(--blue-mid);
+  padding: 9px 20px;
+  font-size: 13px;
+}
+.btn-ghost:hover {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+  box-shadow: var(--shadow-blue);
+}
+
+/* ── Dark ── */
+.btn-dark {
+  background: var(--charcoal);
+  color: #fff;
+  border-color: var(--charcoal);
+}
+.btn-dark:hover { background: var(--charcoal-lt); transform: translateY(-2px); }
+
+/* ── White (for dark backgrounds) ── */
+.btn-white {
+  background: #fff;
+  color: var(--blue-dark);
+  border-color: #fff;
+}
+.btn-white:hover { background: var(--blue-light); transform: translateY(-2px); }
+
+/* ── Icon-only circular ── */
+.btn-icon {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  padding: 0;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all var(--t) var(--ease-spring);
+}
+.btn-icon:hover {
+  background: var(--blue-light);
+  border-color: var(--blue-mid);
+  color: var(--blue);
+  transform: scale(1.06);
+}
+
+/* ── Loading state ── */
+.btn.loading {
+  opacity: .7;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+.btn.loading::after {
+  content: '';
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  animation: spin .6s linear infinite;
+  margin-left: var(--s2);
+}
+
+/* ── Success state ── */
+.btn.success {
+  background: var(--green) !important;
+  border-color: var(--green) !important;
+  pointer-events: none;
+}
+
+/* ════════════════════════════
+   BADGES / CHIPS
+════════════════════════════ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: var(--r-full);
+  white-space: nowrap;
+  line-height: 1.5;
+}
+
+/* Filled */
+.badge-blue    { background: var(--blue);    color: #fff; }
+.badge-green   { background: var(--green);   color: #fff; }
+.badge-amber   { background: var(--amber);   color: #fff; }
+.badge-purple  { background: var(--purple);  color: #fff; }
+.badge-teal    { background: var(--teal);    color: #fff; }
+.badge-dark    { background: var(--charcoal);color: #fff; }
+.badge-red     { background: var(--red);     color: #fff; }
+
+/* Semantic aliases */
+.badge-easy    { background: var(--green);   color: #fff; }
+.badge-new     { background: var(--red);     color: #fff; }
+.badge-hot     { background: var(--amber);   color: #fff; }
+
+/* Soft / outlined */
+.badge-soft-blue {
+  background: var(--blue-light);
+  color: var(--blue-dark);
+  border: 1px solid var(--blue-mid);
+}
+[data-theme="dark"] .badge-soft-blue {
+  background: rgba(74,144,217,.10);
+  color: var(--blue);
+  border-color: rgba(74,144,217,.28);
+}
+.badge-outline {
+  background: transparent;
+  color: var(--text-3);
+  border: 1.5px solid var(--border-2);
+}
+
+/* ── Badge group ── */
+.badge-row {
+  display: flex;
+  gap: var(--s2);
+  flex-wrap: wrap;
+  align-items: center;
+}

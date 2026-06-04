@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="so" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Aqoon Tech — get in touch, write for us, or ask a question. We'd love to hear from you.">
+  <title>Contact Us — Aqoon Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Montserrat:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/buttons.css">
+  <link rel="stylesheet" href="../css/cards.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/hero.css">
+  <link rel="stylesheet" href="../css/sections.css">
+  <link rel="stylesheet" href="../css/animations.css">
+
+  <style>
+    /* ── Contact page specific layout ── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* ── FAQ accordion ── */
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      transition: border-color var(--t) var(--ease);
+      background: var(--surface);
+    }
+    .faq-item:hover { border-color: var(--blue-mid); }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--s4) var(--s5);
+      cursor: pointer;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      gap: var(--s3);
+      transition: background var(--t) var(--ease), color var(--t) var(--ease);
+    }
+    .faq-question:hover { background: var(--blue-light); color: var(--blue); }
+    [data-theme="dark"] .faq-question:hover { background: rgba(74,144,217,.08); }
+    .faq-chevron {
+      font-size: 18px;
+      color: var(--text-3);
+      transition: transform var(--t) var(--ease-spring);
+      flex-shrink: 0;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--blue); }
+    .faq-answer {
+      display: none;
+      padding: 0 var(--s5) var(--s4);
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.75;
+    }
+    .faq-item.open .faq-answer { display: block; animation: fadeDown .18s var(--ease-out) both; }
+
+    /* ── Write for us card ── */
+    .write-card {
+      background: linear-gradient(135deg, var(--charcoal) 0%, #1a2040 100%);
+      border-radius: var(--r-lg);
+      padding: clamp(2rem, 4vw, 3rem);
+      position: relative;
+      overflow: hidden;
+    }
+    .write-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 30%, rgba(74,144,217,.2) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .write-card > * { position: relative; z-index: 1; }
+    .write-card h2  { color: #fff; font-family: var(--font-brand); font-size: clamp(1.4rem,2.5vw,1.9rem); margin-bottom: var(--s4); }
+    .write-card p   { color: rgba(255,255,255,.55); font-size: 14.5px; line-height: 1.8; margin-bottom: var(--s6); }
+    .write-perks    { display: flex; flex-direction: column; gap: var(--s3); margin-bottom: var(--s6); }
+    .write-perk {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--s3);
+      font-size: 13.5px;
+      color: rgba(255,255,255,.65);
+    }
+    .write-perk-dot {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: rgba(74,144,217,.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 11px;
+    }
+
+    @media (max-width: 960px) {
+      .contact-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="navbar" id="navbar">
+  <a href="../index.html" class="nav-logo">
+    <div class="logo-mark">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+           stroke="#4A90D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2.5"/>
+        <path d="M8 21h8M12 17v4"/>
+        <circle cx="12" cy="10" r="3.2"/>
+        <path d="M12 6.8V6M12 13.2V14M8.8 10H8M15.2 10H16" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-name">AQOON <span>TECH</span></span>
+      <span class="logo-tagline">Technology</span>
+    </div>
+  </a>
+
+  <div class="nav-links">
+    <a href="../index.html"   class="nav-link" data-so="Hoyga" data-en="Home">Hoyga</a>
+    <a href="articles.html"   class="nav-link" data-so="Maqaallada" data-en="Articles">Maqaallada</a>
+    <a href="categories.html" class="nav-link" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a>
+    <a href="about.html"      class="nav-link" data-so="Nagu Saabsan" data-en="About">Nagu Saabsan</a>
+    <a href="contact.html"    class="nav-link active" data-so="Xiriir" data-en="Contact">Xiriir</a>
+  </div>
+
+  <div class="nav-actions">
+    <div class="lang-switch">
+      <button class="lang-btn active" id="lang-so" onclick="setLang('so')">SO</button>
+      <button class="lang-btn"        id="lang-en" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="btn-theme" id="theme-toggle" onclick="toggleTheme()">🌙</button>
+    <a href="contact.html" class="nav-cta" data-so="Nala Soo Xiriir" data-en="Get in Touch">Nala Soo Xiriir</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="../index.html"   class="mobile-link" data-so="🏠 Hoyga" data-en="🏠 Home">🏠 Hoyga</a>
+  <a href="articles.html"   class="mobile-link" data-so="📰 Maqaallada" data-en="📰 Articles">📰 Maqaallada</a>
+  <a href="categories.html" class="mobile-link" data-so="📂 Mawduucyada" data-en="📂 Categories">📂 Mawduucyada</a>
+  <div class="mobile-divider"></div>
+  <a href="about.html"      class="mobile-link" data-so="ℹ️ Nagu Saabsan" data-en="ℹ️ About">ℹ️ Nagu Saabsan</a>
+  <a href="contact.html"    class="mobile-link" data-so="✉️ Xiriir" data-en="✉️ Contact">✉️ Xiriir</a>
+</nav>
+
+<main>
+
+  <!-- ═══ PAGE HERO BAND ═══ -->
+  <div class="page-band">
+    <div class="container">
+      <div class="label center" data-so="Salaan" data-en="Say Hello">Salaan</div>
+      <h1 class="h-page">
+        Contact <span style="color:var(--blue);">Aqoon Tech</span>
+      </h1>
+      <p style="font-size:15px;color:var(--text-2);max-width:520px;margin:0 auto;">
+        Su'aal ma qabtaa? Waxaad rabtaa inaan ku barano? Ama waxaad doonaysaa inaad noogu qorto?
+        Nala soo xiriir — waxaan ka jawaabaa 24 saacadood gudahood.
+      </p>
+    </div>
+  </div>
+
+  <!-- ═══ CONTACT INFO CARDS ═══ -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="grid grid-4 gap-md">
+
+        <div class="info-card reveal">
+          <div class="info-card-icon">✉️</div>
+          <div>
+            <div class="info-card-label">Email</div>
+            <div class="info-card-value">hello@aqoontech.com</div>
+            <div class="info-card-sub">Reply within 24 hours</div>
+          </div>
+        </div>
+
+        <div class="info-card reveal">
+          <div class="info-card-icon">✈</div>
+          <div>
+            <div class="info-card-label">Telegram</div>
+            <div class="info-card-value">@AqoonTech</div>
+            <div class="info-card-sub">Fastest response</div>
+          </div>
+        </div>
+
+        <div class="info-card reveal">
+          <div class="info-card-icon">▶</div>
+          <div>
+            <div class="info-card-label">YouTube</div>
+            <div class="info-card-value">Aqoon Tech</div>
+            <div class="info-card-sub">200+ video lessons</div>
+          </div>
+        </div>
+
+        <div class="info-card reveal">
+          <div class="info-card-icon">◎</div>
+          <div>
+            <div class="info-card-label">Instagram</div>
+            <div class="info-card-value">@aqoontech</div>
+            <div class="info-card-sub">Daily tech tips</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT FORM + SIDEBAR ═══ -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- ── Left: Contact form ── -->
+        <div>
+          <div class="label">Send a Message</div>
+          <h2 class="h-section">
+            Noogu <span class="accent">Qor</span>
+          </h2>
+          <p style="font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:var(--s8);">
+            Fariintaada noogu soo dir — waxaan u jawaabaa si degdeg ah.
+            Su'aalo, talo, ama cawaan — dhammaan waxaa nala soo diri kartaa.
+          </p>
+
+          <div class="contact-form-card reveal">
+            <form onsubmit="handleContact(event)">
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="cf-name">
+                    Full Name <span class="required">*</span>
+                  </label>
+                  <input class="form-input" id="cf-name" type="text"
+                         placeholder="Magacaaga / Your name" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="cf-email">
+                    Email Address <span class="required">*</span>
+                  </label>
+                  <input class="form-input" id="cf-email" type="email"
+                         placeholder="you@email.com" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="cf-subject">Subject</label>
+                <select class="form-input form-select" id="cf-subject">
+                  <option value="">Dooro — Choose a topic</option>
+                  <option>General Question / Su'aal Guud</option>
+                  <option>Write for Us / Noogu Qor</option>
+                  <option>Partnership / Iskaashi</option>
+                  <option>Technical Issue / Dhibaato Tigniko</option>
+                  <option>Content Suggestion / Talo Maqaal</option>
+                  <option>Other / Wax Kale</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="cf-message">
+                  Message <span class="required">*</span>
+                </label>
+                <textarea class="form-input form-textarea" id="cf-message"
+                          placeholder="Fariintaada / Your message here..."
+                          required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-check">
+                  <input type="checkbox" required>
+                  <span class="form-check-label">
+                    I agree to Aqoon Tech's
+                    <a href="#" style="color:var(--blue);text-decoration:underline;" data-so="Qaanuunka Xogta" data-en="Privacy Policy">Qaanuunka Xogta</a>
+                    and consent to being contacted.
+                  </span>
+                </label>
+              </div>
+
+              <button type="submit" class="form-submit">
+                Send Message →
+              </button>
+
+            </form>
+          </div>
+        </div>
+
+        <!-- ── Right sidebar ── -->
+        <div style="display:flex;flex-direction:column;gap:var(--s6);">
+
+          <!-- Response time card -->
+          <div class="sidebar-widget reveal">
+            <div class="sidebar-widget-head">⏱ Response Times</div>
+            <div class="sidebar-widget-body" style="padding-top:var(--s4);">
+              <div style="display:flex;flex-direction:column;gap:var(--s4);">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:13.5px;color:var(--text-2);">✈ Telegram</span>
+                  <span class="badge badge-green">Under 2 hours</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:13.5px;color:var(--text-2);">✉️ Email</span>
+                  <span class="badge badge-soft-blue">Within 24 hours</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:13.5px;color:var(--text-2);">🗂 Contact form</span>
+                  <span class="badge badge-soft-blue">Within 24 hours</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ accordion -->
+          <div class="reveal">
+            <div class="label" style="margin-bottom:var(--s4);">FAQ</div>
+            <div style="display:flex;flex-direction:column;gap:var(--s2);">
+
+              <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                  Maqaallada ma bilaash baa?
+                  <span class="faq-chevron">⌄</span>
+                </button>
+                <div class="faq-answer">
+                  Haa — dhammaan maqaallada Aqoon Tech waa bilaash oo weligaa bilaash ahaan
+                  doona. Ujeedadayadu waa in aqoonta teknoolajiyada la helo si xor ah.
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                  Can I write an article for Aqoon Tech?
+                  <span class="faq-chevron">⌄</span>
+                </button>
+                <div class="faq-answer">
+                  Yes! We welcome contributions from anyone who can write clearly about
+                  technology in Somali or English. Fill in the form above and choose
+                  "Write for Us" as your subject.
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                  Ma jiraa app Aqoon Tech?
+                  <span class="faq-chevron">⌄</span>
+                </button>
+                <div class="faq-answer">
+                  Hadda ma jirto app gaar ah, laakiin websaydkayagu wuxuu si fiican uga
+                  shaqeynayaa telefoonka. Waxaan ka shaqeynaynaa app-ka mustaqbalka
+                  ah — subscribe si aad u ogaato.
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                  How do I suggest a topic or article idea?
+                  <span class="faq-chevron">⌄</span>
+                </button>
+                <div class="faq-answer">
+                  Use the contact form above and select "Content Suggestion". We read
+                  every suggestion and many of our most popular articles came directly
+                  from reader ideas!
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Follow us card -->
+          <div class="sidebar-widget reveal">
+            <div class="sidebar-widget-head">🌐 Follow Aqoon Tech</div>
+            <div class="sidebar-widget-body" style="padding-top:var(--s4);">
+              <div style="display:flex;flex-direction:column;gap:var(--s3);">
+                <a href="#" style="display:flex;align-items:center;gap:var(--s3);text-decoration:none;padding:var(--s3) 0;border-bottom:1px solid var(--border);transition:color .2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color=''">
+                  <span style="font-size:1.2rem;">▶</span>
+                  <div><div style="font-size:13.5px;font-weight:500;color:var(--text);">YouTube</div><div style="font-size:11.5px;color:var(--text-3);">200+ video lessons</div></div>
+                </a>
+                <a href="#" style="display:flex;align-items:center;gap:var(--s3);text-decoration:none;padding:var(--s3) 0;border-bottom:1px solid var(--border);transition:color .2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color=''">
+                  <span style="font-size:1.2rem;">✈</span>
+                  <div><div style="font-size:13.5px;font-weight:500;color:var(--text);">Telegram Channel</div><div style="font-size:11.5px;color:var(--text-3);">Daily updates</div></div>
+                </a>
+                <a href="#" style="display:flex;align-items:center;gap:var(--s3);text-decoration:none;padding:var(--s3) 0;transition:color .2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color=''">
+                  <span style="font-size:1.2rem;">f</span>
+                  <div><div style="font-size:13.5px;font-weight:500;color:var(--text);">Facebook Page</div><div style="font-size:11.5px;color:var(--text-3);">Community &amp; articles</div></div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WRITE FOR US ═══ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="write-card reveal">
+        <div style="max-width:700px;">
+          <div style="display:inline-flex;align-items:center;gap:var(--s2);background:rgba(74,144,217,.2);color:var(--blue);font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:var(--r-full);margin-bottom:var(--s5);">✍️ Write for Us</div>
+          <h2>Share Your Knowledge<br>with the Somali World</h2>
+          <p>
+            Haddaad leedahay aqoon teknoolajiyada — ha ahaatee ardayga, xirfadlaha, ama
+            qofka xiisaha leh — waxaan ku soo dhawaynaa inaan wada shaqeyno.
+            Qormadaada ayaa gaadheysa malaayiin Soomaali ah ee adduunka ku fida.
+          </p>
+          <div class="write-perks">
+            <div class="write-perk">
+              <div class="write-perk-dot">✓</div>
+              <span>Your article reaches 10,000+ monthly readers across the Somali diaspora</span>
+            </div>
+            <div class="write-perk">
+              <div class="write-perk-dot">✓</div>
+              <span>Full author bio, photo, and links back to your work</span>
+            </div>
+            <div class="write-perk">
+              <div class="write-perk-dot">✓</div>
+              <span>Editorial team helps polish your writing before publishing</span>
+            </div>
+            <div class="write-perk">
+              <div class="write-perk-dot">✓</div>
+              <span>Shared on our Telegram, YouTube, and social channels</span>
+            </div>
+          </div>
+          <a href="#cf-subject" class="btn btn-white btn-lg"
+             onclick="document.getElementById('cf-subject').value='Write for Us / Noogu Qor';
+                      document.getElementById('cf-subject').closest('form').scrollIntoView({behavior:'smooth'});">
+            Apply to Write →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ NEWSLETTER ═══ -->
+<div class="newsletter-section">
+  <div class="newsletter-inner">
+    <span class="newsletter-emoji">📬</span>
+    <h2>Stay in the Loop</h2>
+    <p>
+      Subscribe to our weekly Somali tech newsletter —
+      new articles, tips, and updates every week. Free forever.
+    </p>
+    <form class="newsletter-form" onsubmit="handleNewsletter(this); return false;">
+      <input class="newsletter-input" type="email"
+             placeholder="email-kaaga@halkaan.com" required>
+      <button type="submit" class="newsletter-submit" data-so="Iska Diiwaan Geli" data-en="Subscribe">Iska Diiwaan Geli</button>
+    </form>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-row">
+          <div class="footer-logo-icon">
+            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <rect x="2" y="3" width="20" height="14" rx="2.5"/>
+              <path d="M8 21h8M12 17v4"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <span class="footer-brand-name">AQOON <span>TECH</span></span>
+            <span class="footer-brand-tag">Technology</span>
+          </div>
+        </div>
+        <p class="footer-about">
+          Teknoolajiyada gacanta kuu geyneysa — Technology knowledge
+          for every Somali speaker, everywhere in the world.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-btn">▶</a>
+          <a href="#" class="social-btn">♪</a>
+          <a href="#" class="social-btn">◎</a>
+          <a href="#" class="social-btn">✈</a>
+          <a href="#" class="social-btn">f</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title" data-so="Nuxurka" data-en="Content">Nuxurka</div>
+        <ul class="footer-links">
+          <li><a href="articles.html" data-so="Dhamaan Maqaallada" data-en="All Articles">Dhamaan Maqaallada</a></li>
+          <li><a href="categories.html" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a></li>
+          <li><a href="articles.html" data-so="Bilow (Fudud)" data-en="Beginner (Easy)">Bilow (Fudud)</a></li>
+          <li><a href="articles.html" data-so="Ugu Badan Toddobaadkan" data-en="Popular This Week">Ugu Badan Toddobaadkan</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title" data-so="Barnaamijka" data-en="Platform">Barnaamijka</div>
+        <ul class="footer-links">
+          <li><a href="about.html" data-so="Nagu Saabsan" data-en="About Us">Nagu Saabsan</a></li>
+          <li><a href="contact.html" data-so="Xiriir" data-en="Contact">Xiriir</a></li>
+          <li><a href="contact.html" data-so="Noogu Qor" data-en="Write for Us">Noogu Qor</a></li>
+          <li><a href="about.html" data-so="Kooxdayada" data-en="Our Team">Kooxdayada</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title" data-so="Sharci" data-en="Legal">Sharci</div>
+        <ul class="footer-links">
+          <li><a href="#" data-so="Qaanuunka Xogta" data-en="Privacy Policy">Qaanuunka Xogta</a></li>
+          <li><a href="#" data-so="Shuruudaha Isticmaalka" data-en="Terms of Use">Shuruudaha Isticmaalka</a></li>
+          <li><a href="#" data-so="Qaanuunka Cookie" data-en="Cookie Policy">Qaanuunka Cookie</a></li>
+          <li><a href="#">🇸🇴 Af-Soomaali</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Aqoon Tech. Xuquuqda oo dhan way dhowran tahay.</span>
+      <span>Jacayl ❤️ bulshada Soomaalida adduunka darteed</span>
+    </div>
+  </div>
+</footer>
+
+
+<!-- FLOATING LANGUAGE FAB -->
+<div class="lang-fab" role="group" aria-label="Language switcher">
+  <button class="lang-fab-btn active" id="lang-fab-so" onclick="setLang('so')" title="Af-Soomaali">SO</button>
+  <button class="lang-fab-btn"        id="lang-fab-en" onclick="setLang('en')" title="English">EN</button>
+</div>
+
+<button class="back-to-top" id="back-to-top" title="Back to top">↑</button>
+
+<script src="../js/theme.js"></script>
+<script src="../js/i18n.js"></script>
+<script>
+  /* ── FAQ toggle ── */
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+</body>
+</html>

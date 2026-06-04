@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="so" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aqoon Tech — Hadafkayaga, kooxdayada, iyo qiyamkayaga. Waxbarashada teknoolajiyada Af-Soomaali.">
+  <title>Nagu Saabsan — Aqoon Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Montserrat:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/buttons.css">
+  <link rel="stylesheet" href="../css/cards.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/hero.css">
+  <link rel="stylesheet" href="../css/sections.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <style>
+    .about-hero-img { width:100%; max-height:400px; object-fit:cover; display:block; }
+    .origin-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+    .origin-visual { background:linear-gradient(135deg,var(--charcoal) 0%,#1a2040 100%); border-radius:var(--r-lg); padding:3rem; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:var(--s4); position:relative; overflow:hidden; min-height:300px; }
+    .origin-visual::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 60% 30%,rgba(74,144,217,.22) 0%,transparent 65%); pointer-events:none; }
+    .origin-visual > * { position:relative; z-index:1; }
+    .origin-stat { font-family:var(--font-brand); font-size:3rem; color:var(--blue); line-height:1; }
+    .origin-stat-label { font-family:var(--font-ui); font-size:12.5px; color:rgba(255,255,255,.5); letter-spacing:.5px; }
+    .origin-divider { width:1px; height:40px; background:rgba(255,255,255,.12); }
+    .team-social { display:flex; justify-content:center; gap:var(--s2); margin-top:var(--s4); }
+    .team-social a { width:32px; height:32px; border-radius:8px; background:var(--blue-light); display:flex; align-items:center; justify-content:center; font-size:13px; color:var(--blue-dark); text-decoration:none; transition:all var(--t) var(--ease-spring); }
+    [data-theme="dark"] .team-social a { background:rgba(74,144,217,.12); color:var(--blue); }
+    .team-social a:hover { background:var(--blue); color:white; transform:translateY(-2px); }
+    @media (max-width:900px) { .origin-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="../index.html" class="nav-logo">
+    <div class="logo-mark">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A90D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2.5"/><path d="M8 21h8M12 17v4"/>
+        <circle cx="12" cy="10" r="3.2"/><path d="M12 6.8V6M12 13.2V14M8.8 10H8M15.2 10H16" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="logo-text"><span class="logo-name">AQOON <span>TECH</span></span><span class="logo-tagline">Technology</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html"   class="nav-link" data-so="Hoyga"        data-en="Home">Hoyga</a>
+    <a href="articles.html"   class="nav-link" data-so="Maqaallada"   data-en="Articles">Maqaallada</a>
+    <a href="categories.html" class="nav-link" data-so="Mawduucyada"  data-en="Categories">Mawduucyada</a>
+    <a href="about.html"      class="nav-link active" data-so="Nagu Saabsan" data-en="About">Nagu Saabsan</a>
+    <a href="contact.html"    class="nav-link" data-so="Xiriir"       data-en="Contact">Xiriir</a>
+  </div>
+  <div class="nav-actions">
+    <div class="lang-switch">
+      <button class="lang-btn active" id="lang-so" onclick="setLang('so')">SO</button>
+      <button class="lang-btn"        id="lang-en" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="btn-theme" id="theme-toggle" onclick="toggleTheme()">🌙</button>
+    <a href="contact.html" class="nav-cta" data-so="Nala Soo Xiriir" data-en="Get in Touch">Nala Soo Xiriir</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="../index.html"   class="mobile-link" data-so="🏠 Hoyga"         data-en="🏠 Home">🏠 Hoyga</a>
+  <a href="articles.html"   class="mobile-link" data-so="📰 Maqaallada"    data-en="📰 Articles">📰 Maqaallada</a>
+  <a href="categories.html" class="mobile-link" data-so="📂 Mawduucyada"   data-en="📂 Categories">📂 Mawduucyada</a>
+  <div class="mobile-divider"></div>
+  <a href="about.html"      class="mobile-link" data-so="ℹ️ Nagu Saabsan"  data-en="ℹ️ About">ℹ️ Nagu Saabsan</a>
+  <a href="contact.html"    class="mobile-link" data-so="✉️ Xiriir"        data-en="✉️ Contact">✉️ Xiriir</a>
+</nav>
+
+<main>
+
+  <img src="../images/about-hero.png" alt="Aqoon Tech nagu saabsan" class="about-hero-img" loading="eager">
+
+  <!-- PAGE INTRO -->
+  <section class="section">
+    <div class="container">
+      <div style="max-width:700px;margin:0 auto;text-align:center;">
+        <div class="label center" data-so="Sheekadeena" data-en="Our Story">Sheekadeena</div>
+        <h1 class="h-page">
+          Teknoolajiyada u <span style="color:var(--blue);" data-so="Qof Walba" data-en="Everyone">Qof Walba</span>
+        </h1>
+        <p style="font-size:16px;color:var(--text-2);line-height:1.85;margin-bottom:var(--s6);"
+           data-so="Aqoon Tech waxay ahayd fikrad dhashay 2023-kii markii aasaasaheenna Abdi Hassan uu ogaaday in malaayiin Soomaali ah aysan waxba ka garanin teknoolajiyada — maadaama aqoontaasi kii ay ku jirtay luuqadaha ay kuma jiraan Soomaaliga."
+           data-en="Aqoon Tech was an idea born in 2023 when our founder Abdi Hassan discovered that millions of Somalis knew nothing about technology — because that knowledge only existed in languages that didn't include Somali.">
+          Aqoon Tech waxay ahayd fikrad dhashay 2023-kii markii aasaasaheenna Abdi Hassan
+          uu ogaaday in malaayiin Soomaali ah aysan waxba ka garanin teknoolajiyada —
+          maadaama aqoontaasi kii ay ku jirtay luuqadaha ay kuma jiraan Soomaaliga.
+        </p>
+        <p style="font-size:16px;color:var(--text-2);line-height:1.85;"
+           data-so="Xalka wuxuu ahaa mid fudud: ku qor teknoolajiyada Af-Soomaali, si fudud, si qof walba u fahmi karo — baadiyaha joogana, magaalooyinka jooga, iyo Diasporaka adduunka ku fida labadaba."
+           data-en="The solution was simple: write about technology in Somali, simply, so that everyone can understand — whether they live in rural areas, cities, or the Somali diaspora worldwide.">
+          Xalka wuxuu ahaa mid fudud: <strong>ku qor teknoolajiyada Af-Soomaali</strong>,
+          si fudud, si qof walba u fahmi karo — baadiyaha joogana, magaalooyinka jooga, iyo
+          Diasporaka adduunka ku fida labadaba.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-num" data-count="500" data-suffix="+">500+</div>
+        <div class="stat-label" data-so="Maqaallo La Daabacay" data-en="Articles Published">Maqaallo La Daabacay</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-count="10000" data-suffix="+">10,000+</div>
+        <div class="stat-label" data-so="Akhriyeyaasha Bishii" data-en="Monthly Readers">Akhriyeyaasha Bishii</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-count="8" data-suffix="">8</div>
+        <div class="stat-label" data-so="Noocyada Teknoolajiyada" data-en="Tech Categories">Noocyada Teknoolajiyada</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-count="200" data-suffix="+">200+</div>
+        <div class="stat-label" data-so="Casharro Muuqaal" data-en="Video Lessons">Casharro Muuqaal</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORIGIN STORY -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="origin-grid">
+        <div class="reveal-left">
+          <div class="label" data-so="Asal ahaan" data-en="Our Origin">Asal ahaan</div>
+          <h2 class="h-section">
+            <span data-so="Sideen u" data-en="How We">Sideen u</span> <span class="accent" data-so="bilaabannay" data-en="Started">bilaabannay</span>
+          </h2>
+          <p style="font-size:15.5px;color:var(--text-2);line-height:1.85;margin-bottom:var(--s5);"
+             data-so="2023-kii, Abdi Hassan wuxuu arkay waldiiskii — oo ah macallin jaamacad ah — oo ku dhibaatoonaya fahanka teknoolajiyada. Aqoonyahanka wuxuu ku yiri: 'Haddaan Ingiriisiga fiicnayn, teknoolajiyada lama baranaysaa.'"
+             data-en="In 2023, Abdi Hassan saw his sister — a university lecturer — struggling to understand technology. The academic told him: 'If you don't know English well, you can't learn technology.'">
+            2023-kii, Abdi Hassan wuxuu arkay waldiiskii — oo ah macallin jaamacad ah —
+            oo ku dhibaatoonaya fahanka teknoolajiyada. Aqoonyahanka wuxuu ku yiri:
+            <em>"Haddaan Ingiriisiga fiicnayn, teknoolajiyada lama baranaysaa."</em>
+          </p>
+          <p style="font-size:15.5px;color:var(--text-2);line-height:1.85;margin-bottom:var(--s6);"
+             data-so="Xaaladdan waxay u muujisay khali weyn — milyan Soomaali ah oo xigta aqoonta teknoolajiyada joogaan. Aqoon Tech waxay ahayd jawaabta."
+             data-en="This situation revealed a huge gap — millions of Somalis remain outside the reach of technology knowledge. Aqoon Tech was the answer.">
+            Xaaladdan waxay u muujisay khali weyn — milyan Soomaali ah oo xigta aqoonta
+            teknoolajiyada joogaan. Aqoon Tech waxay ahayd jawaabta.
+          </p>
+          <div style="display:flex;gap:var(--s3);flex-wrap:wrap;">
+            <a href="contact.html" class="btn btn-primary" data-so="Ku Biir Ujeedada" data-en="Join the Mission">Ku Biir Ujeedada</a>
+            <a href="articles.html" class="btn btn-secondary" data-so="Akri Maqaallada" data-en="Read Articles">Akri Maqaallada</a>
+          </div>
+        </div>
+        <div class="origin-visual reveal">
+          <div class="origin-stat" data-count="50" data-suffix="">50+</div>
+          <div class="origin-stat-label" data-so="Wadanno leh akhriyeyaasha Soomaalida" data-en="Countries with Somali readers">Wadanno leh akhriyeyaasha Soomaalida</div>
+          <div class="origin-divider"></div>
+          <div class="origin-stat" style="color:var(--green);">2023</div>
+          <div class="origin-stat-label" data-so="Sanadkii la aasaasay Aqoon Tech" data-en="Year Aqoon Tech was founded">Sanadkii la aasaasay Aqoon Tech</div>
+          <div class="origin-divider"></div>
+          <div class="origin-stat" style="color:var(--amber);">4</div>
+          <div class="origin-stat-label" data-so="Xubno koox buuxda ah" data-en="Full-time team members">Xubno koox buuxda ah</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <div>
+          <div class="label center" data-so="Waxa Aan Ku Taagnahay" data-en="What We Stand For">Waxa Aan Ku Taagnahay</div>
+          <h2 class="h-section"><span data-so="Qiyamkayaga" data-en="Our Core">Qiyamkayaga</span> <span class="accent" data-so="Aasaasiga ah" data-en="Values">Aasaasiga ah</span></h2>
+          <p class="sub-heading center" data-so="Aqoonta, Hufnaanta, iyo Barashada — waxa ay Aqoon Tech ku dhisan tahay" data-en="Knowledge, Accuracy, and Learning — what Aqoon Tech is built on">
+            Aqoonta, Hufnaanta, iyo Barashada — waxa ay Aqoon Tech ku dhisan tahay
+          </p>
+        </div>
+      </div>
+      <div class="grid grid-3">
+        <div class="value-card reveal">
+          <span class="value-emoji">📚</span>
+          <div class="value-title" data-so="Waxaa Hore Helitaanka" data-en="Accessibility First">Waxaa Hore Helitaanka</div>
+          <p class="value-desc" data-so="Waxaan rumaysanahay in aqoonta teknoolajiyada ay tahay xaq aadanaha kasta. Maqaalladeena waxaa lagu qoray Af-Soomaali si fudud — si qof walba u gaadhi karo, wax barashadii hore ha yeeshee ha yeeshee." data-en="We believe technology knowledge is a human right for everyone. Our articles are written in simple Somali — accessible to everyone, regardless of prior education.">
+            Waxaan rumaysanahay in aqoonta teknoolajiyada ay tahay xaq aadanaha kasta.
+            Maqaalladeena waxaa lagu qoray Af-Soomaali si fudud — si qof walba u gaadhi karo,
+            wax barashadii hore ha yeeshee ha yeeshee.
+          </p>
+        </div>
+        <div class="value-card reveal">
+          <span class="value-emoji">✅</span>
+          <div class="value-title" data-so="Saxnimada & Aaminaadda" data-en="Accuracy & Trust">Saxnimada & Aaminaadda</div>
+          <p class="value-desc" data-so="Waxaan la shaqeynaa khubarrada teknoolajiyada si aan ugu xaqiijino saxnimada wax kasta oo aan qorno. Xaqiiqda marka la qoray, la hubiyaa — samaanka waxbarasho ah waxay u baahantahay aaminaad." data-en="We work with technology experts to ensure the accuracy of everything we write. Facts are verified when published — educational content requires trust.">
+            Waxaan la shaqeynaa khubarrada teknoolajiyada si aan ugu xaqiijino saxnimada
+            wax kasta oo aan qorno. Xaqiiqda marka la qoray, la hubiyaa — samaanka waxbarasho ah waxay u baahantahay aaminaad.
+          </p>
+        </div>
+        <div class="value-card reveal">
+          <span class="value-emoji">🌍</span>
+          <div class="value-title" data-so="Bulshada Ku Dhisan" data-en="Community Driven">Bulshada Ku Dhisan</div>
+          <p class="value-desc" data-so="Aqoon Tech waxaa dhisay bulshada Soomaalida — waxaana uga shaqeynaynaa bulshada. Akhriyayaashayaga ayaa noo sheegaya waxa ay rabaan baarteen, oo aan ku jawaabno si degdeg ah." data-en="Aqoon Tech was built by the Somali community — and we work for the community. Our readers tell us what they want to learn, and we respond quickly.">
+            Aqoon Tech waxaa dhisay bulshada Soomaalida — waxaana uga shaqeynaynaa
+            bulshada. Akhriyayaashayaga ayaa noo sheegaya waxa ay rabaan baarteen,
+            oo aan ku jawaabno si degdeg ah.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION STATEMENT -->
+  <section class="section section-alt">
+    <div class="container" style="max-width:860px;">
+      <div class="section-header center" style="margin-bottom:var(--s8);">
+        <div>
+          <div class="label center" data-so="Hadafkayaga" data-en="Our Mission">Hadafkayaga</div>
+          <h2 class="h-section">
+            Aqoon Tech <span class="accent" data-so="Hadafkiisa" data-en="Mission">Hadafkiisa</span>
+          </h2>
+        </div>
+      </div>
+      <div class="mission-block reveal">
+        <div class="mission-so">
+          "Aqoon Tech waxay doonaysaa in ay keento aqoonta teknoolajiyada casriga ah gacanta
+          dadka Soomaalida ku nool adduunka oo dhan — si fudud, si hufan, oo bilaash ah —
+          in Soomaaliga kasta uu kasoo faa'iideysto fursadaha teknoolajiyada waxay
+          u furanayso."
+        </div>
+        <div class="mission-en">
+          "Aqoon Tech aims to bring modern technology knowledge to the hands of Somali people
+          worldwide — simply, accurately, and freely — so that every Somali speaker can
+          benefit from the opportunities that technology opens up."
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <div>
+          <div class="label center" data-so="Dadka Ka Dambeeya" data-en="The People Behind It">Dadka Ka Dambeeya</div>
+          <h2 class="h-section"><span data-so="Kooxdayada" data-en="Meet Our">Kooxdayada</span> <span class="accent" data-so="La Kulmi" data-en="Team">La Kulmi</span></h2>
+          <p class="sub-heading center" data-so="Kooxda dadaalaysa si teknoolajiyadu noqoto mid Soomaali kasta fahmi karo" data-en="The team working hard so every Somali can understand technology">
+            Kooxda dadaalaysa si teknoolajiyadu noqoto mid Soomaali kasta fahmi karo
+          </p>
+        </div>
+      </div>
+      <div class="grid grid-4 gap-md">
+        <div class="team-card reveal">
+          <div class="team-avatar"><img src="../images/avatar-abdi.png" alt="Abdi Hassan"></div>
+          <div class="team-name">Abdi Hassan</div>
+          <div class="team-role" data-so="Aasaasaha & Tifafteraha Guud" data-en="Founder & Editor-in-Chief">Aasaasaha & Tifafteraha Guud</div>
+          <p style="font-size:12.5px;color:var(--text-2);line-height:1.65;margin-top:var(--s3);margin-bottom:var(--s3);"
+             data-so="Bare teknoolajiyad leh 8+ sano oo sharaxaadda teknoolajiyada qalabka guud u sharaxaysa."
+             data-en="Technology educator with 8+ years explaining complex tech to general audiences.">
+            Bare teknoolajiyad leh 8+ sano oo sharaxaadda teknoolajiyada qalabka guud u sharaxaysa.
+          </p>
+          <div class="team-social">
+            <a href="#" title="Twitter">𝕏</a>
+            <a href="#" title="LinkedIn">in</a>
+            <a href="#" title="Email">✉</a>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-avatar"><img src="../images/avatar-fadumo.png" alt="Fadumo Mohamed"></div>
+          <div class="team-name">Fadumo Mohamed</div>
+          <div class="team-role" data-so="Qoraaga Nuxurka Hore" data-en="Lead Content Writer">Qoraaga Nuxurka Hore</div>
+          <p style="font-size:12.5px;color:var(--text-2);line-height:1.65;margin-top:var(--s3);margin-bottom:var(--s3);"
+             data-so="Jaraa'idnimo iyo qorista teknoolajiyada, khusuusan dhigista mawduucyada adag si fudud."
+             data-en="Journalist and tech writer specialising in making complex topics simple and clear.">
+            Jaraa'idnimo iyo qorista teknoolajiyada, khusuusan dhigista mawduucyada adag si fudud.
+          </p>
+          <div class="team-social">
+            <a href="#" title="Twitter">𝕏</a>
+            <a href="#" title="LinkedIn">in</a>
+            <a href="#" title="Email">✉</a>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-avatar"><img src="../images/avatar-omar.png" alt="Omar Ali"></div>
+          <div class="team-name">Omar Ali</div>
+          <div class="team-role" data-so="Soo-saare Muuqaal" data-en="Video Producer">Soo-saare Muuqaal</div>
+          <p style="font-size:12.5px;color:var(--text-2);line-height:1.65;margin-top:var(--s3);margin-bottom:var(--s3);"
+             data-so="Soo-saara casharro muuqaal oo dhan. Khabiir ku ah sheeko-sheegista muuqaalka waxbarashada."
+             data-en="Produces all video lessons and tutorials. Expert at visual storytelling for education.">
+            Soo-saara casharro muuqaal oo dhan. Khabiir ku ah sheeko-sheegista muuqaalka waxbarashada.
+          </p>
+          <div class="team-social">
+            <a href="#" title="YouTube">▶</a>
+            <a href="#" title="Instagram">◎</a>
+            <a href="#" title="Email">✉</a>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-avatar"><img src="../images/avatar-hodan.png" alt="Hodan Nuur"></div>
+          <div class="team-name">Hodan Nuur</div>
+          <div class="team-role" data-so="Turjubaan Luqadda & Teknoolajiyada" data-en="Language & Tech Translator">Turjubaan Luqadda & Teknoolajiyada</div>
+          <p style="font-size:12.5px;color:var(--text-2);line-height:1.65;margin-top:var(--s3);margin-bottom:var(--s3);"
+             data-so="Waxay hubisaa in nuxurka oo dhan uu saxnahay labada Ingiriisi iyo Soomaali, iyada oo macnaha farsamada ilaalinaysa."
+             data-en="Ensures all content is accurate in both English and Somali, preserving technical meaning.">
+            Waxay hubisaa in nuxurka oo dhan uu saxnahay labada Ingiriisi iyo Soomaali, iyada oo macnaha farsamada ilaalinaysa.
+          </p>
+          <div class="team-social">
+            <a href="#" title="Twitter">𝕏</a>
+            <a href="#" title="LinkedIn">in</a>
+            <a href="#" title="Email">✉</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN CTA -->
+  <section class="section section-alt">
+    <div class="container" style="max-width:700px;text-align:center;">
+      <div class="label center" data-so="Ka Qaybgal" data-en="Get Involved">Ka Qaybgal</div>
+      <h2 class="h-section">
+        <span data-so="Ma Rabtaa inaad" data-en="Want to">Ma Rabtaa inaad</span> <span class="accent" data-so="Gacan Siiso?" data-en="Contribute?">Gacan Siiso?</span>
+      </h2>
+      <p style="font-size:15.5px;color:var(--text-2);line-height:1.85;margin-bottom:var(--s8);"
+         data-so="Haddaad leedahay aqoon teknoolajiyada ama qoraal Soomaali ah, waxaan ku soo dhawaynaa kooxda. Soo nala xiriir si aad uga qaybqaadato ujeedadayada waxbarashada."
+         data-en="If you have technology knowledge or Somali writing skills, we welcome you to the team. Contact us to participate in our educational mission.">
+        Haddaad leedahay aqoon teknoolajiyada ama qoraal Soomaali ah,
+        waxaan ku soo dhawaynaa kooxda. Soo nala xiriir si aad uga qaybqaadato
+        ujeedadayada waxbarashada.
+      </p>
+      <div style="display:flex;gap:var(--s3);justify-content:center;flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-primary btn-lg" data-so="Noogu Qor" data-en="Write for Us">Noogu Qor</a>
+        <a href="contact.html" class="btn btn-secondary btn-lg" data-so="La Xiriir Kooxda" data-en="Contact the Team">La Xiriir Kooxda</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-section">
+  <div class="newsletter-inner">
+    <span class="newsletter-emoji">📬</span>
+    <h2 data-so="Raac Safarkayaga" data-en="Follow Our Journey">Raac Safarkayaga</h2>
+    <p data-so="Iska diiwaan geli oo hel maqaallo teknoolajiyad toddobaadlaha ah, wararka dambe, iyo astaamaha cusub — bilaash, had iyo jeer." data-en="Subscribe and get weekly tech articles, behind-the-scenes updates, and new features — free, forever.">
+      Iska diiwaan geli oo hel maqaallo teknoolajiyad toddobaadlaha ah, wararka dambe, iyo astaamaha cusub — bilaash, had iyo jeer.
+    </p>
+    <form class="newsletter-form" onsubmit="handleNewsletter(this); return false;">
+      <input class="newsletter-input" type="email" placeholder="email-kaaga@halkaan.com" required>
+      <button type="submit" class="newsletter-submit" data-so="Iska Diiwaan Geli" data-en="Subscribe">Iska Diiwaan Geli</button>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-row">
+          <div class="footer-logo-icon">
+            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <rect x="2" y="3" width="20" height="14" rx="2.5"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div><span class="footer-brand-name">AQOON <span>TECH</span></span><span class="footer-brand-tag">Technology</span></div>
+        </div>
+        <p class="footer-about" data-so="Teknoolajiyada gacanta kuu geyneysa — Aqoonta teknoolajiyada ee Af-Soomaali qof kasta adduunka." data-en="Technology brought to your doorstep — Technology knowledge in Somali for everyone worldwide.">
+          Teknoolajiyada gacanta kuu geyneysa — Aqoonta teknoolajiyada ee Af-Soomaali qof kasta adduunka.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-btn">▶</a><a href="#" class="social-btn">♪</a>
+          <a href="#" class="social-btn">◎</a><a href="#" class="social-btn">✈</a><a href="#" class="social-btn">f</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title" data-so="Nuxurka" data-en="Content">Nuxurka</div>
+        <ul class="footer-links">
+          <li><a href="articles.html" data-so="Dhamaan Maqaallada" data-en="All Articles">Dhamaan Maqaallada</a></li>
+          <li><a href="categories.html" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a></li>
+          <li><a href="articles.html" data-so="Bilow (Fudud)" data-en="Beginner (Easy)">Bilow (Fudud)</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title" data-so="Barnaamijka" data-en="Platform">Barnaamijka</div>
+        <ul class="footer-links">
+          <li><a href="about.html" data-so="Nagu Saabsan" data-en="About Us">Nagu Saabsan</a></li>
+          <li><a href="contact.html" data-so="Xiriir" data-en="Contact">Xiriir</a></li>
+          <li><a href="contact.html" data-so="Noogu Qor" data-en="Write for Us">Noogu Qor</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title" data-so="Sharci" data-en="Legal">Sharci</div>
+        <ul class="footer-links">
+          <li><a href="#" data-so="Qaanuunka Xogta" data-en="Privacy Policy">Qaanuunka Xogta</a></li>
+          <li><a href="#" data-so="Shuruudaha Isticmaalka" data-en="Terms of Use">Shuruudaha Isticmaalka</a></li>
+          <li><a href="#" data-so="🇸🇴 Af-Soomaali" data-en="🇸🇴 Somali">🇸🇴 Af-Soomaali</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Aqoon Tech. <span data-so="Xuquuqda oo dhan way dhowran tahay." data-en="All rights reserved.">Xuquuqda oo dhan way dhowran tahay.</span></span>
+      <span data-so="Jacayl ❤️ bulshada Soomaalida adduunka darteed" data-en="Made with ❤️ for the Somali community worldwide">Jacayl ❤️ bulshada Soomaalida adduunka darteed</span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="back-to-top" title="Ku noqo sare">↑</button>
+
+<!-- FLOATING LANGUAGE FAB -->
+<div class="lang-fab" role="group" aria-label="Language switcher">
+  <button class="lang-fab-btn active" id="lang-fab-so" onclick="setLang('so')" title="Af-Soomaali">SO</button>
+  <button class="lang-fab-btn"        id="lang-fab-en" onclick="setLang('en')" title="English">EN</button>
+</div>
+
+<script src="../js/theme.js"></script>
+<script src="../js/i18n.js"></script>
+</body>
+</html>

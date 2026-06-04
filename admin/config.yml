@@ -1,0 +1,155 @@
+# ============================================================
+#  AQOON TECH — Decap CMS Configuration
+#  This file tells the admin what fields to show when
+#  you write a new article. Edit field labels freely.
+# ============================================================
+
+backend:
+  name: git-gateway
+  branch: main          # must match your Netlify branch
+
+# Where uploaded images get stored
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# Show a live preview of the article while you write
+show_preview_links: true
+
+collections:
+
+  # ── ARTICLES ──────────────────────────────────────────────
+  - name: "articles"
+    label: "📰 Maqaallada (Articles)"
+    label_singular: "Maqaal"
+    folder: "pages/articles"
+    create: true
+    slug: "{{slug}}"          # filename = article title (auto)
+    extension: "html"
+    format: "frontmatter"
+
+    # ── Editor fields (what you fill in when writing) ──────
+    fields:
+
+      # Core info
+      - { label: "Cinwaanka Soomaaliga (Somali Title)",
+          name: "title_so",
+          widget: "string",
+          hint: "Cinwaanka buuxa ee maqaalka — Af-Soomaali" }
+
+      - { label: "Cinwaanka Ingiriisiga (English Title)",
+          name: "title_en",
+          widget: "string",
+          hint: "Full article title in English" }
+
+      - { label: "Sharaxaad Gaaban — Soomaali (Short Description SO)",
+          name: "subtitle_so",
+          widget: "string",
+          hint: "1-2 jumlood oo maqaalka ka warrameysa — Af-Soomaali" }
+
+      - { label: "Sharaxaad Gaaban — English (Short Description EN)",
+          name: "subtitle_en",
+          widget: "string",
+          hint: "1-2 sentences describing the article in English" }
+
+      # Category & difficulty
+      - label: "Nooca Maqaalka (Category)"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "💻 Aasaaska Teknoolajiyada (Tech Basics)",   value: "tech-basics" }
+          - { label: "🌐 Internet & Shabakadaha (Internet)",        value: "internet" }
+          - { label: "📱 Mobilada & Qalabka (Mobile & Devices)",   value: "mobile" }
+          - { label: "🔒 Amniga Dijitaalka (Cybersecurity)",        value: "cybersecurity" }
+          - { label: "🤖 AI & Teknoolajiyada Mustaqbalka (AI)",     value: "ai" }
+          - { label: "💼 Xirfadaha Dijitaalka (Digital Skills)",   value: "digital-skills" }
+          - { label: "⚙️ Barnaamijyada & Abka (Software & Apps)",  value: "software" }
+          - { label: "📊 Teknoolajiyada Ganacsiga (Business Tech)", value: "business-tech" }
+
+      - label: "Heerka (Difficulty)"
+        name: "difficulty"
+        widget: "select"
+        default: "fudud"
+        options:
+          - { label: "🟢 Fudud (Beginner)",      value: "fudud" }
+          - { label: "🟡 Dhexdhexaad (Medium)",  value: "dhexdhexaad" }
+          - { label: "🔴 Adag (Advanced)",        value: "adag" }
+
+      # Author
+      - label: "Qoraaga (Author)"
+        name: "author"
+        widget: "select"
+        default: "abdi"
+        options:
+          - { label: "Abdi Hassan",    value: "abdi" }
+          - { label: "Fadumo Mohamed", value: "fadumo" }
+          - { label: "Omar Ali",       value: "omar" }
+          - { label: "Hodan Nuur",     value: "hodan" }
+
+      # Read time
+      - { label: "Wakhti Akhrinta (Read Time) — e.g. 5",
+          name: "read_time",
+          widget: "number",
+          default: 5,
+          value_type: "int",
+          min: 1,
+          max: 60 }
+
+      # Date (auto-filled)
+      - { label: "Taariikhda (Date)",
+          name: "date",
+          widget: "datetime",
+          date_format: "YYYY-MM-DD",
+          time_format: false,
+          default: "" }
+
+      # Hero image
+      - { label: "Sawirka Maqaalka (Hero Image)",
+          name: "hero_image",
+          widget: "image",
+          required: false,
+          hint: "Sawirka ugu weyn ee maqaalka. PNG ama JPG, 1200×600px ugu yaraan." }
+
+      # SEO description
+      - { label: "SEO Description (for Google)",
+          name: "seo_description",
+          widget: "string",
+          required: false,
+          hint: "Short description for search engines (150 chars max)" }
+
+      # ── ARTICLE BODY (Somali) ────────────────────────────
+      - label: "Qoraalka Maqaalka — Af-Soomaali (Article Body Somali)"
+        name: "body_so"
+        widget: "markdown"
+        hint: "Qor maqaalkaaga oo dhan halkan — Af-Soomaali"
+        modes: ["rich_text", "raw"]
+
+      # ── ARTICLE BODY (English) ──────────────────────────
+      - label: "Article Body — English (Qoraalka Ingiriisiga)"
+        name: "body_en"
+        widget: "markdown"
+        required: false
+        hint: "Write the full English version here (optional but recommended)"
+        modes: ["rich_text", "raw"]
+
+      # Key facts for sidebar
+      - label: "Xaqiiqooyinka Muhiimka (Key Facts — sidebar)"
+        name: "key_facts"
+        widget: "list"
+        required: false
+        max: 5
+        field:
+          { label: "Xaqiiqada (Fact)",
+            name: "fact",
+            widget: "string" }
+
+      # Related articles
+      - label: "Maqaallada La Xiriira (Related Articles)"
+        name: "related"
+        widget: "list"
+        required: false
+        max: 3
+        fields:
+          - { label: "Cinwaanka (Title)", name: "title", widget: "string" }
+          - { label: "Xiriirka (URL)",    name: "url",   widget: "string" }
+          - { label: "Daqiiqo (Minutes)", name: "mins",  widget: "number", default: 5 }
+

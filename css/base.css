@@ -1,0 +1,99 @@
+/* ============================================================
+   AQOON TECH  —  Reset & Base  (css/base.css)
+   Modern CSS reset, body defaults, containers, page system
+   ============================================================ */
+
+/* ── Modern reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--size-base);
+  line-height: 1.7;
+  color: var(--text);
+  background-color: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color var(--t-slow) var(--ease),
+              color          var(--t-slow) var(--ease);
+}
+
+img, video, svg { display: block; max-width: 100%; }
+img { height: auto; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-brand);
+  line-height: 1.18;
+  color: var(--text);
+  font-weight: 400; /* Alata is display-weight natively */
+}
+
+p    { line-height: 1.78; }
+a    { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { cursor: pointer; font-family: var(--font-ui); border: none; background: none; }
+input, textarea, select { font-family: var(--font-body); font-size: var(--size-base); }
+
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: var(--bg-alt); }
+::-webkit-scrollbar-thumb  { background: var(--blue-mid); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+/* ── Text selection ── */
+::selection { background: var(--blue-light); color: var(--blue-dark); }
+[data-theme="dark"] ::selection { background: rgba(74,144,217,.28); color: #b8d8f8; }
+
+/* ── Focus-visible ring ── */
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+/* ── Visually hidden ── */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ── Containers ── */
+.container {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--pad-x);
+}
+.container-sm {
+  max-width: var(--max-w-sm);
+  margin-inline: auto;
+  padding-inline: var(--pad-x);
+}
+.container-text {
+  max-width: var(--max-w-text);
+  margin-inline: auto;
+  padding-inline: var(--pad-x);
+}
+
+/* ── Section wrappers ── */
+.section {
+  padding-block: var(--pad-y);
+}
+.section-sm {
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+}
+.section-alt  { background: var(--bg-alt); }
+.section-dark {
+  background: var(--charcoal);
+}
+[data-theme="dark"] .section-dark { background: #0a0c14; }
+
+/* ── Divider ── */
+hr, .divider { height: 1px; background: var(--border); border: none; margin-block: var(--s6); }

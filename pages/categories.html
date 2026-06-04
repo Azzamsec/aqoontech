@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="so" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse all technology categories on Aqoon Tech — AI, Cybersecurity, Mobile, Internet and more in Somali.">
+  <title>Categories — Aqoon Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Montserrat:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/buttons.css">
+  <link rel="stylesheet" href="../css/cards.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/hero.css">
+  <link rel="stylesheet" href="../css/sections.css">
+  <link rel="stylesheet" href="../css/animations.css">
+
+  <style>
+    /* ── Category count badge overlay ── */
+    .cat-card-count {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-3);
+      margin-top: var(--s2);
+    }
+
+    /* ── Spotlight section header accent bar ── */
+    .spotlight-head {
+      display: flex;
+      align-items: center;
+      gap: var(--s4);
+      margin-bottom: var(--s8);
+    }
+    .spotlight-icon-lg {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: var(--blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.9rem;
+      flex-shrink: 0;
+      transition: all var(--t) var(--ease-spring);
+    }
+    [data-theme="dark"] .spotlight-icon-lg { background: rgba(74,144,217,.12); }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="navbar" id="navbar">
+  <a href="../index.html" class="nav-logo">
+    <div class="logo-mark">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+           stroke="#4A90D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2.5"/>
+        <path d="M8 21h8M12 17v4"/>
+        <circle cx="12" cy="10" r="3.2"/>
+        <path d="M12 6.8V6M12 13.2V14M8.8 10H8M15.2 10H16" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-name">AQOON <span>TECH</span></span>
+      <span class="logo-tagline">Technology</span>
+    </div>
+  </a>
+
+  <div class="nav-links">
+    <a href="../index.html"   class="nav-link" data-so="Hoyga" data-en="Home">Hoyga</a>
+    <a href="articles.html"   class="nav-link" data-so="Maqaallada" data-en="Articles">Maqaallada</a>
+    <a href="categories.html" class="nav-link active" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a>
+    <a href="about.html"      class="nav-link" data-so="Nagu Saabsan" data-en="About">Nagu Saabsan</a>
+    <a href="contact.html"    class="nav-link" data-so="Xiriir" data-en="Contact">Xiriir</a>
+  </div>
+
+  <div class="nav-actions">
+    <div class="lang-switch">
+      <button class="lang-btn active" id="lang-so" onclick="setLang('so')">SO</button>
+      <button class="lang-btn"        id="lang-en" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="btn-theme" id="theme-toggle" onclick="toggleTheme()">🌙</button>
+    <a href="contact.html" class="nav-cta" data-so="Nala Soo Xiriir" data-en="Get in Touch">Nala Soo Xiriir</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="../index.html"   class="mobile-link" data-so="🏠 Hoyga" data-en="🏠 Home">🏠 Hoyga</a>
+  <a href="articles.html"   class="mobile-link" data-so="📰 Maqaallada" data-en="📰 Articles">📰 Maqaallada</a>
+  <a href="categories.html" class="mobile-link" data-so="📂 Mawduucyada" data-en="📂 Categories">📂 Mawduucyada</a>
+  <div class="mobile-divider"></div>
+  <a href="about.html"      class="mobile-link" data-so="ℹ️ Nagu Saabsan" data-en="ℹ️ About">ℹ️ Nagu Saabsan</a>
+  <a href="contact.html"    class="mobile-link" data-so="✉️ Xiriir" data-en="✉️ Contact">✉️ Xiriir</a>
+</nav>
+
+<main>
+
+  <!-- ═══ PAGE HERO BAND ═══ -->
+  <div class="page-band">
+    <div class="container">
+      <div class="label center">Browse</div>
+      <h1 class="h-page">
+        All <span style="color:var(--blue);" data-so="Mawduucyada" data-en="Categories">Mawduucyada</span>
+      </h1>
+      <p style="font-size:15px;color:var(--text-2);max-width:520px;margin:0 auto;">
+        Dooro mawduuca kuu xiisaha badan oo bilow barashadaada teknoolajiyada maanta —
+        waxaa laga bilaabi karaa heer kasta.
+      </p>
+    </div>
+  </div>
+
+  <!-- ═══ ALL 8 CATEGORIES GRID ═══ -->
+  <section class="section">
+    <div class="container">
+
+      <div class="section-header">
+        <div>
+          <div class="label">All Topics</div>
+          <h2 class="h-section">Every <span class="accent">Category</span></h2>
+          <p class="sub-heading">
+            8 mawduuc oo kala duwan — laga bilaabo aasaaska ilaa mustaqbalka
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-4 gap-md">
+
+        <a href="articles.html" class="cat-card reveal">
+          <div class="cat-icon">💻</div>
+          <div class="cat-name">Technology Basics</div>
+          <div class="cat-meta">48 maqaal · 12 video</div>
+        </a>
+
+        <a href="articles.html" class="cat-card reveal">
+          <div class="cat-icon">🌐</div>
+          <div class="cat-name">Internet & Networks</div>
+          <div class="cat-meta">36 maqaal · 8 video</div>
+        </a>
+
+        <a href="articles.html" class="cat-card reveal">
+          <div class="cat-icon">📱</div>
+          <div class="cat-name">Mobile & Devices</div>
+          <div class="cat-meta">52 maqaal · 18 video</div>
+        </a>
+
+        <a href="articles.html" class="cat-card reveal">
+          <div class="cat-icon">🔒</div>
+          <div class="cat-name">Cybersecurity</div>
+          <div class="cat-meta">30 maqaal · 10 video</div>
+        </a>
+
+        <a href="articles.html" class="cat-card reveal">
+          <div class="cat-icon">🤖</div>
+          <div class="cat-name">AI & Future Tech</div>
+          <div class="cat-meta">44 maqaal · 15 video</div>
+        </a>
+
+        <a href="articles.html" class="cat-card reveal">
+          <div class="cat-icon">💼</div>
+          <div class="cat-name">Digital Skills</div>
+          <div class="cat-meta">38 maqaal · 14 video</div>
+        </a>
+
+        <a href="articles.html" class="cat-card reveal">
+          <div class="cat-icon">⚙️</div>
+          <div class="cat-name">Software & Apps</div>
+          <div class="cat-meta">41 maqaal · 11 video</div>
+        </a>
+
+        <a href="articles.html" class="cat-card reveal">
+          <div class="cat-icon">📊</div>
+          <div class="cat-name">Business Tech</div>
+          <div class="cat-meta">28 maqaal · 9 video</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SPOTLIGHT: AI & FUTURE TECH ═══ -->
+  <section class="section section-alt">
+    <div class="container">
+
+      <div class="spotlight-head reveal">
+        <div class="spotlight-icon-lg">🤖</div>
+        <div>
+          <div class="label" data-so="Nooca Xiddigga" data-en="Spotlight Category">Nooca Xiddigga</div>
+          <h2 class="h-section">
+            AI &amp; <span class="accent">Future Tech</span>
+          </h2>
+          <p class="sub-heading">
+            Maqaallada ugu wanaagsan ee AI-ga — bilow halkan haddaad cusub tahay
+          </p>
+        </div>
+        <a href="articles.html" class="btn btn-ghost" style="margin-left:auto;flex-shrink:0;">
+          All AI articles →
+        </a>
+      </div>
+
+      <div class="grid grid-3">
+
+        <article class="card reveal">
+          <a href="article-ai.html">
+            <div class="card-img">
+              <img src="../images/hero-ai.png" alt="AI article" loading="lazy">
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="badge-row mb-2">
+              <span class="badge badge-blue">AI &amp; Future Tech</span>
+              <span class="badge badge-easy">Fudud</span>
+            </div>
+            <h3 class="h-card">
+              <a href="article-ai.html">Maxay tahay Artificial Intelligence?</a>
+            </h3>
+            <p class="card-excerpt">
+              AI waa nidaam kombiyuutar ah oo u dhaqma sida maskaxda aadanaha. Sharaxaad fudud oo qof walba u qoran.
+            </p>
+            <div class="card-meta">
+              <span>5 min</span><span class="card-meta-dot"></span><span>Jun 1</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <a href="article-ai.html">
+            <div class="card-img">
+              <img src="../images/hero-chatgpt.png" alt="ChatGPT" loading="lazy">
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="badge-row mb-2">
+              <span class="badge badge-blue">AI &amp; Future Tech</span>
+            </div>
+            <h3 class="h-card">
+              <a href="article-ai.html">ChatGPT sida loo adeegsado — Guide buuxa 2026</a>
+            </h3>
+            <p class="card-excerpt">
+              ChatGPT waa AI-ga ugu caansan dunida. Baro sida loola shaqeysto si hufan waxbarashada iyo shaqada.
+            </p>
+            <div class="card-meta">
+              <span>6 min</span><span class="card-meta-dot"></span><span>May 30</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <a href="article-ai.html">
+            <div class="card-img"
+                 style="background:linear-gradient(135deg,#1e2540,#4a90d9);
+                        display:flex;align-items:center;justify-content:center;
+                        font-size:3.5rem;aspect-ratio:16/9;">🔮
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="badge-row mb-2">
+              <span class="badge badge-blue">AI &amp; Future Tech</span>
+            </div>
+            <h3 class="h-card">
+              <a href="article-ai.html">AI miyay qaadan doontaa shaqooyinkayaga?</a>
+            </h3>
+            <p class="card-excerpt">
+              Qarnigan cusub, AI waxay keeneysaa beddelad weyn. Su'aashu waxay tahay: sideen uga diyaargarownaanaa?
+            </p>
+            <div class="card-meta">
+              <span>8 min</span><span class="card-meta-dot"></span><span>May 22</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SPOTLIGHT: CYBERSECURITY ═══ -->
+  <section class="section">
+    <div class="container">
+
+      <div class="spotlight-head reveal">
+        <div class="spotlight-icon-lg" style="background:rgba(29,158,117,.1);">🔒</div>
+        <div>
+          <div class="label" data-so="Nooca Xiddigga" data-en="Spotlight Category">Nooca Xiddigga</div>
+          <h2 class="h-section">
+            <span class="accent">Cybersecurity</span>
+          </h2>
+          <p class="sub-heading">
+            Amniga online-ka — dhowro naftaada iyo xogta kuu gaar ah
+          </p>
+        </div>
+        <a href="articles.html" class="btn btn-ghost" style="margin-left:auto;flex-shrink:0;">
+          All security articles →
+        </a>
+      </div>
+
+      <div class="grid grid-3">
+
+        <article class="card reveal">
+          <a href="article-ai.html">
+            <div class="card-img">
+              <img src="../images/hero-security.png" alt="Security" loading="lazy">
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="badge-row mb-2">
+              <span class="badge badge-green">Cybersecurity</span>
+            </div>
+            <h3 class="h-card">
+              <a href="article-ai.html">Sida looga badbaado xatooyin internet-ka</a>
+            </h3>
+            <p class="card-excerpt">
+              Hackers waxay adeegsadaan farsamooyin kala duwan. Baro sida aad naftaada uga ilaaliso khataraha.
+            </p>
+            <div class="card-meta">
+              <span>7 min</span><span class="card-meta-dot"></span><span>May 28</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <a href="article-ai.html">
+            <div class="card-img">
+              <img src="../images/hero-password.png" alt="Password" loading="lazy">
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="badge-row mb-2">
+              <span class="badge badge-green">Cybersecurity</span>
+              <span class="badge badge-easy">Fudud</span>
+            </div>
+            <h3 class="h-card">
+              <a href="article-ai.html">Password xoogan sida loo sameeyo</a>
+            </h3>
+            <p class="card-excerpt">
+              Password daciifka ah waa mid ka waxyeelada ugu badan amniga online-ka. Baro sida password xoogan loo sameeyo.
+            </p>
+            <div class="card-meta">
+              <span>4 min</span><span class="card-meta-dot"></span><span>May 10</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <a href="article-ai.html">
+            <div class="card-img"
+                 style="background:linear-gradient(135deg,#0e2a1a,#1d7a48);
+                        display:flex;align-items:center;justify-content:center;
+                        font-size:3.5rem;aspect-ratio:16/9;">✉️
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="badge-row mb-2">
+              <span class="badge badge-green">Cybersecurity</span>
+            </div>
+            <h3 class="h-card">
+              <a href="article-ai.html">Sida loo ogaado email khiyaamo ah (phishing)</a>
+            </h3>
+            <p class="card-excerpt">
+              Phishing waa farsamo ay xatooyeyaashu ku isku dayaan inay xogta sirta ah kaa qaadaan. Bartaada si aad uga badbaadasho.
+            </p>
+            <div class="card-meta">
+              <span>5 min</span><span class="card-meta-dot"></span><span>May 5</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SPOTLIGHT: MOBILE & DEVICES ═══ -->
+  <section class="section section-alt">
+    <div class="container">
+
+      <div class="spotlight-head reveal">
+        <div class="spotlight-icon-lg" style="background:rgba(232,160,32,.10);">📱</div>
+        <div>
+          <div class="label" data-so="Nooca Xiddigga" data-en="Spotlight Category">Nooca Xiddigga</div>
+          <h2 class="h-section">
+            Mobile &amp; <span class="accent">Devices</span>
+          </h2>
+          <p class="sub-heading">
+            Telefoonka, tablettada, iyo qalabka teknoolajiyada maalinlaha ah
+          </p>
+        </div>
+        <a href="articles.html" class="btn btn-ghost" style="margin-left:auto;flex-shrink:0;">
+          All mobile articles →
+        </a>
+      </div>
+
+      <div class="grid grid-3">
+
+        <article class="card reveal">
+          <a href="article-ai.html">
+            <div class="card-img">
+              <img src="../images/hero-mobile.png" alt="Mobile" loading="lazy">
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="badge-row mb-2">
+              <span class="badge badge-amber">Mobile &amp; Devices</span>
+            </div>
+            <h3 class="h-card">
+              <a href="article-ai.html">Apps 10 ee ugu wanaagsan telefoonka Android-ka</a>
+            </h3>
+            <p class="card-excerpt">
+              Apps bilaashka ah ee kuu caawin doona waxbarashada, shaqada, iyo maalintooda casharrada.
+            </p>
+            <div class="card-meta">
+              <span>4 min</span><span class="card-meta-dot"></span><span>May 25</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <a href="article-ai.html">
+            <div class="card-img"
+                 style="background:linear-gradient(135deg,#1a1208,#7a5010);
+                        display:flex;align-items:center;justify-content:center;
+                        font-size:3.5rem;aspect-ratio:16/9;">📲
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="badge-row mb-2">
+              <span class="badge badge-amber">Mobile &amp; Devices</span>
+            </div>
+            <h3 class="h-card">
+              <a href="article-ai.html">iPhone vs Android — Kee ku haboon tahay?</a>
+            </h3>
+            <p class="card-excerpt">
+              Labada nidaam ee telefoonka ugu caansan dunida — farqigooda, kharashkooda, iyo kee la doorto.
+            </p>
+            <div class="card-meta">
+              <span>6 min</span><span class="card-meta-dot"></span><span>May 18</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <a href="article-ai.html">
+            <div class="card-img"
+                 style="background:linear-gradient(135deg,#1a1018,#702060);
+                        display:flex;align-items:center;justify-content:center;
+                        font-size:3.5rem;aspect-ratio:16/9;">🔋
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="badge-row mb-2">
+              <span class="badge badge-amber">Mobile &amp; Devices</span>
+              <span class="badge badge-easy">Fudud</span>
+            </div>
+            <h3 class="h-card">
+              <a href="article-ai.html">Sida batariyada telefoonka loo dhowro si wayn</a>
+            </h3>
+            <p class="card-excerpt">
+              Talooyin fudud oo ku caawina batariyada telefoonkaaga inuu sii shaqeeyo muddo dheer.
+            </p>
+            <div class="card-meta">
+              <span>3 min</span><span class="card-meta-dot"></span><span>May 12</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SPOTLIGHT: TECH BASICS ═══ -->
+  <section class="section">
+    <div class="container">
+
+      <div class="spotlight-head reveal">
+        <div class="spotlight-icon-lg" style="background:rgba(8,145,178,.10);">💻</div>
+        <div>
+          <div class="label" data-so="Nooca Xiddigga" data-en="Spotlight Category">Nooca Xiddigga</div>
+          <h2 class="h-section">
+            Technology <span class="accent">Basics</span>
+          </h2>
+          <p class="sub-heading">
+            Aasaaska teknoolajiyada — haddaad bilowga tahay, tan bilow
+          </p>
+        </div>
+        <a href="articles.html" class="btn btn-ghost" style="margin-left:auto;flex-shrink:0;">
+          All basics articles →
+        </a>
+      </div>
+
+      <div class="grid grid-3">
+
+        <article class="card reveal">
+          <a href="article-ai.html">
+            <div class="card-img">
+              <img src="../images/hero-basics.png" alt="Basics" loading="lazy">
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="badge-row mb-2">
+              <span class="badge badge-teal">Tech Basics</span>
+              <span class="badge badge-easy">Fudud</span>
+            </div>
+            <h3 class="h-card">
+              <a href="article-ai.html">Cloud Storage waa maxay? Google Drive sharaxaad</a>
+            </h3>
+            <p class="card-excerpt">
+              Cloud waa meel internetka lagu kaydiyey faylashaada si aad uga gaadhi karto meel kasta.
+            </p>
+            <div class="card-meta">
+              <span>6 min</span><span class="card-meta-dot"></span><span>May 20</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <a href="article-ai.html">
+            <div class="card-img"
+                 style="background:linear-gradient(135deg,#08243a,#0e6090);
+                        display:flex;align-items:center;justify-content:center;
+                        font-size:3.5rem;aspect-ratio:16/9;">🛡️
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="badge-row mb-2">
+              <span class="badge badge-teal">Tech Basics</span>
+            </div>
+            <h3 class="h-card">
+              <a href="article-ai.html">VPN waa maxay oo maxay u baahan tahay?</a>
+            </h3>
+            <p class="card-excerpt">
+              VPN waxay dhawraysaa xogta kuu gaar ah online-ka. Baro sababta ay muhiim u tahay iyo sida loo adeegsado.
+            </p>
+            <div class="card-meta">
+              <span>5 min</span><span class="card-meta-dot"></span><span>May 8</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <a href="article-ai.html">
+            <div class="card-img"
+                 style="background:linear-gradient(135deg,#0e1e30,#1a5070);
+                        display:flex;align-items:center;justify-content:center;
+                        font-size:3.5rem;aspect-ratio:16/9;">💾
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="badge-row mb-2">
+              <span class="badge badge-teal">Tech Basics</span>
+              <span class="badge badge-easy">Fudud</span>
+            </div>
+            <h3 class="h-card">
+              <a href="article-ai.html">Kombiyuuterka waa maxay qaybihiisa muhiimka?</a>
+            </h3>
+            <p class="card-excerpt">
+              CPU, RAM, Hard Drive — walxahaani waa maxay oo sida ay u shaqeeyaan sharaxaad aad u fudud.
+            </p>
+            <div class="card-meta">
+              <span>7 min</span><span class="card-meta-dot"></span><span>May 2</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ NEWSLETTER ═══ -->
+<div class="newsletter-section">
+  <div class="newsletter-inner">
+    <span class="newsletter-emoji">💡</span>
+    <h2 data-so="Iska Diiwaan Geli & La Soco" data-en="Subscribe &amp; Stay Updated">Iska Diiwaan Geli & La Soco</h2>
+    <p>
+      Hel maqaallada ugu cusub ee dhammaan mawduucyada — toddobaadkii hal jeer, bilaash ah.
+    </p>
+    <form class="newsletter-form" onsubmit="handleNewsletter(this); return false;">
+      <input class="newsletter-input" type="email"
+             placeholder="email-kaaga@halkaan.com" required>
+      <button type="submit" class="newsletter-submit" data-so="Iska Diiwaan Geli" data-en="Subscribe Free">Iska Diiwaan Geli</button>
+    </form>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+
+      <div>
+        <div class="footer-brand-row">
+          <div class="footer-logo-icon">
+            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <rect x="2" y="3" width="20" height="14" rx="2.5"/>
+              <path d="M8 21h8M12 17v4"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <span class="footer-brand-name">AQOON <span>TECH</span></span>
+            <span class="footer-brand-tag">Technology</span>
+          </div>
+        </div>
+        <p class="footer-about">
+          Teknoolajiyada gacanta kuu geyneysa — Technology knowledge
+          for every Somali speaker, everywhere in the world.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-btn" title="YouTube">▶</a>
+          <a href="#" class="social-btn" title="TikTok">♪</a>
+          <a href="#" class="social-btn" title="Instagram">◎</a>
+          <a href="#" class="social-btn" title="Telegram">✈</a>
+          <a href="#" class="social-btn" title="Facebook">f</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title" data-so="Nuxurka" data-en="Content">Nuxurka</div>
+        <ul class="footer-links">
+          <li><a href="articles.html" data-so="Dhamaan Maqaallada" data-en="All Articles">Dhamaan Maqaallada</a></li>
+          <li><a href="categories.html" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a></li>
+          <li><a href="articles.html" data-so="Bilow (Fudud)" data-en="Beginner (Easy)">Bilow (Fudud)</a></li>
+          <li><a href="articles.html" data-so="Ugu Badan Toddobaadkan" data-en="Popular This Week">Ugu Badan Toddobaadkan</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title" data-so="Barnaamijka" data-en="Platform">Barnaamijka</div>
+        <ul class="footer-links">
+          <li><a href="about.html" data-so="Nagu Saabsan" data-en="About Us">Nagu Saabsan</a></li>
+          <li><a href="contact.html" data-so="Xiriir" data-en="Contact">Xiriir</a></li>
+          <li><a href="contact.html" data-so="Noogu Qor" data-en="Write for Us">Noogu Qor</a></li>
+          <li><a href="about.html" data-so="Kooxdayada" data-en="Our Team">Kooxdayada</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title" data-so="Sharci" data-en="Legal">Sharci</div>
+        <ul class="footer-links">
+          <li><a href="#" data-so="Qaanuunka Xogta" data-en="Privacy Policy">Qaanuunka Xogta</a></li>
+          <li><a href="#" data-so="Shuruudaha Isticmaalka" data-en="Terms of Use">Shuruudaha Isticmaalka</a></li>
+          <li><a href="#" data-so="Qaanuunka Cookie" data-en="Cookie Policy">Qaanuunka Cookie</a></li>
+          <li><a href="#">🇸🇴 Af-Soomaali</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Aqoon Tech. Xuquuqda oo dhan way dhowran tahay.</span>
+      <span>Jacayl ❤️ bulshada Soomaalida adduunka darteed</span>
+    </div>
+  </div>
+</footer>
+
+
+<!-- FLOATING LANGUAGE FAB -->
+<div class="lang-fab" role="group" aria-label="Language switcher">
+  <button class="lang-fab-btn active" id="lang-fab-so" onclick="setLang('so')" title="Af-Soomaali">SO</button>
+  <button class="lang-fab-btn"        id="lang-fab-en" onclick="setLang('en')" title="English">EN</button>
+</div>
+
+<button class="back-to-top" id="back-to-top" title="Back to top">↑</button>
+
+<script src="../js/theme.js"></script>
+<script src="../js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+/* ============================================================
+   AQOON TECH  —  Design Tokens  (css/variables.css)
+   All colours, spacing, radii, shadows, z-index, typography
+   sizes and timing functions live here. Change one value and
+   the entire site updates.
+   ============================================================ */
+
+:root {
+
+  /* ── Brand palette ── */
+  --blue:          #4A90D9;
+  --blue-dark:     #2d6fad;
+  --blue-deeper:   #1a4a7a;
+  --blue-light:    #E8F4FF;
+  --blue-mid:      #c5e0f7;
+  --charcoal:      #2C2C32;
+  --charcoal-lt:   #3f3f4a;
+  --green:         #1d9e75;
+  --amber:         #e8a020;
+  --purple:        #7d50b5;
+  --teal:          #0891b2;
+  --red:           #e24b4a;
+  --white:         #FFFFFF;
+
+  /* ── Semantic – Light theme ── */
+  --bg:            #FFFFFF;
+  --bg-alt:        #F7F9FC;
+  --bg-3:          #EEF2F8;
+  --surface:       #FFFFFF;
+  --surface-2:     #F4F7FC;
+  --surface-3:     #EDF1F8;
+  --text:          #1A1D2E;
+  --text-2:        #44506A;
+  --text-3:        #8892A8;
+  --border:        #E2E8F2;
+  --border-2:      #C8D4E4;
+
+  /* ── Typography ── */
+  --font-brand: 'Alata', sans-serif;
+  --font-ui:    'Montserrat', sans-serif;
+  --font-body:  'DM Sans', sans-serif;
+
+  --size-xs:   11px;
+  --size-sm:   13px;
+  --size-base: 15px;
+  --size-md:   17px;
+  --size-lg:   20px;
+  --size-xl:   24px;
+  --size-2xl:  30px;
+  --size-3xl:  38px;
+  --size-4xl:  48px;
+  --size-5xl:  60px;
+
+  /* ── Spacing scale (4-pt) ── */
+  --s1:  4px;
+  --s2:  8px;
+  --s3:  12px;
+  --s4:  16px;
+  --s5:  20px;
+  --s6:  24px;
+  --s8:  32px;
+  --s10: 40px;
+  --s12: 48px;
+  --s16: 64px;
+  --s20: 80px;
+  --s24: 96px;
+
+  /* ── Border radii ── */
+  --r-xs:   4px;
+  --r-sm:   8px;
+  --r:      14px;
+  --r-lg:   20px;
+  --r-xl:   28px;
+  --r-2xl:  36px;
+  --r-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-xs:   0 1px 4px rgba(26,29,46,.06);
+  --shadow-sm:   0 2px 8px rgba(26,29,46,.08);
+  --shadow:      0 4px 20px rgba(74,144,217,.10);
+  --shadow-md:   0 8px 32px rgba(26,29,46,.12);
+  --shadow-lg:   0 16px 48px rgba(26,29,46,.14);
+  --shadow-up:   0 16px 48px rgba(74,144,217,.18);
+  --shadow-blue: 0 8px 28px rgba(74,144,217,.35);
+  --shadow-blue-lg: 0 16px 48px rgba(74,144,217,.45);
+
+  /* ── Motion ── */
+  --ease:       cubic-bezier(.4,0,.2,1);
+  --ease-out:   cubic-bezier(0,0,.2,1);
+  --ease-in:    cubic-bezier(.4,0,1,1);
+  --ease-spring: cubic-bezier(.34,1.56,.64,1);
+  --t-fast:  .14s;
+  --t:       .22s;
+  --t-slow:  .40s;
+
+  /* ── Layout ── */
+  --nav-h:      70px;
+  --max-w:      1280px;
+  --max-w-sm:   960px;
+  --max-w-text: 700px;
+  --pad-x:      clamp(1.25rem, 5vw, 3.5rem);
+  --pad-y:      clamp(3.5rem, 7vw, 6rem);
+
+  /* ── Z-index ladder ── */
+  --z-base:    1;
+  --z-drop:    50;
+  --z-sticky:  80;
+  --z-nav:     100;
+  --z-over:    150;
+  --z-modal:   200;
+  --z-toast:   300;
+}
+
+/* ── Dark mode overrides ── */
+[data-theme="dark"] {
+  --bg:       #0F1117;
+  --bg-alt:   #161B27;
+  --bg-3:     #1C2235;
+  --surface:  #181E2E;
+  --surface-2:#1E2540;
+  --surface-3:#242D4A;
+  --text:     #EEF2FF;
+  --text-2:   #9BA8CC;
+  --text-3:   #5C6A88;
+  --border:   #252D45;
+  --border-2: #323D58;
+
+  --blue-light: rgba(74,144,217,.10);
+  --blue-mid:   rgba(74,144,217,.22);
+
+  --shadow:       0 4px 20px rgba(0,0,0,.45);
+  --shadow-md:    0 8px 32px rgba(0,0,0,.50);
+  --shadow-lg:    0 16px 48px rgba(0,0,0,.55);
+  --shadow-up:    0 16px 48px rgba(74,144,217,.22);
+  --shadow-blue:  0 8px 28px rgba(74,144,217,.28);
+  --shadow-blue-lg: 0 16px 48px rgba(74,144,217,.38);
+}
+
+/* ── Language FAB ── */
+.lang-fab {
+  position: fixed;
+  bottom: 5.5rem;
+  right: 1.5rem;
+  z-index: 9000;
+  display: flex;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 50px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.14);
+  overflow: hidden;
+  transition: box-shadow var(--t) var(--ease);
+}
+.lang-fab:hover { box-shadow: 0 6px 24px rgba(0,0,0,.2); }
+
+.lang-fab-btn {
+  padding: 9px 16px;
+  font-family: var(--font-brand);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .6px;
+  color: var(--text-3);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all var(--t) var(--ease);
+  min-width: 44px;
+}
+.lang-fab-btn.active {
+  background: var(--blue);
+  color: #fff;
+  border-radius: 50px;
+}
+.lang-fab-btn:not(.active):hover {
+  color: var(--blue);
+}

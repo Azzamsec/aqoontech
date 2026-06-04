@@ -1,0 +1,66 @@
+<!--
+  AQOON TECH — Shared Navigation Snippet
+  Copy this block into every page. Adjust href="../" prefix
+  for pages inside /pages/ vs root-level index.html
+-->
+
+<!-- Progress bar -->
+<div id="progress-bar"></div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+
+  <!-- Logo -->
+  <a href="[ROOT]/index.html" class="nav-logo">
+    <div class="logo-mark">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+           stroke="#4A90D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2.5"/>
+        <path d="M8 21h8M12 17v4"/>
+        <circle cx="12" cy="10" r="3.2"/>
+        <path d="M12 6.8V6M12 13.2V14M8.8 10H8M15.2 10H16" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-name">AQOON <span>TECH</span></span>
+      <span class="logo-tagline">Technology</span>
+    </div>
+  </a>
+
+  <!-- Links -->
+  <div class="nav-links">
+    <a href="[ROOT]/index.html"            class="nav-link">Home</a>
+    <a href="[ROOT]/pages/articles.html"   class="nav-link">Articles</a>
+    <a href="[ROOT]/pages/categories.html" class="nav-link">Categories</a>
+    <a href="[ROOT]/pages/about.html"      class="nav-link">About</a>
+    <a href="[ROOT]/pages/contact.html"    class="nav-link">Contact</a>
+  </div>
+
+  <!-- Actions -->
+  <div class="nav-actions">
+    <div class="lang-switch">
+      <button class="lang-btn active" id="lang-so" onclick="setLang('so')">SO</button>
+      <button class="lang-btn"        id="lang-en" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="btn-theme" id="theme-toggle" onclick="toggleTheme()">🌙</button>
+    <a href="[ROOT]/pages/contact.html" class="nav-cta">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      Get in Touch
+    </a>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="[ROOT]/index.html"            class="mobile-link">🏠 Home</a>
+  <a href="[ROOT]/pages/articles.html"   class="mobile-link">📰 Articles</a>
+  <a href="[ROOT]/pages/categories.html" class="mobile-link">📂 Categories</a>
+  <div class="mobile-divider"></div>
+  <a href="[ROOT]/pages/about.html"      class="mobile-link">ℹ️ About</a>
+  <a href="[ROOT]/pages/contact.html"    class="mobile-link">✉️ Contact</a>
+</nav>
