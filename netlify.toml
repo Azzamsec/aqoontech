@@ -2,7 +2,8 @@
 #  AQOON TECH — Netlify Configuration
 # ============================================================
 [build]
-  publish = "."
+  publish   = "."
+  functions = "netlify/functions"
 
 [[redirects]]
   from = "/admin"
