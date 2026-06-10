@@ -1,512 +1,333 @@
 <!DOCTYPE html>
 <html lang="so" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Aqoon Tech — Teknoolajiyada gacanta kuu geyneysa. Waxbarashada teknoolajiyada ee Af-Soomaali bulshada adduunka.">
-  <meta property="og:title" content="Aqoon Tech — Teknoolajiyada Qof Walba">
-  <meta property="og:description" content="Gunta aqoonta dijitaalka ee bulshada Soomaalida adduunka.">
-  <meta property="og:type" content="website">
-  <meta name="theme-color" content="#4A90D9">
-  <title>Aqoon Tech — Teknoolajiyada Gacanta Kuu Geyneysa</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Aqoon Tech — Teknoolajiyada gacanta kuu geyneysa. Waxbarashada teknoolajiyada ee Af-Soomaali bulshada adduunka.">
+<meta name="theme-color" content="#4F46E5">
+<title>Aqoon Tech — Teknoolajiyada Gacanta Kuu Geyneysa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12122B;--ink-2:#3A3A55;
+  --paper:#FBFBFD;--surface:#FFFFFF;--surface-2:#F4F4FA;
+  --tint-indigo:#F3F2FE;--tint-teal:#ECFAF8;
+  --text:#16162E;--text-2:#585872;--text-3:#9494A8;
+  --border:#EAEAF2;--border-2:#DADAE6;
+  --indigo:#4F46E5;--indigo-dk:#3F37C9;--indigo-lt:#EEEDFE;
+  --teal:#06B6A4;--teal-br:#0FD9C3;--teal-dk:#0F766E;--teal-lt:#E1F7F4;
+  --amber-lt:#FAEEDA;--amber-dk:#854F0B;
+  --display:'Outfit',sans-serif;--body:'DM Sans',sans-serif;
+  --ease:cubic-bezier(.4,0,.2,1);--spring:cubic-bezier(.34,1.56,.64,1);
+  --nav-h:72px;--max:1200px;
+}
+[data-theme="dark"]{
+  --ink:#EDEDF7;--ink-2:#B8B8CC;
+  --paper:#0C0C16;--surface:#13131F;--surface-2:#171725;
+  --tint-indigo:#15152A;--tint-teal:#0E1A20;
+  --text:#EDEDF7;--text-2:#A0A0B8;--text-3:#6A6A82;
+  --border:#23233A;--border-2:#2E2E48;
+  --indigo:#7C75F0;--indigo-lt:rgba(79,70,229,.16);
+  --teal:#2DD4BF;--teal-br:#2DD4BF;--teal-lt:rgba(6,182,164,.16);
+  --amber-lt:rgba(232,160,32,.16);--amber-dk:#F5C572;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--text);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+a{text-decoration:none;color:inherit}
+.kicker{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--display);font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--indigo);padding-left:.85rem;border-left:2px solid var(--indigo)}
+.kicker.teal{color:var(--teal-dk);border-color:var(--teal)}
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Montserrat:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+/* NAV */
+nav.bar{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,3rem);background:transparent;transition:background .35s var(--ease),box-shadow .35s,border-color .35s,height .35s;border-bottom:1px solid transparent}
+nav.bar.scrolled{background:color-mix(in srgb,var(--paper) 85%,transparent);backdrop-filter:blur(16px);border-bottom-color:var(--border);box-shadow:0 4px 24px rgba(18,18,43,.06);height:64px}
+.logo{display:flex;align-items:center;gap:.7rem}
+.logo-mark{width:38px;height:38px;border-radius:11px;background:var(--ink);display:grid;place-items:center;box-shadow:0 4px 14px rgba(18,18,43,.18)}
+.logo-name{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.3px;color:var(--text);line-height:1}
+.logo-name span{color:var(--indigo)}
+.logo-tag{font-family:var(--body);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-3)}
+.links{display:flex;gap:2rem;align-items:center}
+.links a{font-family:var(--display);font-size:14.5px;font-weight:500;color:var(--text-2);transition:color .2s;position:relative}
+.links a:hover,.links a.on{color:var(--text)}
+.links a.on::after{content:'';position:absolute;left:0;right:0;bottom:-22px;height:2px;background:var(--indigo)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.lang{display:flex;border:1px solid var(--border-2);border-radius:99px;overflow:hidden;background:var(--surface)}
+.lang button{border:none;background:transparent;font-family:var(--display);font-size:11px;font-weight:600;padding:6px 12px;cursor:pointer;color:var(--text-3);transition:.2s}
+.lang button.active{background:var(--indigo);color:#fff}
+.icon-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--border-2);background:var(--surface);cursor:pointer;font-size:15px;display:grid;place-items:center;transition:.2s}
+.icon-btn:hover{border-color:var(--indigo)}
+.cta{font-family:var(--display);font-weight:600;font-size:14px;background:var(--ink);color:#fff;padding:10px 20px;border-radius:11px;transition:transform .15s var(--spring),box-shadow .2s;box-shadow:0 4px 16px rgba(18,18,43,.16)}
+.cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(18,18,43,.24)}
+.hamburger{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:8px}
+.hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/typography.css">
-  <link rel="stylesheet" href="css/buttons.css">
-  <link rel="stylesheet" href="css/cards.css">
-  <link rel="stylesheet" href="css/navbar.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/hero.css">
-  <link rel="stylesheet" href="css/sections.css">
-  <link rel="stylesheet" href="css/animations.css">
+/* mobile nav */
+.mnav{position:fixed;top:var(--nav-h);left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:1rem clamp(1.25rem,5vw,3rem);display:none;flex-direction:column;gap:.3rem;z-index:99;box-shadow:0 12px 30px rgba(18,18,43,.1)}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--display);font-weight:500;font-size:15px;color:var(--text-2);padding:.7rem 0;border-bottom:1px solid var(--border)}
+.mnav a:last-child{border-bottom:none}
 
-  <style>
-    .hero-section {
-      min-height: calc(100vh - var(--nav-h));
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 3rem;
-      padding-block: clamp(3rem,7vw,5.5rem);
-    }
-    .hero-visual-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-main-img {
-      width: 100%;
-      max-width: 520px;
-      border-radius: var(--r-lg);
-      box-shadow: var(--shadow-lg);
-    }
-    .hero-badge-1 { top: 10%; left: -16%; }
-    .hero-badge-2 { bottom: 14%; right: -12%; }
-    @media (max-width: 1024px) {
-      .hero-section { grid-template-columns: 1fr; min-height: auto; padding-top: 3rem; }
-      .hero-visual-wrap { display: none; }
-    }
-  </style>
+/* HERO */
+.hero{position:relative;padding-top:calc(var(--nav-h) + clamp(2.5rem,6vw,5rem));padding-bottom:clamp(3rem,7vw,5.5rem);overflow:hidden}
+.hero::before{content:'';position:absolute;top:-10%;right:-5%;width:50%;height:120%;background:radial-gradient(ellipse at center,var(--tint-teal) 0%,transparent 60%);opacity:.7;pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.h1{font-family:var(--display);font-weight:700;font-size:clamp(2.6rem,5.2vw,4.3rem);line-height:1.04;letter-spacing:-1.5px;color:var(--ink);margin:1.5rem 0 1.4rem}
+.h1 .accent{color:var(--indigo);position:relative;white-space:nowrap}
+.h1 .accent::after{content:'';position:absolute;left:0;right:0;bottom:.08em;height:.16em;background:var(--teal-br);opacity:.5;border-radius:2px}
+.lead{font-size:17px;color:var(--text-2);line-height:1.75;max-width:30rem;margin-bottom:2.2rem;font-weight:300}
+.lead strong{color:var(--text);font-weight:500}
+.btn-row{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center}
+.btn{font-family:var(--display);font-weight:600;font-size:15px;padding:13px 26px;border-radius:12px;transition:transform .15s var(--spring),box-shadow .2s;display:inline-flex;align-items:center;gap:.5rem;cursor:pointer}
+.btn-primary{background:var(--indigo);color:#fff;box-shadow:0 6px 20px rgba(79,70,229,.32)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(79,70,229,.42)}
+.btn-ghost{color:var(--ink);border:1px solid var(--border-2);background:var(--surface)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal-dk);transform:translateY(-2px)}
+.hero-visual{position:relative;height:420px}
+.float-card{position:absolute;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:1.25rem 1.4rem;box-shadow:0 18px 50px rgba(18,18,43,.13)}
+.fc-1{top:0;left:6%;width:64%;z-index:3;animation:floaty 6s var(--ease) infinite}
+.fc-2{top:34%;right:0;width:58%;z-index:2;animation:floaty 6s var(--ease) infinite .8s}
+.fc-3{bottom:0;left:0;width:60%;z-index:1;animation:floaty 6s var(--ease) infinite 1.6s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.fc-tag{display:inline-block;font-family:var(--display);font-size:10.5px;font-weight:600;padding:4px 9px;border-radius:6px;margin-bottom:.7rem}
+.tag-teal{background:var(--teal-lt);color:var(--teal-dk)}
+.tag-indigo{background:var(--indigo-lt);color:var(--indigo-dk)}
+.tag-amber{background:var(--amber-lt);color:var(--amber-dk)}
+.fc-title{font-family:var(--display);font-weight:600;font-size:15px;color:var(--text);line-height:1.3;margin-bottom:.3rem}
+.fc-meta{font-size:12px;color:var(--text-3)}
+.fc-icon{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-size:16px;background:var(--teal-lt);margin-bottom:.7rem}
+
+/* STATS */
+.stats{background:var(--tint-indigo);border-block:1px solid var(--border)}
+.stats-in{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding-block:2.6rem}
+.stat{text-align:center}
+.stat-n{font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,3.5vw,2.7rem);color:var(--ink);letter-spacing:-1px;line-height:1}
+.stat-n span{color:var(--indigo)}
+.stat-l{font-family:var(--body);font-size:12.5px;color:var(--text-2);margin-top:.5rem}
+.stat+.stat{border-left:1px solid var(--border-2)}
+
+/* SECTIONS */
+.section{padding-block:clamp(3.5rem,7vw,5.5rem)}
+.section.tint-teal{background:var(--tint-teal)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.8rem;flex-wrap:wrap}
+.sec-head .toprow{display:flex;align-items:center;gap:1rem;margin-bottom:.3rem}
+.sec-no{font-family:var(--display);font-size:12px;font-weight:600;color:var(--text-3);letter-spacing:.1em}
+.h2{font-family:var(--display);font-weight:700;font-size:clamp(1.8rem,3.4vw,2.6rem);letter-spacing:-1px;color:var(--ink);line-height:1.1;margin-top:.7rem}
+.h2 .accent{color:var(--indigo)}
+.h2 .accent-t{color:var(--teal-dk)}
+.sub{color:var(--text-2);font-size:15px;margin-top:.6rem;font-weight:300;max-width:34rem}
+.link-more{font-family:var(--display);font-weight:600;font-size:14px;color:var(--indigo);transition:gap .2s;display:inline-flex;gap:.3rem}
+.link-more:hover{gap:.6rem}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s,border-color .25s;cursor:pointer}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 54px rgba(18,18,43,.14);border-color:var(--border-2)}
+.card-top{height:160px;display:grid;place-items:center;font-size:2.6rem;border-bottom:1px solid var(--border)}
+.ct-1{background:linear-gradient(135deg,#EEEDFE,#E1F7F4)}
+.ct-2{background:linear-gradient(135deg,#E1F7F4,#D6F5F0)}
+.ct-3{background:linear-gradient(135deg,#FAEEDA,#EEEDFE)}
+[data-theme="dark"] .ct-1,[data-theme="dark"] .ct-2,[data-theme="dark"] .ct-3{background:var(--surface-2)}
+.card-body{padding:1.4rem}
+.tagrow{display:flex;gap:.5rem;margin-bottom:.9rem}
+.card-h{font-family:var(--display);font-weight:600;font-size:17px;line-height:1.32;color:var(--text);margin-bottom:.6rem;letter-spacing:-.2px}
+.card-x{font-size:13.5px;color:var(--text-2);line-height:1.65;font-weight:300;margin-bottom:1rem}
+.card-meta{display:flex;align-items:center;gap:.6rem;font-size:11.5px;color:var(--text-3);font-family:var(--display)}
+.dot{width:3px;height:3px;border-radius:50%;background:var(--text-3)}
+
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.cat{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem 1.3rem;transition:transform .2s var(--ease),border-color .2s,box-shadow .2s;cursor:pointer;position:relative;overflow:hidden}
+.cat::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--teal-br);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.cat:hover{transform:translateY(-4px);border-color:var(--border-2);box-shadow:0 14px 36px rgba(6,182,164,.14)}
+.cat:hover::before{transform:scaleX(1)}
+.cat-ic{width:46px;height:46px;border-radius:12px;background:var(--indigo-lt);display:grid;place-items:center;font-size:21px;margin-bottom:1rem;transition:background .2s}
+.cat:hover .cat-ic{background:var(--teal-lt)}
+.cat-n{font-family:var(--display);font-weight:600;font-size:15.5px;color:var(--text);margin-bottom:.3rem;letter-spacing:-.2px}
+.cat-m{font-size:12px;color:var(--text-3)}
+
+.band{background:var(--ink);border-radius:28px;padding:clamp(2.5rem,5vw,4rem);text-align:center;position:relative;overflow:hidden}
+.band::after{content:'';position:absolute;bottom:-40%;left:50%;transform:translateX(-50%);width:80%;height:80%;background:radial-gradient(ellipse,rgba(6,182,164,.22),transparent 65%)}
+.band .dotgrid-d{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:24px 24px}
+.band>*{position:relative;z-index:1}
+.band h2{font-family:var(--display);font-weight:700;color:#fff;font-size:clamp(1.7rem,3.4vw,2.5rem);letter-spacing:-.8px;line-height:1.15;margin:1rem 0 .9rem}
+.band p{color:rgba(255,255,255,.7);font-size:15px;font-weight:300;max-width:34rem;margin:0 auto 2rem}
+.nl-form{display:flex;gap:.6rem;max-width:25rem;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.nl-input{flex:1;min-width:200px;font-family:var(--body);font-size:14px;padding:13px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff}
+.nl-input::placeholder{color:rgba(255,255,255,.45)}
+.nl-btn{font-family:var(--display);font-weight:600;font-size:14px;background:#fff;color:var(--ink);border:none;padding:13px 24px;border-radius:12px;cursor:pointer;transition:transform .15s var(--spring),box-shadow .2s}
+.nl-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,255,255,.2)}
+
+footer{border-top:1px solid var(--border);background:var(--surface);padding-block:3rem 1.8rem}
+.foot-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:2rem}
+.foot-brand .logo{margin-bottom:1rem}
+.foot-about{font-size:13px;color:var(--text-2);line-height:1.65;font-weight:300;max-width:20rem;margin-bottom:1.1rem}
+.foot-social{display:flex;gap:.5rem}
+.foot-social a{width:34px;height:34px;border-radius:9px;border:1px solid var(--border-2);display:grid;place-items:center;font-size:13px;color:var(--text-2);transition:.2s}
+.foot-social a:hover{border-color:var(--indigo);color:var(--indigo);transform:translateY(-2px)}
+.foot-col h4{font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:.9rem}
+.foot-col a{display:block;font-size:13.5px;color:var(--text-2);padding:.32rem 0;transition:color .2s}
+.foot-col a:hover{color:var(--indigo)}
+.foot-bottom{display:flex;justify-content:space-between;margin-top:2.3rem;padding-top:1.4rem;border-top:1px solid var(--border);font-size:12.5px;color:var(--text-3);flex-wrap:wrap;gap:.5rem}
+
+.rv{opacity:0;transform:translateY(20px);animation:rvin .7s var(--ease) forwards}
+@keyframes rvin{to{opacity:1;transform:none}}
+.d1{animation-delay:.05s}.d2{animation-delay:.13s}.d3{animation-delay:.21s}.d4{animation-delay:.29s}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr}.hero-visual{display:none}
+  .links{display:none}.hamburger{display:flex}
+  .cards{grid-template-columns:1fr}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}
+  .stats-in{grid-template-columns:repeat(2,1fr);gap:2rem 1rem}
+  .stat:nth-child(3){border-left:none}
+  .cta{display:none}
+}
+</style>
 </head>
 <body>
 
-<div id="progress-bar"></div>
-
-<!-- ════ NAVBAR ════ -->
-<nav class="navbar" id="navbar">
-  <a href="index.html" class="nav-logo">
-    <div class="logo-mark">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-           stroke="#4A90D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2" y="3" width="20" height="14" rx="2.5"/>
-        <path d="M8 21h8M12 17v4"/>
-        <circle cx="12" cy="10" r="3.2"/>
-        <path d="M12 6.8V6M12 13.2V14M8.8 10H8M15.2 10H16" stroke-width="1.5"/>
-      </svg>
-    </div>
-    <div class="logo-text">
-      <span class="logo-name">AQOON <span>TECH</span></span>
-      <span class="logo-tagline">Technology</span>
-    </div>
+<nav class="bar" id="nav">
+  <a href="index.html" class="logo">
+    <div class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2.5"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg></div>
+    <div><div class="logo-name">AQOON <span>TECH</span></div><div class="logo-tag">Technology</div></div>
   </a>
-
-  <div class="nav-links">
-    <a href="index.html"            class="nav-link active" data-so="Hoyga" data-en="Home">Hoyga</a>
-    <a href="pages/articles.html"   class="nav-link" data-so="Maqaallada" data-en="Articles">Maqaallada</a>
-    <a href="pages/categories.html" class="nav-link" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a>
-    <a href="pages/about.html"      class="nav-link" data-so="Nagu Saabsan" data-en="About">Nagu Saabsan</a>
-    <a href="pages/contact.html"    class="nav-link" data-so="Xiriir" data-en="Contact">Xiriir</a>
+  <div class="links">
+    <a href="index.html" class="on" data-so="Hoyga" data-en="Home">Hoyga</a>
+    <a href="pages/articles.html" data-so="Maqaallada" data-en="Articles">Maqaallada</a>
+    <a href="pages/categories.html" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a>
+    <a href="pages/about.html" data-so="Nagu Saabsan" data-en="About">Nagu Saabsan</a>
+    <a href="pages/contact.html" data-so="Xiriir" data-en="Contact">Xiriir</a>
   </div>
-
-  <div class="nav-actions">
-    <div class="lang-switch">
-      <button class="lang-btn active" id="lang-so" onclick="setLang('so')">SO</button>
-      <button class="lang-btn"        id="lang-en" onclick="setLang('en')">EN</button>
-    </div>
-    <button class="btn-theme" id="theme-toggle" onclick="toggleTheme()">🌙</button>
-    <a href="pages/contact.html" class="nav-cta">
-      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-      </svg>
-      <span data-so="Nala Soo Xiriir" data-en="Get in Touch">Nala Soo Xiriir</span>
-    </a>
-    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()">
-      <span></span><span></span><span></span>
-    </button>
+  <div class="nav-right">
+    <div class="lang"><button id="lang-so" class="active" onclick="setLang('so')">SO</button><button id="lang-en" onclick="setLang('en')">EN</button></div>
+    <button class="icon-btn" onclick="toggleTheme()">◐</button>
+    <a href="pages/contact.html" class="cta" data-so="Nala Soo Xiriir" data-en="Get in Touch">Nala Soo Xiriir</a>
+    <button class="hamburger" onclick="document.getElementById('mnav').classList.toggle('open')"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
-<!-- Mobile nav -->
-<nav class="mobile-nav" id="mobile-nav">
-  <a href="index.html"            class="mobile-link" data-so="🏠 Hoyga"      data-en="🏠 Home">🏠 Hoyga</a>
-  <a href="pages/articles.html"   class="mobile-link" data-so="📰 Maqaallada" data-en="📰 Articles">📰 Maqaallada</a>
-  <a href="pages/categories.html" class="mobile-link" data-so="📂 Mawduucyada" data-en="📂 Categories">📂 Mawduucyada</a>
-  <div class="mobile-divider"></div>
-  <a href="pages/about.html"      class="mobile-link" data-so="ℹ️ Nagu Saabsan" data-en="ℹ️ About">ℹ️ Nagu Saabsan</a>
-  <a href="pages/contact.html"    class="mobile-link" data-so="✉️ Xiriir"       data-en="✉️ Contact">✉️ Xiriir</a>
-</nav>
+<div class="mnav" id="mnav">
+  <a href="index.html" data-so="Hoyga" data-en="Home">Hoyga</a>
+  <a href="pages/articles.html" data-so="Maqaallada" data-en="Articles">Maqaallada</a>
+  <a href="pages/categories.html" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a>
+  <a href="pages/about.html" data-so="Nagu Saabsan" data-en="About">Nagu Saabsan</a>
+  <a href="pages/contact.html" data-so="Xiriir" data-en="Contact">Xiriir</a>
+</div>
 
-<!-- ════ HERO ════ -->
-<main>
-<section class="section">
-  <div class="container">
-    <div class="hero-section">
-
-      <div>
-        <div class="hero-eyebrow ha-1">
-          <span class="pulse-dot"></span>
-          <span data-so="Barnaamijka Bulshada Soomaalida Adduunka" data-en="Platform for Somali Communities Worldwide">Barnaamijka Bulshada Soomaalida Adduunka</span>
-        </div>
-
-        <h1 class="hero-headline ha-2">
-          Teknoolajiyada<br>
-          <span class="highlight">Gacanta</span> Kuu<br>
-          Geyneysa
-        </h1>
-
-        <p class="ha-3" style="font-family:var(--font-ui);font-size:clamp(1rem,1.6vw,1.12rem);
-           color:var(--text-3);font-style:italic;margin-bottom:var(--s4);"
-           data-so="Teknoolajiyada, Gacantaada Lagu Keenay"
-           data-en="Technology, Brought to Your Doorstep">
-          Teknoolajiyada, Gacantaada Lagu Keenay
-        </p>
-
-        <p class="ha-4" style="font-size:15.5px;color:var(--text-2);
-           max-width:500px;line-height:1.85;margin-bottom:var(--s8);"
-           data-so="Aqoon Tech waxay kugu caawinaysaa inaad fahamto teknoolajiyada casriga ah — Af-Soomaali. Maqaallada, sharaxaadda, iyo casharro fudud oo qof kasta u qoran."
-           data-en="Aqoon Tech helps you understand modern technology — in Somali. Articles, explanations, and simple lessons written for everyone.">
-          Aqoon Tech waxay kugu caawinaysaa inaad fahamto
-          teknoolajiyada casriga ah — <strong>Af-Soomaali</strong>.
-          Maqaallada, sharaxaadda, iyo casharro fudud oo qof kasta u qoran.
-        </p>
-
-        <div class="flex gap-3 flex-wrap ha-5">
-          <a href="pages/articles.html" class="btn btn-primary btn-lg">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path d="M4 6h16M4 12h16M4 18h10"/>
-            </svg>
-            <span data-so="Akri Maqaallada" data-en="Explore Articles">Akri Maqaallada</span>
-          </a>
-          <a href="pages/categories.html" class="btn btn-secondary btn-lg">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/>
-            </svg>
-            <span data-so="Fiiri Mawduucyada" data-en="Browse Topics">Fiiri Mawduucyada</span>
-          </a>
-        </div>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker rv d1" data-so="Madasha Teknoolajiyadaha Af-Soomaaliga" data-en="#1 Somali-Language Technology Platform">Barnaamijka Bulshada Soomaalida</span>
+      <h1 class="h1 rv d2" data-so='Teknoolajiyada Af-Soomaaliga ku <span class="accent">Hadasha</span>' data-en='Technology that <span class="accent">speaks Somali</span>'>Teknoolajiyada gacanta kuu <span class="accent">geyneysa</span></h1>
+      <p class="lead rv d3" data-so="Waxaan kuu soo gudbineynaa aqoon teknoolajiyadeed oo fudud, la fahmi karo, kana kooban <strong>maqaallo iyo muuqaallo kooban</strong> oo la jaanqaadaya dunida maanta." data-en="We bring you technology knowledge that is simple and easy to understand — made up of concise articles and videos that keep pace with the world today.">Aqoon Tech waxay kugu caawinaysaa inaad fahamto teknoolajiyada casriga ah — <strong>Af-Soomaali</strong>. Maqaallo, sharaxaad, iyo casharro fudud oo qof kasta u qoran.</p>
+      <div class="btn-row rv d4">
+        <a href="pages/articles.html" class="btn btn-primary" data-so="Sahami Maqaallada →" data-en="Read Articles →">Akhri Maqaallada →</a>
+        <a href="pages/categories.html" class="btn btn-ghost" data-so="Dooro Mawduucaaga" data-en="Browse Topics">Fiiri Mawduucyada</a>
       </div>
-
-      <div class="hero-visual-wrap ha-visual">
-        <img src="images/hero-main.png" alt="Aqoon Tech barnaamij"
-             class="hero-main-img" loading="eager">
-        <div class="hero-badge hero-badge-1 float-1">
-          <div class="hero-badge-icon">📰</div>
-          <div>
-            <div class="hero-badge-label" data-so="Maanta Cusub" data-en="New Today">Maanta Cusub</div>
-            <div class="hero-badge-value">AI & Tech</div>
-          </div>
-        </div>
-        <div class="hero-badge hero-badge-2 float-2">
-          <div class="hero-badge-icon">👥</div>
-          <div>
-            <div class="hero-badge-label" data-so="Akhriyeyaasha Bishii" data-en="Monthly Readers">Akhriyeyaasha Bishii</div>
-            <div class="hero-badge-value">10,000+</div>
-          </div>
-        </div>
-      </div>
-
+    </div>
+    <div class="hero-visual">
+      <div class="float-card fc-1"><span class="fc-tag tag-indigo" data-so="AI & Mustaqbalka" data-en="AI & Future">AI & Mustaqbalka</span><div class="fc-title" data-so="Waa Maxay Garaad Gacmeed (AI)?" data-en="What is Artificial Intelligence?">Maxay tahay Artificial Intelligence?</div><div class="fc-meta" data-so="AI: Sidee Ayuu U Shaqeeyaa?" data-en="AI: How Does It Work?">5 daqiiqo · Cusub maanta</div></div>
+      <div class="float-card fc-2"><div class="fc-icon">🔒</div><div class="fc-title" data-so="Sida Aad Iskaga Ilaalin Karto Khataraha Internetka" data-en="How to Protect Yourself from Internet Threats">Amniga dijitaalka</div><div class="fc-meta" data-so="Sida looga badbaado online" data-en="How to stay safe online">Sida looga badbaado online</div></div>
+      <div class="float-card fc-3"><span class="fc-tag tag-teal" data-so="10,000+ akhriste" data-en="10,000+ readers">10,000+ akhriste</span><div class="fc-title" data-so="Noqo Qayb Ka Mid Ah Bahdeenna" data-en="Join the learning community">Ku biir bulshada barata</div><div class="fc-meta" data-so="Toddobaad kasta wax cusub" data-en="Something new every week">Toddobaad kasta wax cusub</div></div>
     </div>
   </div>
 </section>
 
-<!-- ════ STATS STRIP ════ -->
-<div class="stats-strip">
-  <div class="stats-inner">
-    <div class="stat-item">
-      <div class="stat-num" data-count="500" data-suffix="+">500+</div>
-      <div class="stat-label" data-so="Maqaallo La Daabacay" data-en="Articles Published">Maqaallo La Daabacay</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num" data-count="200" data-suffix="+">200+</div>
-      <div class="stat-label" data-so="Casharro Muuqaal" data-en="Video Lessons">Casharro Muuqaal</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num" data-count="10000" data-suffix="+">10,000+</div>
-      <div class="stat-label" data-so="Akhriyeyaasha Bishii" data-en="Monthly Readers">Akhriyeyaasha Bishii</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num" data-count="8" data-suffix="">8</div>
-      <div class="stat-label" data-so="Noocyada Teknoolajiyada" data-en="Tech Categories">Noocyada Teknoolajiyada</div>
-    </div>
+<div class="stats">
+  <div class="wrap stats-in">
+    <div class="stat"><div class="stat-n">500<span>+</span></div><div class="stat-l" data-so="Maqaallo La Daabacay" data-en="Articles Published">Maqaallo La Daabacay</div></div>
+    <div class="stat"><div class="stat-n">200<span>+</span></div><div class="stat-l" data-so="Casharro Muuqaal" data-en="Video Lessons">Casharro Muuqaal</div></div>
+    <div class="stat"><div class="stat-n">10K<span>+</span></div><div class="stat-l" data-so="Akhriyeyaasha Bishii" data-en="Monthly Readers">Akhriyeyaasha Bishii</div></div>
+    <div class="stat"><div class="stat-n">8</div><div class="stat-l" data-so="Noocyada Teknoolajiyada" data-en="Tech Categories">Noocyada Teknoolajiyada</div></div>
   </div>
 </div>
 
-<!-- ════ FEATURED ARTICLES ════ -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-header">
-      <div>
-        <div class="label" data-so="Ugu Dambeeyay" data-en="Latest">Ugu Dambeeyay</div>
-        <h2 class="h-section"><span data-so="Maqaallada" data-en="Featured">Maqaallada</span> <span class="accent" data-so="Doorashada" data-en="Articles">Doorashada</span></h2>
-        <p class="sub-heading" data-so="Maqaallada ugu cusub ee teknoolajiyada — si fudud oo Soomaali ah" data-en="The latest technology articles — simple and in Somali">Maqaallada ugu cusub ee teknoolajiyada — si fudud oo Soomaali ah</p>
-      </div>
-      <a href="pages/articles.html" class="btn btn-ghost" data-so="Dhamaan maqaallada →" data-en="View all articles →">Dhamaan maqaallada →</a>
-    </div>
-
-    <div class="grid grid-3">
-
-      <article class="card reveal">
-        <a href="pages/article-ai.html">
-          <div class="card-img">
-            <img src="images/hero-ai.png" alt="AI & Teknoolajiyada" loading="lazy">
-          </div>
-        </a>
-        <div class="card-body">
-          <div class="badge-row mb-2">
-            <span class="badge badge-blue" data-so="AI & Teknoolajiyada Mustaqbalka" data-en="AI & Future Tech">AI & Teknoolajiyada Mustaqbalka</span>
-            <span class="badge badge-easy">Fudud</span>
-          </div>
-          <h3 class="h-card">
-            <a href="pages/article-ai.html" data-so="Maxay tahay Artificial Intelligence? Sharaxaad fudud" data-en="What is Artificial Intelligence? A simple explanation">
-              Maxay tahay Artificial Intelligence? Sharaxaad fudud
-            </a>
-          </h3>
-          <p class="card-excerpt" data-so="AI waa nidaam kombiyuutar ah oo u dhaqma sida maskaxda aadanaha. Waxay baranaysaa, go'aan qaadanaysaa, oo xallinaysaa dhibaatooyin adag." data-en="AI is a computer system that acts like the human brain. It learns, makes decisions, and solves complex problems.">
-            AI waa nidaam kombiyuutar ah oo u dhaqma sida maskaxda aadanaha. Waxay baranaysaa, go'aan qaadanaysaa, oo xallinaysaa dhibaatooyin adag.
-          </p>
-          <div class="card-meta">
-            <span data-so="5 daqiiqo" data-en="5 min read">5 daqiiqo</span>
-            <span class="card-meta-dot"></span>
-            <span>Jun 1, 2026</span>
-            <span class="card-meta-dot"></span>
-            <span>3.2K reads</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="card reveal">
-        <a href="pages/article-ai.html">
-          <div class="card-img">
-            <img src="images/hero-security.png" alt="Amniga Dijitaalka" loading="lazy">
-          </div>
-        </a>
-        <div class="card-body">
-          <div class="badge-row mb-2">
-            <span class="badge badge-green" data-so="Amniga Dijitaalka" data-en="Cybersecurity">Amniga Dijitaalka</span>
-          </div>
-          <h3 class="h-card">
-            <a href="pages/article-ai.html" data-so="Sida looga badbaado xatooyin internet-ka" data-en="How to protect yourself from internet theft">
-              Sida looga badbaado xatooyin internet-ka
-            </a>
-          </h3>
-          <p class="card-excerpt" data-so="Hackers waxay adeegsadaan farsamooyin kala duwan oo halis ah. Baro sida aad naftaada uga ilaaliso khataraha online-ka." data-en="Hackers use various dangerous techniques. Learn how to protect yourself from online threats.">
-            Hackers waxay adeegsadaan farsamooyin kala duwan oo halis ah. Baro sida aad naftaada uga ilaaliso khataraha online-ka.
-          </p>
-          <div class="card-meta">
-            <span data-so="7 daqiiqo" data-en="7 min read">7 daqiiqo</span>
-            <span class="card-meta-dot"></span>
-            <span>May 28, 2026</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="card reveal">
-        <a href="pages/article-ai.html">
-          <div class="card-img">
-            <img src="images/hero-mobile.png" alt="Mobilada & Qalabka" loading="lazy">
-          </div>
-        </a>
-        <div class="card-body">
-          <div class="badge-row mb-2">
-            <span class="badge badge-amber" data-so="Mobilada & Qalabka" data-en="Mobile & Devices">Mobilada & Qalabka</span>
-          </div>
-          <h3 class="h-card">
-            <a href="pages/article-ai.html" data-so="Apps 10 ee ugu wanaagsan telefoonka Android-ka" data-en="The 10 best apps for Android phones">
-              Apps 10 ee ugu wanaagsan telefoonka Android-ka
-            </a>
-          </h3>
-          <p class="card-excerpt" data-so="Apps bilaashka ah ee kuu caawin doona waxbarashada, shaqada, iyo maalintooda casharrada marka aad adeegsanayso." data-en="Free apps that will help you with education, work, and your daily lessons when you use them.">
-            Apps bilaashka ah ee kuu caawin doona waxbarashada, shaqada, iyo maalintooda casharrada marka aad adeegsanayso.
-          </p>
-          <div class="card-meta">
-            <span data-so="4 daqiiqo" data-en="4 min read">4 daqiiqo</span>
-            <span class="card-meta-dot"></span>
-            <span>May 25, 2026</span>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ════ CATEGORIES ════ -->
 <section class="section">
-  <div class="container">
-    <div class="section-header">
+  <div class="wrap">
+    <div class="sec-head">
       <div>
-        <div class="label" data-so="Raadi" data-en="Browse">Raadi</div>
-        <h2 class="h-section"><span data-so="Baadi goor" data-en="Explore by">Baadi goor</span> <span class="accent" data-so="Nooca" data-en="Category">Nooca</span></h2>
-        <p class="sub-heading" data-so="Dooro mawduuca kuu xiisaha badan oo bilow barashadaada" data-en="Choose the topic that interests you most and start learning">Dooro mawduuca kuu xiisaha badan oo bilow barashadaada</p>
+        <div class="toprow"><span class="sec-no">01</span><span class="kicker" data-so="Ugu Dambeeyay" data-en="Latest">Ugu Dambeeyay</span></div>
+        <h2 class="h2" data-so='Maqaallada <span class="accent">Xulkaa!</span>' data-en='Top <span class="accent">Picks</span>'>Maqaallada <span class="accent">Xulkaa!</span></h2>
+        <p class="sub" data-so="Maqaallo xul ah oo kuu soo gudbinaya aqoonta iyo isbeddellada ugu dambeeya ee dunida teknoolajiyada." data-en="Curated articles bringing you knowledge and the latest changes in the world of technology.">Maqaallada ugu cusub ee teknoolajiyada — si fudud oo Soomaali ah.</p>
       </div>
-      <a href="pages/categories.html" class="btn btn-ghost" data-so="Dhamaan noocyada →" data-en="All categories →">Dhamaan noocyada →</a>
+      <a href="pages/articles.html" class="link-more" data-so="Dhammaan maqaallada →" data-en="All articles →">Dhammaan maqaallada →</a>
     </div>
-
-    <div class="grid grid-4 gap-md">
-      <a href="pages/categories.html" class="cat-card reveal">
-        <div class="cat-icon">💻</div>
-        <div class="cat-name" data-so="Aasaaska Teknoolajiyada" data-en="Tech Basics">Aasaaska Teknoolajiyada</div>
-        <div class="cat-meta">48 <span data-so="maqaal" data-en="articles">maqaal</span> · 12 <span data-so="muuqaal" data-en="videos">muuqaal</span></div>
-      </a>
-      <a href="pages/categories.html" class="cat-card reveal">
-        <div class="cat-icon">🌐</div>
-        <div class="cat-name" data-so="Internet & Shabakadaha" data-en="Internet & Networks">Internet & Shabakadaha</div>
-        <div class="cat-meta">36 <span data-so="maqaal" data-en="articles">maqaal</span> · 8 <span data-so="muuqaal" data-en="videos">muuqaal</span></div>
-      </a>
-      <a href="pages/categories.html" class="cat-card reveal">
-        <div class="cat-icon">📱</div>
-        <div class="cat-name" data-so="Mobilada & Qalabka" data-en="Mobile & Devices">Mobilada & Qalabka</div>
-        <div class="cat-meta">52 <span data-so="maqaal" data-en="articles">maqaal</span> · 18 <span data-so="muuqaal" data-en="videos">muuqaal</span></div>
-      </a>
-      <a href="pages/categories.html" class="cat-card reveal">
-        <div class="cat-icon">🔒</div>
-        <div class="cat-name" data-so="Amniga Dijitaalka" data-en="Cybersecurity">Amniga Dijitaalka</div>
-        <div class="cat-meta">30 <span data-so="maqaal" data-en="articles">maqaal</span> · 10 <span data-so="muuqaal" data-en="videos">muuqaal</span></div>
-      </a>
-      <a href="pages/categories.html" class="cat-card reveal">
-        <div class="cat-icon">🤖</div>
-        <div class="cat-name" data-so="AI & Teknoolajiyada Mustaqbalka" data-en="AI & Future Tech">AI & Teknoolajiyada Mustaqbalka</div>
-        <div class="cat-meta">44 <span data-so="maqaal" data-en="articles">maqaal</span> · 15 <span data-so="muuqaal" data-en="videos">muuqaal</span></div>
-      </a>
-      <a href="pages/categories.html" class="cat-card reveal">
-        <div class="cat-icon">💼</div>
-        <div class="cat-name" data-so="Xirfadaha Dijitaalka" data-en="Digital Skills">Xirfadaha Dijitaalka</div>
-        <div class="cat-meta">38 <span data-so="maqaal" data-en="articles">maqaal</span> · 14 <span data-so="muuqaal" data-en="videos">muuqaal</span></div>
-      </a>
-      <a href="pages/categories.html" class="cat-card reveal">
-        <div class="cat-icon">⚙️</div>
-        <div class="cat-name" data-so="Barnaamijyada & Abka" data-en="Software & Apps">Barnaamijyada & Abka</div>
-        <div class="cat-meta">41 <span data-so="maqaal" data-en="articles">maqaal</span> · 11 <span data-so="muuqaal" data-en="videos">muuqaal</span></div>
-      </a>
-      <a href="pages/categories.html" class="cat-card reveal">
-        <div class="cat-icon">📊</div>
-        <div class="cat-name" data-so="Teknoolajiyada Ganacsiga" data-en="Business Tech">Teknoolajiyada Ganacsiga</div>
-        <div class="cat-meta">28 <span data-so="maqaal" data-en="articles">maqaal</span> · 9 <span data-so="muuqaal" data-en="videos">muuqaal</span></div>
-      </a>
+    <div class="cards">
+      <article class="card" onclick="location.href='pages/article.html'"><div class="card-top ct-1">🤖</div><div class="card-body"><div class="tagrow"><span class="fc-tag tag-indigo" data-so="AI & Mustaqbalka" data-en="AI & Future">AI & Mustaqbalka</span><span class="fc-tag tag-teal" data-so="Fudud" data-en="Easy">Fudud</span></div><h3 class="card-h" data-so="Waa Maxay Garaad Gacmeed (AI)? Sharaxaad fudud" data-en="What is Artificial Intelligence? A simple explanation">Maxay tahay Artificial Intelligence? Sharaxaad fudud</h3><p class="card-x" data-so="AI waa nidaam kombiyuutar ah oo u dhaqma sida maskaxda aadanaha — wuu baranayaa, go'aan qaadanayaa." data-en="AI is a computer system that acts like the human brain — it learns and makes decisions.">AI waa nidaam kombiyuutar ah oo u dhaqma sida maskaxda aadanaha — wuu baranayaa, go'aan qaadanayaa.</p><div class="card-meta"><span data-so="5 daqiiqo" data-en="5 min">5 daqiiqo</span><span class="dot"></span><span>Jun 1, 2026</span></div></div></article>
+      <article class="card" onclick="location.href='pages/article.html'"><div class="card-top ct-2">🔒</div><div class="card-body"><div class="tagrow"><span class="fc-tag tag-teal" data-so="Amniga Dijitaalka" data-en="Cybersecurity">Amniga Dijitaalka</span></div><h3 class="card-h" data-so="Sida Aad Iskaga Ilaalin Karto Khataraha Internetka" data-en="How to protect yourself from internet theft">Sida looga badbaado xatooyin internet-ka</h3><p class="card-x" data-so="Hackers waxay adeegsadaan farsamooyin halis ah. Baro sida aad naftaada uga ilaaliso." data-en="Hackers use dangerous techniques. Learn how to protect yourself.">Hackers waxay adeegsadaan farsamooyin halis ah. Baro sida aad naftaada uga ilaaliso.</p><div class="card-meta"><span data-so="7 daqiiqo" data-en="7 min">7 daqiiqo</span><span class="dot"></span><span>May 28, 2026</span></div></div></article>
+      <article class="card" onclick="location.href='pages/article.html'"><div class="card-top ct-3">📱</div><div class="card-body"><div class="tagrow"><span class="fc-tag tag-amber" data-so="Mobilada & Qalabka" data-en="Mobile & Devices">Mobilada & Qalabka</span></div><h3 class="card-h" data-so="Apps 10 ee ugu wanaagsan telefoonka Android-ka" data-en="The 10 best apps for Android phones">Apps 10 ee ugu wanaagsan telefoonka Android-ka</h3><p class="card-x" data-so="Apps bilaash ah oo kaa caawinaya waxbarashada, shaqada, iyo nolosha maalinlaha." data-en="Free apps that help with education, work, and daily life.">Apps bilaash ah oo kaa caawinaya waxbarashada, shaqada, iyo nolosha maalinlaha.</p><div class="card-meta"><span data-so="4 daqiiqo" data-en="4 min">4 daqiiqo</span><span class="dot"></span><span>May 25, 2026</span></div></div></article>
     </div>
   </div>
 </section>
 
-<!-- ════ POPULAR THIS WEEK ════ -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-header">
+<section class="section tint-teal">
+  <div class="wrap">
+    <div class="sec-head">
       <div>
-        <div class="label" data-so="Caanka ah" data-en="Trending">Caanka ah</div>
-        <h2 class="h-section"><span data-so="Ugu Badan" data-en="Popular">Ugu Badan</span> <span class="accent" data-so="Toddobaadkan" data-en="This Week">Toddobaadkan</span></h2>
-        <p class="sub-heading" data-so="Maqaallada ugu akhristay badan toddobaadkan" data-en="The most read articles this week">Maqaallada ugu akhristay badan toddobaadkan</p>
+        <div class="toprow"><span class="sec-no">02</span><span class="kicker teal" data-so="Raadi" data-en="Browse">Raadi</span></div>
+        <h2 class="h2" data-so='Dooro Qaybta Aad <span class="accent-t">Xiisaynayso</span>' data-en="Choose the Topic That <span class=&quot;accent-t&quot;>Interests You</span>">Dooro Qaybta Aad <span class="accent-t">Xiisaynayso</span></h2>
+        <p class="sub" data-so="Ka dooro qaybta kuugu dhow xiisahaaga, kana bilow safarkaaga aqooneed." data-en="Choose the topic that interests you and start learning.">Dooro mawduuca kuu xiisaha badan oo bilow barashadaada.</p>
       </div>
+      <a href="pages/categories.html" class="link-more" style="color:var(--teal-dk)" data-so="Dhammaan noocyada →" data-en="All categories →">Dhammaan noocyada →</a>
     </div>
-
-    <div class="grid grid-2 gap-md">
-      <a href="pages/article-ai.html" class="popular-card reveal">
-        <div class="popular-card-thumb" style="background:linear-gradient(135deg,#1e2540,#2d6fad);">🌐</div>
-        <div class="popular-card-body">
-          <span class="badge badge-teal" data-so="Internet" data-en="Internet">Internet</span>
-          <div class="popular-card-title" data-so="Wi-Fi vs Mobile Data — Kee ka Wanaagsan?" data-en="Wi-Fi vs Mobile Data — Which is Better?">Wi-Fi vs Mobile Data — Kee ka Wanaagsan?</div>
-          <div class="popular-card-reads" data-so="8,241 jeer la akhriyay toddobaadkan" data-en="8,241 reads this week">8,241 jeer la akhriyay toddobaadkan</div>
-        </div>
-      </a>
-      <a href="pages/article-ai.html" class="popular-card reveal">
-        <div class="popular-card-thumb" style="background:linear-gradient(135deg,#2a1e40,#7d50b5);">🤖</div>
-        <div class="popular-card-body">
-          <span class="badge badge-blue">AI</span>
-          <div class="popular-card-title" data-so="AI miyay qaadan doontaa shaqooyinkayaga?" data-en="Will AI take our jobs?">AI miyay qaadan doontaa shaqooyinkayaga?</div>
-          <div class="popular-card-reads" data-so="6,519 jeer la akhriyay toddobaadkan" data-en="6,519 reads this week">6,519 jeer la akhriyay toddobaadkan</div>
-        </div>
-      </a>
-      <a href="pages/article-ai.html" class="popular-card reveal">
-        <div class="popular-card-thumb" style="background:linear-gradient(135deg,#1e3520,#2d8e50);">🔐</div>
-        <div class="popular-card-body">
-          <span class="badge badge-green" data-so="Amni" data-en="Security">Amni</span>
-          <div class="popular-card-title" data-so="Sida loo ogaado email khiyaamo ah (phishing)" data-en="How to identify a phishing email">Sida loo ogaado email khiyaamo ah (phishing)</div>
-          <div class="popular-card-reads" data-so="5,104 jeer la akhriyay toddobaadkan" data-en="5,104 reads this week">5,104 jeer la akhriyay toddobaadkan</div>
-        </div>
-      </a>
-      <a href="pages/article-ai.html" class="popular-card reveal">
-        <div class="popular-card-thumb" style="background:linear-gradient(135deg,#402010,#c06020);">📱</div>
-        <div class="popular-card-body">
-          <span class="badge badge-amber" data-so="Mobail" data-en="Mobile">Mobail</span>
-          <div class="popular-card-title" data-so="iPhone vs Android — Kee ku haboon tahay?" data-en="iPhone vs Android — Which is right for you?">iPhone vs Android — Kee ku haboon tahay?</div>
-          <div class="popular-card-reads" data-so="4,872 jeer la akhriyay toddobaadkan" data-en="4,872 reads this week">4,872 jeer la akhriyay toddobaadkan</div>
-        </div>
-      </a>
+    <div class="cat-grid">
+      <a href="pages/categories.html" class="cat"><div class="cat-ic">💻</div><div class="cat-n" data-so="Aasaaska Teknoolajiyada" data-en="Tech Basics">Aasaaska Teknoolajiyada</div><div class="cat-m" data-so="48 maqaal · 12 muuqaal" data-en="48 articles · 12 videos">48 maqaal · 12 muuqaal</div></a>
+      <a href="pages/categories.html" class="cat"><div class="cat-ic">🌐</div><div class="cat-n" data-so="Internet & Shabakadaha" data-en="Internet & Networks">Internet & Shabakadaha</div><div class="cat-m" data-so="36 maqaal · 8 muuqaal" data-en="36 articles · 8 videos">36 maqaal · 8 muuqaal</div></a>
+      <a href="pages/categories.html" class="cat"><div class="cat-ic">📱</div><div class="cat-n" data-so="Mobilada & Qalabka" data-en="Mobile & Devices">Mobilada & Qalabka</div><div class="cat-m" data-so="52 maqaal · 18 muuqaal" data-en="52 articles · 18 videos">52 maqaal · 18 muuqaal</div></a>
+      <a href="pages/categories.html" class="cat"><div class="cat-ic">🔒</div><div class="cat-n" data-so="Amniga Dijitaalka" data-en="Cybersecurity">Amniga Dijitaalka</div><div class="cat-m" data-so="30 maqaal · 10 muuqaal" data-en="30 articles · 10 videos">30 maqaal · 10 muuqaal</div></a>
+      <a href="pages/categories.html" class="cat"><div class="cat-ic">🤖</div><div class="cat-n" data-so="AI & Mustaqbalka" data-en="AI & Future">AI & Mustaqbalka</div><div class="cat-m" data-so="44 maqaal · 15 muuqaal" data-en="44 articles · 15 videos">44 maqaal · 15 muuqaal</div></a>
+      <a href="pages/categories.html" class="cat"><div class="cat-ic">💼</div><div class="cat-n" data-so="Xirfadaha Dijitaalka" data-en="Digital Skills">Xirfadaha Dijitaalka</div><div class="cat-m" data-so="38 maqaal · 14 muuqaal" data-en="38 articles · 14 videos">38 maqaal · 14 muuqaal</div></a>
+      <a href="pages/categories.html" class="cat"><div class="cat-ic">⚙️</div><div class="cat-n" data-so="Barnaamijyada & Abka" data-en="Software & Apps">Barnaamijyada & Abka</div><div class="cat-m" data-so="41 maqaal · 11 muuqaal" data-en="41 articles · 11 videos">41 maqaal · 11 muuqaal</div></a>
+      <a href="pages/categories.html" class="cat"><div class="cat-ic">📊</div><div class="cat-n" data-so="Teknoolajiyada Ganacsiga" data-en="Business Tech">Teknoolajiyada Ganacsiga</div><div class="cat-m" data-so="28 maqaal · 9 muuqaal" data-en="28 articles · 9 videos">28 maqaal · 9 muuqaal</div></a>
     </div>
   </div>
 </section>
 
-<!-- ════ NEWSLETTER ════ -->
-<div class="newsletter-section">
-  <div class="newsletter-inner">
-    <span class="newsletter-emoji">💡</span>
-    <h2 data-so="Hel Warqad Teknoolajiyada Toddobaadlaha Ah" data-en="Get Weekly Technology News">Hel Warqad Teknoolajiyada<br>Toddobaadlaha Ah</h2>
-    <p data-so="Xigashada teknoolajiyada Af-Soomaali — toos galbuurigaaga. Ku biir 10,000+ akhristaa. Had iyo jeer bilaash, xashab la'aan." data-en="Weekly tech tips in Somali — straight to your inbox. Join 10,000+ readers. Always free, no spam.">
-      Xigashada teknoolajiyada Af-Soomaali — toos galbuurigaaga.<br>
-      Ku biir 10,000+ akhristaa. Had iyo jeer bilaash, xashab la'aan.
-    </p>
-    <form class="newsletter-form" onsubmit="handleNewsletter(this); return false;">
-      <input class="newsletter-input" type="email"
-             placeholder="Geli email-kaaga" required>
-      <button type="submit" class="newsletter-submit" data-so="Iska Diiwaan Geli" data-en="Subscribe Free">Iska Diiwaan Geli</button>
-    </form>
-  </div>
-</div>
-</main>
-
-<!-- ════ FOOTER ════ -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand-row">
-          <div class="footer-logo-icon">
-            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-              <rect x="2" y="3" width="20" height="14" rx="2.5"/>
-              <path d="M8 21h8M12 17v4"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
-          </div>
-          <div>
-            <span class="footer-brand-name">AQOON <span>TECH</span></span>
-            <span class="footer-brand-tag">Technology</span>
-          </div>
-        </div>
-        <p class="footer-about" data-so="Teknoolajiyada gacanta kuu geyneysa — Aqoonta teknoolajiyada ee Af-Soomaali qof kasta adduunka." data-en="Technology brought to your doorstep — Technology knowledge in Somali for everyone worldwide.">
-          Teknoolajiyada gacanta kuu geyneysa — Aqoonta teknoolajiyada ee Af-Soomaali qof kasta adduunka.
-        </p>
-        <div class="social-links">
-          <a href="#" class="social-btn" title="YouTube">▶</a>
-          <a href="#" class="social-btn" title="TikTok">♪</a>
-          <a href="#" class="social-btn" title="Instagram">◎</a>
-          <a href="#" class="social-btn" title="Telegram">✈</a>
-          <a href="#" class="social-btn" title="Facebook">f</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-col-title" data-so="Nuxurka" data-en="Content">Nuxurka</div>
-        <ul class="footer-links">
-          <li><a href="pages/articles.html" data-so="Dhamaan Maqaallada" data-en="All Articles">Dhamaan Maqaallada</a></li>
-          <li><a href="pages/categories.html" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a></li>
-          <li><a href="pages/articles.html" data-so="Bilow (Fudud)" data-en="Beginner (Easy)">Bilow (Fudud)</a></li>
-          <li><a href="pages/articles.html" data-so="Ugu Badan Toddobaadkan" data-en="Popular This Week">Ugu Badan Toddobaadkan</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title" data-so="Barnaamijka" data-en="Platform">Barnaamijka</div>
-        <ul class="footer-links">
-          <li><a href="pages/about.html" data-so="Nagu Saabsan" data-en="About Us">Nagu Saabsan</a></li>
-          <li><a href="pages/contact.html" data-so="Xiriir" data-en="Contact">Xiriir</a></li>
-          <li><a href="pages/contact.html" data-so="Noogu Qor" data-en="Write for Us">Noogu Qor</a></li>
-          <li><a href="pages/about.html" data-so="Kooxdayada" data-en="Our Team">Kooxdayada</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title" data-so="Sharci" data-en="Legal">Sharci</div>
-        <ul class="footer-links">
-          <li><a href="#" data-so="Qaanuunka Xogta" data-en="Privacy Policy">Qaanuunka Xogta</a></li>
-          <li><a href="#" data-so="Shuruudaha Isticmaalka" data-en="Terms of Use">Shuruudaha Isticmaalka</a></li>
-          <li><a href="#" data-so="Qaanuunka Cookie" data-en="Cookie Policy">Qaanuunka Cookie</a></li>
-          <li><a href="#" data-so="🇸🇴 Af-Soomaali" data-en="🇸🇴 Somali">🇸🇴 Af-Soomaali</a></li>
-        </ul>
-      </div>
+<section class="section">
+  <div class="wrap">
+    <div class="band">
+      <div class="dotgrid-d"></div>
+      <span class="kicker" style="color:#3DD4C2;border-color:#3DD4C2" data-so="💡 Maqaalgayska Toddobaadlaha ah" data-en="💡 Weekly Newsletter">💡 Warqad Toddobaadle</span>
+      <h2 data-so="Hel aqoon cusub toddobaad kasta — Af-Soomaali" data-en="Get fresh knowledge every week — in Somali">Hel teknoolajiyada toddobaad kasta — Af-Soomaali</h2>
+      <p data-so="Ku biir kumannaan akhriste oo toddobaad kasta hela maqaallo cusub, tilmaamo waxtar leh iyo wararka isbeddelka ugu dambeeya ee teknoolajiyada — toos sanduuqa emaylkaaga." data-en="Join thousands of readers who get new articles, useful tips, and the latest technology updates every week — straight to your inbox.">Ku biir 10,000+ akhriste. Maqaallo cusub, tilmaamo fudud, iyo war teknoolajiyad — toos galbuuriga. Had iyo jeer bilaash.</p>
+      <form class="nl-form newsletter-form" onsubmit="handleNewsletter(this);return false">
+        <input class="nl-input" type="email" required placeholder="email-kaaga@halkaan.com">
+        <button type="submit" class="nl-btn" data-so="Iska Diiwaan Geli" data-en="Subscribe">Iska Diiwaan Geli</button>
+      </form>
     </div>
-    <div class="footer-bottom">
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="logo"><div class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2.5"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="logo-name">AQOON <span>TECH</span></div><div class="logo-tag">Technology</div></div></a>
+        <p class="foot-about" data-so="Aqoon Tech waa hoyga aqoonta teknoolajiyada Af-Soomaaliga, una taagan fududaynta fahamka dunida casriga ah." data-en="Aqoon Tech is the home of Somali-language technology knowledge, dedicated to making the modern world easier to understand.">Teknoolajiyada gacanta kuu geyneysa — aqoonta teknoolajiyada ee Af-Soomaali qof kasta adduunka.</p>
+        <div class="foot-social"><a href="#">▶</a><a href="#">♪</a><a href="#">◎</a><a href="#">✈</a><a href="#">f</a></div>
+      </div>
+      <div class="foot-col"><h4 data-so="Nuxurka" data-en="Content">Nuxurka</h4><a href="pages/articles.html" data-so="Dhammaan Maqaallada" data-en="All Articles">Dhammaan Maqaallada</a><a href="pages/categories.html" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a><a href="pages/articles.html" data-so="Bilow (Fudud)" data-en="Beginner (Easy)">Bilow (Fudud)</a></div>
+      <div class="foot-col"><h4 data-so="Barnaamijka" data-en="Platform">Barnaamijka</h4><a href="pages/about.html" data-so="Nagu Saabsan" data-en="About Us">Nagu Saabsan</a><a href="pages/contact.html" data-so="Xiriir" data-en="Contact">Xiriir</a><a href="pages/contact.html" data-so="Noogu Qor" data-en="Write for Us">Noogu Qor</a></div>
+      <div class="foot-col"><h4 data-so="Sharci" data-en="Legal">Sharci</h4><a href="#" data-so="Qaanuunka Xogta" data-en="Privacy Policy">Qaanuunka Xogta</a><a href="#" data-so="Shuruudaha" data-en="Terms">Shuruudaha</a><a href="#">🇸🇴 Af-Soomaali</a></div>
+    </div>
+    <div class="foot-bottom">
       <span>© 2026 Aqoon Tech. <span data-so="Xuquuqda oo dhan way dhowran tahay." data-en="All rights reserved.">Xuquuqda oo dhan way dhowran tahay.</span></span>
-      <span data-so="Jacayl ❤️ bulshada Soomaalida adduunka darteed" data-en="Made with ❤️ for the Somali community worldwide">Jacayl ❤️ bulshada Soomaalida adduunka darteed</span>
+      <span data-so="Baro, Hirgeli, Horumari – Aqoontu waa iftiin, teknoolajiyaduna waa jidka horumarka." data-en="Learn, Apply, Progress – Knowledge is light, and technology is the path to progress.">Jacayl ❤️ bulshada Soomaalida adduunka darteed</span>
     </div>
   </div>
 </footer>
 
-<button class="back-to-top" id="back-to-top" title="Ku noqo sare">↑</button>
-
-<!-- ════ FLOATING LANGUAGE FAB ════ -->
-<div class="lang-fab" role="group" aria-label="Language switcher">
-  <button class="lang-fab-btn active" id="lang-fab-so" onclick="setLang('so')" title="Af-Soomaali">SO</button>
-  <button class="lang-fab-btn"        id="lang-fab-en" onclick="setLang('en')" title="English">EN</button>
-</div>
-
-<!-- Scripts -->
-<script src="js/theme.js"></script>
+<script>
+/* nav scroll */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
+/* theme toggle with persistence */
+function toggleTheme(){const h=document.documentElement;const n=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=n;localStorage.setItem('aqoon-theme',n);}
+(function(){const t=localStorage.getItem('aqoon-theme');if(t)document.documentElement.dataset.theme=t;})();
+</script>
 <script src="js/i18n.js"></script>
-<script src="js/search.js"></script>
-</body>  
-</html>  
+<script src="js/newsletter.js"></script>
+</body>
+</html>
