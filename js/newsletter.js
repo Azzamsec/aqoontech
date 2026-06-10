@@ -12,10 +12,12 @@ function handleNewsletter(form) {
 
   if (!email) return;
 
+  /* Show loading */
   submitBtn.textContent = '...';
   submitBtn.disabled    = true;
   emailInput.disabled   = true;
 
+  /* Call our safe Netlify function */
   fetch('/.netlify/functions/subscribe', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -24,7 +26,8 @@ function handleNewsletter(form) {
   .then(res => res.json())
   .then(data => {
     if (data.success) {
-      submitBtn.textContent       = '✅ ' + (lang === 'so' ? 'Waad ku guuleysatay!' : 'Subscribed!');
+      /* Success */
+      submitBtn.textContent     = '✅ ' + (lang === 'so' ? 'Waad ku guuleysatay!' : 'Subscribed!');
       submitBtn.style.background  = '#16a34a';
       submitBtn.style.borderColor = '#16a34a';
       submitBtn.style.color       = '#fff';
@@ -34,18 +37,21 @@ function handleNewsletter(form) {
         : 'Thank you — weekly articles coming your way!';
       localStorage.setItem('aqoon-subscribed', '1');
     } else {
+      /* Error from Brevo */
       submitBtn.textContent = lang === 'so' ? 'Isku day mar kale' : 'Try again';
       submitBtn.disabled    = false;
       emailInput.disabled   = false;
     }
   })
   .catch(() => {
+    /* Network error */
     submitBtn.textContent = lang === 'so' ? 'Isku day mar kale' : 'Try again';
     submitBtn.disabled    = false;
     emailInput.disabled   = false;
   });
 }
 
+/* Hide form if already subscribed */
 document.addEventListener('DOMContentLoaded', function() {
   if (localStorage.getItem('aqoon-subscribed') === '1') {
     document.querySelectorAll('.newsletter-form').forEach(form => {

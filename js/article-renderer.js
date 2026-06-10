@@ -1,213 +1,142 @@
 /* ============================================================
    AQOON TECH — Article Renderer
-   Reads frontmatter from a CMS article and builds the page
-   dynamically. Loaded on every article page.
+   Reads an article's frontmatter (title, meta, sections[])
+   and renders the flexible blocks into the new design.
+   Language-aware with graceful fallback.
+   ============================================================
+   Expected: a global ARTICLE object injected into the page, e.g.
+   window.ARTICLE = {
+     primary_lang:'so', title_so, title_en, subtitle_so, subtitle_en,
+     category, difficulty, author, read_time, date, hero_emoji, hero_image,
+     sections: [ {type:'heading', so, en}, {type:'paragraph', so, en}, ... ]
+   }
    ============================================================ */
 
-/* Author avatar map */
-const AUTHOR_DATA = {
-  abdi:   { name: 'Abdi Hassan',    role_so: 'Tifaftiraha Guud, Aqoon Tech',      role_en: 'Editor-in-Chief, Aqoon Tech',      avatar: '../images/avatar-abdi.png' },
-  fadumo: { name: 'Fadumo Mohamed', role_so: 'Qoraaga Nuxurka Hore, Aqoon Tech',  role_en: 'Lead Content Writer, Aqoon Tech',  avatar: '../images/avatar-fadumo.png' },
-  omar:   { name: 'Omar Ali',       role_so: 'Soo-saare Muuqaal, Aqoon Tech',     role_en: 'Video Producer, Aqoon Tech',       avatar: '../images/avatar-omar.png' },
-  hodan:  { name: 'Hodan Nuur',     role_so: 'Turjubaan Luqadda, Aqoon Tech',     role_en: 'Language Translator, Aqoon Tech',  avatar: '../images/avatar-hodan.png' },
-};
+(function(){
+  const A = window.ARTICLE;
+  if(!A) return;
 
-/* Category badge colour map */
-const CAT_BADGE = {
-  'tech-basics':    'badge-teal',
-  'internet':       'badge-teal',
-  'mobile':         'badge-amber',
-  'cybersecurity':  'badge-green',
-  'ai':             'badge-blue',
-  'digital-skills': 'badge-purple',
-  'software':       'badge-blue',
-  'business-tech':  'badge-amber',
-};
+  /* current language (set by i18n.js / localStorage) */
+  function lang(){ return localStorage.getItem('aqoon-lang') || 'so'; }
 
-const CAT_LABEL_SO = {
-  'tech-basics':    'Aasaaska Teknoolajiyada',
-  'internet':       'Internet & Shabakadaha',
-  'mobile':         'Mobilada & Qalabka',
-  'cybersecurity':  'Amniga Dijitaalka',
-  'ai':             'AI & Teknoolajiyada Mustaqbalka',
-  'digital-skills': 'Xirfadaha Dijitaalka',
-  'software':       'Barnaamijyada & Abka',
-  'business-tech':  'Teknoolajiyada Ganacsiga',
-};
-
-const CAT_LABEL_EN = {
-  'tech-basics':    'Tech Basics',
-  'internet':       'Internet & Networks',
-  'mobile':         'Mobile & Devices',
-  'cybersecurity':  'Cybersecurity',
-  'ai':             'AI & Future Tech',
-  'digital-skills': 'Digital Skills',
-  'software':       'Software & Apps',
-  'business-tech':  'Business Tech',
-};
-
-/* Simple markdown → HTML converter (for article body) */
-function mdToHtml(md) {
-  if (!md) return '';
-  return md
-    // headings
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    .replace(/^## (.+)$/gm,  '<h2 id="' + slugify('$1') + '">$1</h2>')
-    .replace(/^# (.+)$/gm,   '<h2 id="' + slugify('$1') + '">$1</h2>')
-    // bold, italic
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g,     '<em>$1</em>')
-    // blockquote
-    .replace(/^> (.+)$/gm, '<blockquote><p>$1</p></blockquote>')
-    // unordered list
-    .replace(/^\- (.+)$/gm, '<li>$1</li>')
-    .replace(/(<li>[\s\S]+?<\/li>)/g, '<ul>$1</ul>')
-    // links
-    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
-    // paragraphs (double newline)
-    .replace(/\n\n/g, '</p><p>')
-    // wrap everything in p
-    .replace(/^(.+)$/gm, function(m) {
-      if (/^<[hbu]|^<bloc|^<ul|^<ol/.test(m)) return m;
-      return m;
-    });
-}
-
-function slugify(str) {
-  return str.toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');
-}
-
-/* Format date nicely */
-function formatDate(dateStr) {
-  if (!dateStr) return '';
-  const d = new Date(dateStr);
-  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-}
-
-/* Apply article data to the page */
-function renderArticle(data) {
-  const lang = localStorage.getItem('aqoon-lang') || 'so';
-  const author = AUTHOR_DATA[data.author] || AUTHOR_DATA.abdi;
-  const catBadge = CAT_BADGE[data.category] || 'badge-blue';
-  const catLabelSo = CAT_LABEL_SO[data.category] || data.category;
-  const catLabelEn = CAT_LABEL_EN[data.category] || data.category;
-
-  /* Page title */
-  document.title = (lang === 'so' ? data.title_so : data.title_en) + ' — Aqoon Tech';
-
-  /* Hero image */
-  if (data.hero_image) {
-    const heroEl = document.getElementById('article-hero-img');
-    if (heroEl) { heroEl.src = data.hero_image; heroEl.alt = data.title_so; }
+  /* pick a field with fallback: try current lang, else the other, else '' */
+  function pick(obj, l){
+    if(!obj) return '';
+    l = l || lang();
+    const other = l === 'so' ? 'en' : 'so';
+    return (obj[l] && obj[l].trim()) ? obj[l] : (obj[other] || '');
   }
 
-  /* Breadcrumb category */
-  const bcCat = document.getElementById('breadcrumb-cat');
-  if (bcCat) {
-    bcCat.setAttribute('data-so', catLabelSo);
-    bcCat.setAttribute('data-en', catLabelEn);
-    bcCat.textContent = lang === 'so' ? catLabelSo : catLabelEn;
+  /* tiny markdown-ish: bold **x**, line breaks */
+  function md(t){
+    if(!t) return '';
+    return t
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+      .replace(/\n\n/g,'</p><p>')
+      .replace(/\n/g,'<br>');
   }
 
-  /* Category badge */
-  const badgeEl = document.getElementById('article-cat-badge');
-  if (badgeEl) {
-    badgeEl.className = 'badge ' + catBadge;
-    badgeEl.setAttribute('data-so', catLabelSo);
-    badgeEl.setAttribute('data-en', catLabelEn);
-    badgeEl.textContent = lang === 'so' ? catLabelSo : catLabelEn;
+  /* YouTube id extractor */
+  function ytId(url){
+    if(!url) return '';
+    const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([\w-]{11})/);
+    return m ? m[1] : '';
   }
 
-  /* Difficulty badge */
-  const diffEl = document.getElementById('article-diff-badge');
-  if (diffEl && data.difficulty === 'fudud') {
-    diffEl.style.display = 'inline-flex';
-  } else if (diffEl) {
-    diffEl.style.display = 'none';
-  }
+  const cats = {
+    'tech-basics':['Aasaaska Teknoolajiyada','Tech Basics'],
+    'internet':['Internet & Shabakadaha','Internet & Networks'],
+    'mobile':['Mobilada & Qalabka','Mobile & Devices'],
+    'cybersecurity':['Amniga Dijitaalka','Cybersecurity'],
+    'ai':['AI & Mustaqbalka','AI & Future'],
+    'digital-skills':['Xirfadaha Dijitaalka','Digital Skills'],
+    'software':['Barnaamijyada & Abka','Software & Apps'],
+    'business-tech':['Teknoolajiyada Ganacsiga','Business Tech']
+  };
+  const diffs = {
+    'fudud':['Fudud','Easy'],
+    'dhexdhexaad':['Dhexdhexaad','Medium'],
+    'adag':['Adag','Advanced']
+  };
 
-  /* Title */
-  const titleEl = document.getElementById('article-title');
-  if (titleEl) {
-    titleEl.setAttribute('data-so', data.title_so);
-    titleEl.setAttribute('data-en', data.title_en);
-    titleEl.textContent = lang === 'so' ? data.title_so : data.title_en;
-  }
+  function render(){
+    const l = lang();
+    const cat = cats[A.category] ? cats[A.category][l==='so'?0:1] : A.category;
+    const diff = diffs[A.difficulty] ? diffs[A.difficulty][l==='so'?0:1] : A.difficulty;
 
-  /* Subtitle */
-  const subEl = document.getElementById('article-subtitle');
-  if (subEl) {
-    subEl.setAttribute('data-so', data.subtitle_so || '');
-    subEl.setAttribute('data-en', data.subtitle_en || '');
-    subEl.textContent = lang === 'so' ? data.subtitle_so : data.subtitle_en;
-  }
+    /* header */
+    const titleEl = document.querySelector('.art-title');
+    const subEl = document.querySelector('.art-sub');
+    if(titleEl) titleEl.textContent = pick({so:A.title_so,en:A.title_en}, l);
+    if(subEl) subEl.textContent = pick({so:A.subtitle_so,en:A.subtitle_en}, l);
 
-  /* Author */
-  const avatarEl = document.getElementById('author-avatar');
-  if (avatarEl) { avatarEl.src = author.avatar; avatarEl.alt = author.name; }
-  const nameEl = document.getElementById('author-name');
-  if (nameEl) nameEl.textContent = author.name;
-  const roleEl = document.getElementById('author-role');
-  if (roleEl) {
-    roleEl.setAttribute('data-so', author.role_so);
-    roleEl.setAttribute('data-en', author.role_en);
-    roleEl.textContent = lang === 'so' ? author.role_so : author.role_en;
-  }
+    /* tags */
+    const tagrow = document.querySelector('.art-head .tagrow');
+    if(tagrow) tagrow.innerHTML =
+      '<span class="tag tag-indigo">'+cat+'</span><span class="tag tag-teal">'+diff+'</span>';
 
-  /* Date */
-  const dateEl = document.getElementById('article-date');
-  if (dateEl && data.date) dateEl.textContent = formatDate(data.date);
-
-  /* Read time */
-  const rtEl = document.getElementById('article-readtime');
-  if (rtEl) {
-    const so = (data.read_time || 5) + ' daqiiqo akhrinta';
-    const en = (data.read_time || 5) + ' min read';
-    rtEl.setAttribute('data-so', so);
-    rtEl.setAttribute('data-en', en);
-    rtEl.textContent = lang === 'so' ? so : en;
-  }
-
-  /* Article body */
-  const bodyEl = document.getElementById('article-body-content');
-  if (bodyEl) {
-    const bodyMd = lang === 'so' ? (data.body_so || '') : (data.body_en || data.body_so || '');
-    bodyEl.innerHTML = '<p>' + mdToHtml(bodyMd) + '</p>';
-    /* Add ids to h2 for TOC */
-    bodyEl.querySelectorAll('h2').forEach(h => {
-      if (!h.id) h.id = slugify(h.textContent);
-    });
-  }
-
-  /* Key facts */
-  if (data.key_facts && data.key_facts.length) {
-    ['article-key-facts', 'article-key-facts-mobile'].forEach(id => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.innerHTML = data.key_facts.map(f =>
-        '<div class="key-fact"><span class="key-fact-icon">📌</span><span>' + f.fact + '</span></div>'
-      ).join('');
-    });
-  }
-
-  /* TOC — auto-build from h2s */
-  setTimeout(() => {
-    const tocEl = document.getElementById('toc');
-    const headings = document.querySelectorAll('#article-body-content h2[id]');
-    if (tocEl && headings.length) {
-      tocEl.innerHTML = Array.from(headings).map(h =>
-        '<li><a href="#' + h.id + '">' + h.textContent + '</a></li>'
-      ).join('');
+    /* hero */
+    const hero = document.querySelector('.art-hero-img');
+    if(hero){
+      if(A.hero_image){ hero.style.backgroundImage='url('+A.hero_image+')'; hero.style.backgroundSize='cover'; hero.style.backgroundPosition='center'; hero.textContent=''; }
+      else hero.textContent = A.hero_emoji || '📄';
     }
-  }, 100);
 
-  /* SEO meta description */
-  if (data.seo_description) {
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) { meta = document.createElement('meta'); meta.name = 'description'; document.head.appendChild(meta); }
-    meta.content = data.seo_description;
+    /* meta */
+    const rt = document.querySelector('[data-meta="read"]');
+    if(rt) rt.textContent = (A.read_time||5)+' '+(l==='so'?'daqiiqo':'min');
+
+    /* body */
+    const body = document.querySelector('.art-body');
+    const toc = document.querySelector('#toc');
+    if(!body) return;
+
+    let html='', tocHtml='', hn=0;
+    (A.sections||[]).forEach(s=>{
+      switch(s.type){
+        case 'heading':{
+          hn++; const id='s'+hn; const txt=pick(s,l);
+          html+='<h2 id="'+id+'">'+txt+'</h2>';
+          tocHtml+='<a href="#'+id+'"'+(hn===1?' class="on"':'')+'>'+txt+'</a>';
+          break;}
+        case 'paragraph':
+          html+='<p>'+md(pick(s,l))+'</p>'; break;
+        case 'callout':
+          html+='<div class="callout"><span class="ic">'+(s.icon||'💡')+'</span><div>'+md(pick(s,l))+'</div></div>'; break;
+        case 'quote':
+          html+='<blockquote>'+md(pick(s,l))+'</blockquote>'; break;
+        case 'list':{
+          const items=pick(s,l).split('\n').filter(x=>x.trim());
+          html+='<ul>'+items.map(i=>'<li>'+md(i)+'</li>').join('')+'</ul>'; break;}
+        case 'steps':{
+          const items=pick(s,l).split('\n').filter(x=>x.trim());
+          html+='<ol class="steps">'+items.map(i=>'<li>'+md(i)+'</li>').join('')+'</ol>'; break;}
+        case 'code':
+          html+='<pre class="codebox"><code>'+(s.code||'').replace(/</g,'&lt;')+'</code></pre>'+(pick(s,l)?'<p class="cap">'+pick(s,l)+'</p>':''); break;
+        case 'warning':
+          html+='<div class="callout warn"><span class="ic">⚠️</span><div>'+md(pick(s,l))+'</div></div>'; break;
+        case 'didyouknow':
+          html+='<div class="callout dyk"><span class="ic">🎯</span><div><strong>'+(l==='so'?'Ma Ogtahay? ':'Did you know? ')+'</strong>'+md(pick(s,l))+'</div></div>'; break;
+        case 'video':{
+          const id=ytId(s.url); const cap=pick(s,l);
+          html+='<div class="video-wrap"><div class="video-label">🎬 '+(l==='so'?'Daawo':'Watch')+'</div>'+
+            (id?'<div class="video-frame"><iframe src="https://www.youtube.com/embed/'+id+'" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:16px"></iframe></div>':'')+
+            (cap?'<p class="cap">'+cap+'</p>':'')+'</div>'; break;}
+        case 'image':
+          html+='<figure class="art-fig"><img src="'+s.image+'" alt="'+(pick(s,l)||'')+'" style="width:100%;border-radius:16px">'+(pick(s,l)?'<figcaption>'+pick(s,l)+'</figcaption>':'')+'</figure>'; break;
+        case 'summary':{
+          const items=pick(s,l).split('\n').filter(x=>x.trim());
+          html+='<div class="summary"><h3>📋 '+(l==='so'?'Soo koobka Maqaalka':'Article Summary')+'</h3><ul style="padding:0">'+
+            items.map(i=>'<li>'+md(i)+'</li>').join('')+'</ul></div>'; break;}
+      }
+    });
+
+    body.innerHTML = html;
+    if(toc) toc.innerHTML = tocHtml;
   }
-}
+
+  render();
+  /* re-render when language changes */
+  window.addEventListener('aqoon-lang-change', render);
+})();
