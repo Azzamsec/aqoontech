@@ -1,419 +1,341 @@
 <!DOCTYPE html>
 <html lang="so" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Aqoon Tech — Hadafkayaga, kooxdayada, iyo qiyamkayaga. Waxbarashada teknoolajiyada Af-Soomaali.">
-  <title>Nagu Saabsan — Aqoon Tech</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Montserrat:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/variables.css">
-  <link rel="stylesheet" href="../css/base.css">
-  <link rel="stylesheet" href="../css/typography.css">
-  <link rel="stylesheet" href="../css/buttons.css">
-  <link rel="stylesheet" href="../css/cards.css">
-  <link rel="stylesheet" href="../css/navbar.css">
-  <link rel="stylesheet" href="../css/layout.css">
-  <link rel="stylesheet" href="../css/hero.css">
-  <link rel="stylesheet" href="../css/sections.css">
-  <link rel="stylesheet" href="../css/animations.css">
-  <style>
-    .about-hero-img { width:100%; max-height:400px; object-fit:cover; display:block; }
-    .origin-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
-    .origin-visual { background:linear-gradient(135deg,var(--charcoal) 0%,#1a2040 100%); border-radius:var(--r-lg); padding:3rem; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:var(--s4); position:relative; overflow:hidden; min-height:300px; }
-    .origin-visual::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 60% 30%,rgba(74,144,217,.22) 0%,transparent 65%); pointer-events:none; }
-    .origin-visual > * { position:relative; z-index:1; }
-    .origin-stat { font-family:var(--font-brand); font-size:3rem; color:var(--blue); line-height:1; }
-    .origin-stat-label { font-family:var(--font-ui); font-size:12.5px; color:rgba(255,255,255,.5); letter-spacing:.5px; }
-    .origin-divider { width:1px; height:40px; background:rgba(255,255,255,.12); }
-    .team-social { display:flex; justify-content:center; gap:var(--s2); margin-top:var(--s4); }
-    .team-social a { width:32px; height:32px; border-radius:8px; background:var(--blue-light); display:flex; align-items:center; justify-content:center; font-size:13px; color:var(--blue-dark); text-decoration:none; transition:all var(--t) var(--ease-spring); }
-    [data-theme="dark"] .team-social a { background:rgba(74,144,217,.12); color:var(--blue); }
-    .team-social a:hover { background:var(--blue); color:white; transform:translateY(-2px); }
-    @media (max-width:900px) { .origin-grid { grid-template-columns:1fr; } }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nagu Saabsan — Aqoon Tech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12122B;--ink-2:#3A3A55;
+  --paper:#FBFBFD;--surface:#FFFFFF;--surface-2:#F4F4FA;
+  --tint-indigo:#F3F2FE;--tint-teal:#ECFAF8;
+  --text:#16162E;--text-2:#585872;--text-3:#9494A8;
+  --border:#EAEAF2;--border-2:#DADAE6;
+  --indigo:#4F46E5;--indigo-dk:#3F37C9;--indigo-lt:#EEEDFE;
+  --teal:#06B6A4;--teal-br:#0FD9C3;--teal-dk:#0F766E;--teal-lt:#E1F7F4;
+  --amber-lt:#FAEEDA;--amber-dk:#854F0B;
+  --display:'Outfit',sans-serif;--body:'DM Sans',sans-serif;
+  --ease:cubic-bezier(.4,0,.2,1);--spring:cubic-bezier(.34,1.56,.64,1);
+  --nav-h:72px;--max:1200px;
+}
+[data-theme="dark"]{
+  --ink:#EDEDF7;--ink-2:#B8B8CC;
+  --paper:#0C0C16;--surface:#13131F;--surface-2:#171725;
+  --tint-indigo:#15152A;--tint-teal:#0E1A20;
+  --text:#EDEDF7;--text-2:#A0A0B8;--text-3:#6A6A82;
+  --border:#23233A;--border-2:#2E2E48;
+  --indigo:#7C75F0;--indigo-lt:rgba(79,70,229,.16);
+  --teal:#2DD4BF;--teal-br:#2DD4BF;--teal-lt:rgba(6,182,164,.16);
+  --amber-lt:rgba(232,160,32,.16);--amber-dk:#F5C572;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--text);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+a{text-decoration:none;color:inherit}
+.kicker{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--display);font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--indigo);padding-left:.85rem;border-left:2px solid var(--indigo)}
+.kicker.teal{color:var(--teal-dk);border-color:var(--teal)}
+.kicker.center{border-left:none;padding-left:0;justify-content:center}
+
+nav.bar{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,3rem);background:color-mix(in srgb,var(--paper) 85%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:height .35s var(--ease)}
+nav.bar.scrolled{height:64px;box-shadow:0 4px 24px rgba(18,18,43,.06)}
+.logo{display:flex;align-items:center;gap:.7rem}
+.logo-mark{width:38px;height:38px;border-radius:11px;background:var(--ink);display:grid;place-items:center;box-shadow:0 4px 14px rgba(18,18,43,.18)}
+.logo-name{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.3px;color:var(--text);line-height:1}
+.logo-name span{color:var(--indigo)}
+.logo-tag{font-family:var(--body);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-3)}
+.links{display:flex;gap:2rem;align-items:center}
+.links a{font-family:var(--display);font-size:14.5px;font-weight:500;color:var(--text-2);transition:color .2s;position:relative}
+.links a:hover,.links a.on{color:var(--text)}
+.links a.on::after{content:'';position:absolute;left:0;right:0;bottom:-22px;height:2px;background:var(--indigo)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.lang{display:flex;border:1px solid var(--border-2);border-radius:99px;overflow:hidden;background:var(--surface)}
+.lang button{border:none;background:transparent;font-family:var(--display);font-size:11px;font-weight:600;padding:6px 12px;cursor:pointer;color:var(--text-3);transition:.2s}
+.lang button.active{background:var(--indigo);color:#fff}
+.icon-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--border-2);background:var(--surface);cursor:pointer;font-size:15px;display:grid;place-items:center;transition:.2s}
+.icon-btn:hover{border-color:var(--indigo)}
+.cta{font-family:var(--display);font-weight:600;font-size:14px;background:var(--ink);color:#fff;padding:10px 20px;border-radius:11px;transition:transform .15s var(--spring);box-shadow:0 4px 16px rgba(18,18,43,.16)}
+.cta:hover{transform:translateY(-2px)}
+.btn{font-family:var(--display);font-weight:600;font-size:15px;padding:13px 26px;border-radius:12px;transition:transform .15s var(--spring),box-shadow .2s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary{background:var(--indigo);color:#fff;box-shadow:0 6px 20px rgba(79,70,229,.32)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(79,70,229,.42)}
+.btn-ghost{color:var(--ink);border:1px solid var(--border-2);background:var(--surface)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal-dk);transform:translateY(-2px)}
+
+/* PAGE HERO */
+.page-hero{padding-top:calc(var(--nav-h) + clamp(2.5rem,6vw,4.5rem));padding-bottom:clamp(2rem,5vw,3.5rem);text-align:center;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60%;height:130%;background:radial-gradient(ellipse at center,var(--tint-indigo) 0%,transparent 60%);opacity:.8;pointer-events:none}
+.page-hero .inner{position:relative;max-width:46rem;margin:0 auto}
+.page-h1{font-family:var(--display);font-weight:700;font-size:clamp(2.4rem,5vw,3.8rem);line-height:1.06;letter-spacing:-1.4px;color:var(--ink);margin:1.2rem 0 1.2rem}
+.page-h1 .accent{color:var(--indigo)}
+.page-lead{font-size:17px;color:var(--text-2);line-height:1.75;font-weight:300;max-width:38rem;margin:0 auto}
+.page-lead strong{color:var(--text);font-weight:500}
+
+/* STATS */
+.stats{background:var(--tint-indigo);border-block:1px solid var(--border)}
+.stats-in{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding-block:2.6rem}
+.stat{text-align:center}
+.stat-n{font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,3.5vw,2.7rem);color:var(--ink);letter-spacing:-1px;line-height:1}
+.stat-n span{color:var(--indigo)}
+.stat-l{font-family:var(--body);font-size:12.5px;color:var(--text-2);margin-top:.5rem}
+.stat+.stat{border-left:1px solid var(--border-2)}
+
+.section{padding-block:clamp(3.5rem,7vw,5.5rem)}
+.section.tint{background:var(--surface-2)}
+.section.tint-teal{background:var(--tint-teal)}
+.h2{font-family:var(--display);font-weight:700;font-size:clamp(1.8rem,3.4vw,2.6rem);letter-spacing:-1px;color:var(--ink);line-height:1.1;margin-top:.7rem}
+.h2 .accent{color:var(--indigo)}.h2 .accent-t{color:var(--teal-dk)}
+.sub{color:var(--text-2);font-size:15px;margin-top:.6rem;font-weight:300}
+
+/* ORIGIN TIMELINE */
+.timeline{position:relative;max-width:44rem;margin:0 auto;padding-left:2.5rem}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--indigo),var(--teal))}
+.tl-item{position:relative;padding-bottom:2.2rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:'';position:absolute;left:calc(-2.5rem + 1px);top:5px;width:16px;height:16px;border-radius:50%;background:var(--surface);border:3px solid var(--indigo);box-shadow:0 0 0 4px var(--paper)}
+.tl-item:nth-child(2)::before{border-color:var(--teal)}
+.tl-item:nth-child(3)::before{border-color:var(--teal)}
+.tl-item:last-child::before{background:var(--indigo);border-color:var(--indigo)}
+.tl-year{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.1em;color:var(--indigo);margin-bottom:.4rem}
+.tl-item:nth-child(2) .tl-year,.tl-item:nth-child(3) .tl-year{color:var(--teal-dk)}
+.tl-h{font-family:var(--display);font-weight:600;font-size:18px;color:var(--text);margin-bottom:.4rem;letter-spacing:-.3px}
+.tl-x{font-size:14.5px;color:var(--text-2);line-height:1.7;font-weight:300}
+.tl-x em{color:var(--indigo);font-style:italic}
+
+/* ORIGIN STORY (old) */
+.origin{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.origin p{color:var(--text-2);font-size:15.5px;line-height:1.85;font-weight:300;margin-bottom:1.2rem}
+.origin p strong{color:var(--text);font-weight:500}
+.origin em{color:var(--indigo);font-style:italic}
+.origin-visual{background:var(--ink);border-radius:24px;padding:2.5rem;display:flex;flex-direction:column;gap:1.3rem;position:relative;overflow:hidden}
+.origin-visual::after{content:'';position:absolute;top:20%;right:-10%;width:60%;height:60%;background:radial-gradient(ellipse,rgba(6,182,164,.22),transparent 65%)}
+.ov-stat{position:relative;z-index:1}
+.ov-n{font-family:var(--display);font-weight:700;font-size:2.6rem;color:#fff;line-height:1;letter-spacing:-1px}
+.ov-n.teal{color:var(--teal-br)}
+.ov-l{font-size:12.5px;color:rgba(255,255,255,.55);margin-top:.3rem}
+.ov-div{height:1px;background:rgba(255,255,255,.1);position:relative;z-index:1}
+
+/* VALUES */
+.vals{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.val{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:1.8rem;transition:transform .25s var(--ease),box-shadow .25s,border-color .25s}
+.val:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(18,18,43,.1);border-color:var(--border-2)}
+.val-ic{width:52px;height:52px;border-radius:14px;background:var(--indigo-lt);display:grid;place-items:center;font-size:24px;margin-bottom:1.2rem}
+.val:nth-child(2) .val-ic{background:var(--teal-lt)}
+.val:nth-child(3) .val-ic{background:var(--amber-lt)}
+.val-h{font-family:var(--display);font-weight:600;font-size:18px;color:var(--text);margin-bottom:.6rem;letter-spacing:-.3px}
+.val-x{font-size:14px;color:var(--text-2);line-height:1.7;font-weight:300}
+
+/* MISSION */
+.mission{max-width:48rem;margin:0 auto;text-align:center}
+.mission-quote{font-family:var(--display);font-weight:500;font-size:clamp(1.3rem,2.6vw,1.8rem);line-height:1.5;color:var(--ink);letter-spacing:-.4px}
+.mission-quote .accent{color:var(--indigo)}
+.mission-en{font-size:14.5px;color:var(--text-3);font-style:italic;line-height:1.7;margin-top:1.5rem;font-weight:300}
+
+/* TEAM */
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem}
+.tm{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:1.6rem;text-align:center;transition:transform .25s var(--ease),box-shadow .25s}
+.tm:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(18,18,43,.1)}
+.tm-av{width:72px;height:72px;border-radius:50%;margin:0 auto 1rem;display:grid;place-items:center;color:#fff;font-family:var(--display);font-weight:600;font-size:24px}
+.tm:nth-child(1) .tm-av{background:linear-gradient(135deg,#4F46E5,#06B6A4)}
+.tm:nth-child(2) .tm-av{background:linear-gradient(135deg,#06B6A4,#0FD9C3)}
+.tm:nth-child(3) .tm-av{background:linear-gradient(135deg,#854F0B,#E8A020)}
+.tm:nth-child(4) .tm-av{background:linear-gradient(135deg,#3F37C9,#7C75F0)}
+.tm-n{font-family:var(--display);font-weight:600;font-size:15.5px;color:var(--text)}
+.tm-r{font-size:11.5px;color:var(--indigo);margin:.2rem 0 .7rem;font-weight:500}
+.tm-b{font-size:12px;color:var(--text-2);line-height:1.6;font-weight:300}
+
+/* CTA */
+.band{background:var(--ink);border-radius:28px;padding:clamp(2.5rem,5vw,4rem);text-align:center;position:relative;overflow:hidden}
+.band::after{content:'';position:absolute;bottom:-40%;left:50%;transform:translateX(-50%);width:80%;height:80%;background:radial-gradient(ellipse,rgba(6,182,164,.22),transparent 65%)}
+.band>*{position:relative;z-index:1}
+.band h2{font-family:var(--display);font-weight:700;color:#fff;font-size:clamp(1.7rem,3.4vw,2.4rem);letter-spacing:-.8px;margin:1rem 0 .9rem}
+.band p{color:rgba(255,255,255,.7);font-size:15px;font-weight:300;max-width:34rem;margin:0 auto 2rem}
+.band .row{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+.band .btn-w{background:#fff;color:var(--ink)}
+.band .btn-o{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
+
+footer{border-top:1px solid var(--border);background:var(--surface);padding-block:3rem 1.8rem}
+.foot-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:2rem}
+.foot-brand .logo{margin-bottom:1rem}
+.foot-about{font-size:13px;color:var(--text-2);line-height:1.65;font-weight:300;max-width:20rem;margin-bottom:1.1rem}
+.foot-social{display:flex;gap:.5rem}
+.foot-social a{width:34px;height:34px;border-radius:9px;border:1px solid var(--border-2);display:grid;place-items:center;font-size:13px;color:var(--text-2);transition:.2s}
+.foot-social a:hover{border-color:var(--indigo);color:var(--indigo);transform:translateY(-2px)}
+.foot-col h4{font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:.9rem}
+.foot-col a{display:block;font-size:13.5px;color:var(--text-2);padding:.32rem 0;transition:color .2s}
+.foot-col a:hover{color:var(--indigo)}
+.foot-bottom{display:flex;justify-content:space-between;margin-top:2.3rem;padding-top:1.4rem;border-top:1px solid var(--border);font-size:12.5px;color:var(--text-3);flex-wrap:wrap;gap:.5rem}
+
+.rv{opacity:0;transform:translateY(20px);animation:rvin .7s var(--ease) forwards}
+@keyframes rvin{to{opacity:1;transform:none}}
+.d1{animation-delay:.05s}.d2{animation-delay:.13s}.d3{animation-delay:.21s}
+
+@media(max-width:900px){
+  .links{display:none}
+  .origin{grid-template-columns:1fr}
+  .vals{grid-template-columns:1fr}
+  .team{grid-template-columns:repeat(2,1fr)}
+  .stats-in{grid-template-columns:repeat(2,1fr);gap:2rem 1rem}
+  .stat:nth-child(3){border-left:none}
+  .foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}
+}
+</style>
 </head>
 <body>
-<div id="progress-bar"></div>
 
-<!-- NAVBAR -->
-<nav class="navbar" id="navbar">
-  <a href="../index.html" class="nav-logo">
-    <div class="logo-mark">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A90D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2" y="3" width="20" height="14" rx="2.5"/><path d="M8 21h8M12 17v4"/>
-        <circle cx="12" cy="10" r="3.2"/><path d="M12 6.8V6M12 13.2V14M8.8 10H8M15.2 10H16" stroke-width="1.5"/>
-      </svg>
-    </div>
-    <div class="logo-text"><span class="logo-name">AQOON <span>TECH</span></span><span class="logo-tagline">Technology</span></div>
+<nav class="bar" id="nav">
+  <a href="../index.html" class="logo">
+    <div class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2.5"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg></div>
+    <div><div class="logo-name">AQOON <span>TECH</span></div><div class="logo-tag">Technology</div></div>
   </a>
-  <div class="nav-links">
-    <a href="../index.html"   class="nav-link" data-so="Hoyga"        data-en="Home">Hoyga</a>
-    <a href="articles.html"   class="nav-link" data-so="Maqaallada"   data-en="Articles">Maqaallada</a>
-    <a href="categories.html" class="nav-link" data-so="Mawduucyada"  data-en="Categories">Mawduucyada</a>
-    <a href="about.html"      class="nav-link active" data-so="Nagu Saabsan" data-en="About">Nagu Saabsan</a>
-    <a href="contact.html"    class="nav-link" data-so="Xiriir"       data-en="Contact">Xiriir</a>
-  </div>
-  <div class="nav-actions">
-    <div class="lang-switch">
-      <button class="lang-btn active" id="lang-so" onclick="setLang('so')">SO</button>
-      <button class="lang-btn"        id="lang-en" onclick="setLang('en')">EN</button>
-    </div>
-    <button class="btn-theme" id="theme-toggle" onclick="toggleTheme()">🌙</button>
-    <a href="contact.html" class="nav-cta" data-so="Nala Soo Xiriir" data-en="Get in Touch">Nala Soo Xiriir</a>
-    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+  <div class="links"><a href="../index.html" data-so="Hoyga" data-en="Home">Hoyga</a><a href="articles.html" data-so="Maqaallada" data-en="Articles">Maqaallada</a><a href="categories.html" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a><a href="about.html" class="on" data-so="Nagu Saabsan" data-en="About">Nagu Saabsan</a><a href="contact.html" data-so="Xiriir" data-en="Contact">Xiriir</a></div>
+  <div class="nav-right">
+    <div class="lang"><button id="lang-so" class="active" onclick="setLang('so')">SO</button><button id="lang-en" onclick="setLang('en')">EN</button></div>
+    <button class="icon-btn" onclick="toggleTheme()">◐</button>
+    <a href="contact.html" class="cta" data-so="Nala Soo Xiriir" data-en="Get in Touch">Nala Soo Xiriir</a>
   </div>
 </nav>
-<nav class="mobile-nav" id="mobile-nav">
-  <a href="../index.html"   class="mobile-link" data-so="🏠 Hoyga"         data-en="🏠 Home">🏠 Hoyga</a>
-  <a href="articles.html"   class="mobile-link" data-so="📰 Maqaallada"    data-en="📰 Articles">📰 Maqaallada</a>
-  <a href="categories.html" class="mobile-link" data-so="📂 Mawduucyada"   data-en="📂 Categories">📂 Mawduucyada</a>
-  <div class="mobile-divider"></div>
-  <a href="about.html"      class="mobile-link" data-so="ℹ️ Nagu Saabsan"  data-en="ℹ️ About">ℹ️ Nagu Saabsan</a>
-  <a href="contact.html"    class="mobile-link" data-so="✉️ Xiriir"        data-en="✉️ Contact">✉️ Xiriir</a>
-</nav>
 
-<main>
-
-  <img src="../images/about-hero.png" alt="Aqoon Tech nagu saabsan" class="about-hero-img" loading="eager">
-
-  <!-- PAGE INTRO -->
-  <section class="section">
-    <div class="container">
-      <div style="max-width:700px;margin:0 auto;text-align:center;">
-        <div class="label center" data-so="Sheekadeena" data-en="Our Story">Sheekadeena</div>
-        <h1 class="h-page">
-          Teknoolajiyada u <span style="color:var(--blue);" data-so="Qof Walba" data-en="Everyone">Qof Walba</span>
-        </h1>
-        <p style="font-size:16px;color:var(--text-2);line-height:1.85;margin-bottom:var(--s6);"
-           data-so="Aqoon Tech waxay ahayd fikrad dhashay 2023-kii markii aasaasaheenna Abdi Hassan uu ogaaday in malaayiin Soomaali ah aysan waxba ka garanin teknoolajiyada — maadaama aqoontaasi kii ay ku jirtay luuqadaha ay kuma jiraan Soomaaliga."
-           data-en="Aqoon Tech was an idea born in 2023 when our founder Abdi Hassan discovered that millions of Somalis knew nothing about technology — because that knowledge only existed in languages that didn't include Somali.">
-          Aqoon Tech waxay ahayd fikrad dhashay 2023-kii markii aasaasaheenna Abdi Hassan
-          uu ogaaday in malaayiin Soomaali ah aysan waxba ka garanin teknoolajiyada —
-          maadaama aqoontaasi kii ay ku jirtay luuqadaha ay kuma jiraan Soomaaliga.
-        </p>
-        <p style="font-size:16px;color:var(--text-2);line-height:1.85;"
-           data-so="Xalka wuxuu ahaa mid fudud: ku qor teknoolajiyada Af-Soomaali, si fudud, si qof walba u fahmi karo — baadiyaha joogana, magaalooyinka jooga, iyo Diasporaka adduunka ku fida labadaba."
-           data-en="The solution was simple: write about technology in Somali, simply, so that everyone can understand — whether they live in rural areas, cities, or the Somali diaspora worldwide.">
-          Xalka wuxuu ahaa mid fudud: <strong>ku qor teknoolajiyada Af-Soomaali</strong>,
-          si fudud, si qof walba u fahmi karo — baadiyaha joogana, magaalooyinka jooga, iyo
-          Diasporaka adduunka ku fida labadaba.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <div class="stats-strip">
-    <div class="stats-inner">
-      <div class="stat-item">
-        <div class="stat-num" data-count="500" data-suffix="+">500+</div>
-        <div class="stat-label" data-so="Maqaallo La Daabacay" data-en="Articles Published">Maqaallo La Daabacay</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num" data-count="10000" data-suffix="+">10,000+</div>
-        <div class="stat-label" data-so="Akhriyeyaasha Bishii" data-en="Monthly Readers">Akhriyeyaasha Bishii</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num" data-count="8" data-suffix="">8</div>
-        <div class="stat-label" data-so="Noocyada Teknoolajiyada" data-en="Tech Categories">Noocyada Teknoolajiyada</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num" data-count="200" data-suffix="+">200+</div>
-        <div class="stat-label" data-so="Casharro Muuqaal" data-en="Video Lessons">Casharro Muuqaal</div>
-      </div>
-    </div>
+<section class="page-hero">
+  <div class="inner">
+    <span class="kicker center rv d1" data-so="Safarkeenna" data-en="Our Journey">Safarkeenna</span>
+    <h1 class="page-h1 rv d2" data-so='Aqoonta Teknoolajiyada oo u <span class="accent">Furan Qof Walba</span>' data-en='Technology, <span class="accent">Accessible to Everyone</span>'>Aqoonta Teknoolajiyada oo u <span class="accent">Furan Qof Walba</span></h1>
+    <p class="page-lead rv d3" data-so="Aqoon Tech waxay ka dhalatay baahi jirta: in aqoonta teknoolajiyada lagu helo Af-Soomaali, si qof walba u fahmo, u barto, uguna faa’iidaysto dunida casriga ah. Waxaan rabnaa inaan aqoontaas ka dhigno mid fudud, la heli karo, oo qof kasta gaadha." data-en="Aqoon Tech was born from a real need: for technology knowledge to be available in Somali, so everyone can understand it, learn from it, and benefit from the modern world. We want to make that knowledge simple, accessible, and within everyone's reach.">Aqoon Tech waxay ka dhalatay baahi jirta: in aqoonta teknoolajiyada lagu helo Af-Soomaali, si qof walba u fahmo, u barto, uguna faa’iidaysto dunida casriga ah. Waxaan rabnaa inaan aqoontaas ka dhigno mid fudud, la heli karo, oo qof kasta gaadha.</p>
   </div>
+</section>
 
-  <!-- ORIGIN STORY -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="origin-grid">
-        <div class="reveal-left">
-          <div class="label" data-so="Asal ahaan" data-en="Our Origin">Asal ahaan</div>
-          <h2 class="h-section">
-            <span data-so="Sideen u" data-en="How We">Sideen u</span> <span class="accent" data-so="bilaabannay" data-en="Started">bilaabannay</span>
-          </h2>
-          <p style="font-size:15.5px;color:var(--text-2);line-height:1.85;margin-bottom:var(--s5);"
-             data-so="2023-kii, Abdi Hassan wuxuu arkay waldiiskii — oo ah macallin jaamacad ah — oo ku dhibaatoonaya fahanka teknoolajiyada. Aqoonyahanka wuxuu ku yiri: 'Haddaan Ingiriisiga fiicnayn, teknoolajiyada lama baranaysaa.'"
-             data-en="In 2023, Abdi Hassan saw his sister — a university lecturer — struggling to understand technology. The academic told him: 'If you don't know English well, you can't learn technology.'">
-            2023-kii, Abdi Hassan wuxuu arkay waldiiskii — oo ah macallin jaamacad ah —
-            oo ku dhibaatoonaya fahanka teknoolajiyada. Aqoonyahanka wuxuu ku yiri:
-            <em>"Haddaan Ingiriisiga fiicnayn, teknoolajiyada lama baranaysaa."</em>
-          </p>
-          <p style="font-size:15.5px;color:var(--text-2);line-height:1.85;margin-bottom:var(--s6);"
-             data-so="Xaaladdan waxay u muujisay khali weyn — milyan Soomaali ah oo xigta aqoonta teknoolajiyada joogaan. Aqoon Tech waxay ahayd jawaabta."
-             data-en="This situation revealed a huge gap — millions of Somalis remain outside the reach of technology knowledge. Aqoon Tech was the answer.">
-            Xaaladdan waxay u muujisay khali weyn — milyan Soomaali ah oo xigta aqoonta
-            teknoolajiyada joogaan. Aqoon Tech waxay ahayd jawaabta.
-          </p>
-          <div style="display:flex;gap:var(--s3);flex-wrap:wrap;">
-            <a href="contact.html" class="btn btn-primary" data-so="Ku Biir Ujeedada" data-en="Join the Mission">Ku Biir Ujeedada</a>
-            <a href="articles.html" class="btn btn-secondary" data-so="Akri Maqaallada" data-en="Read Articles">Akri Maqaallada</a>
-          </div>
-        </div>
-        <div class="origin-visual reveal">
-          <div class="origin-stat" data-count="50" data-suffix="">50+</div>
-          <div class="origin-stat-label" data-so="Wadanno leh akhriyeyaasha Soomaalida" data-en="Countries with Somali readers">Wadanno leh akhriyeyaasha Soomaalida</div>
-          <div class="origin-divider"></div>
-          <div class="origin-stat" style="color:var(--green);">2023</div>
-          <div class="origin-stat-label" data-so="Sanadkii la aasaasay Aqoon Tech" data-en="Year Aqoon Tech was founded">Sanadkii la aasaasay Aqoon Tech</div>
-          <div class="origin-divider"></div>
-          <div class="origin-stat" style="color:var(--amber);">4</div>
-          <div class="origin-stat-label" data-so="Xubno koox buuxda ah" data-en="Full-time team members">Xubno koox buuxda ah</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- VALUES -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header center">
-        <div>
-          <div class="label center" data-so="Waxa Aan Ku Taagnahay" data-en="What We Stand For">Waxa Aan Ku Taagnahay</div>
-          <h2 class="h-section"><span data-so="Qiyamkayaga" data-en="Our Core">Qiyamkayaga</span> <span class="accent" data-so="Aasaasiga ah" data-en="Values">Aasaasiga ah</span></h2>
-          <p class="sub-heading center" data-so="Aqoonta, Hufnaanta, iyo Barashada — waxa ay Aqoon Tech ku dhisan tahay" data-en="Knowledge, Accuracy, and Learning — what Aqoon Tech is built on">
-            Aqoonta, Hufnaanta, iyo Barashada — waxa ay Aqoon Tech ku dhisan tahay
-          </p>
-        </div>
-      </div>
-      <div class="grid grid-3">
-        <div class="value-card reveal">
-          <span class="value-emoji">📚</span>
-          <div class="value-title" data-so="Waxaa Hore Helitaanka" data-en="Accessibility First">Waxaa Hore Helitaanka</div>
-          <p class="value-desc" data-so="Waxaan rumaysanahay in aqoonta teknoolajiyada ay tahay xaq aadanaha kasta. Maqaalladeena waxaa lagu qoray Af-Soomaali si fudud — si qof walba u gaadhi karo, wax barashadii hore ha yeeshee ha yeeshee." data-en="We believe technology knowledge is a human right for everyone. Our articles are written in simple Somali — accessible to everyone, regardless of prior education.">
-            Waxaan rumaysanahay in aqoonta teknoolajiyada ay tahay xaq aadanaha kasta.
-            Maqaalladeena waxaa lagu qoray Af-Soomaali si fudud — si qof walba u gaadhi karo,
-            wax barashadii hore ha yeeshee ha yeeshee.
-          </p>
-        </div>
-        <div class="value-card reveal">
-          <span class="value-emoji">✅</span>
-          <div class="value-title" data-so="Saxnimada & Aaminaadda" data-en="Accuracy & Trust">Saxnimada & Aaminaadda</div>
-          <p class="value-desc" data-so="Waxaan la shaqeynaa khubarrada teknoolajiyada si aan ugu xaqiijino saxnimada wax kasta oo aan qorno. Xaqiiqda marka la qoray, la hubiyaa — samaanka waxbarasho ah waxay u baahantahay aaminaad." data-en="We work with technology experts to ensure the accuracy of everything we write. Facts are verified when published — educational content requires trust.">
-            Waxaan la shaqeynaa khubarrada teknoolajiyada si aan ugu xaqiijino saxnimada
-            wax kasta oo aan qorno. Xaqiiqda marka la qoray, la hubiyaa — samaanka waxbarasho ah waxay u baahantahay aaminaad.
-          </p>
-        </div>
-        <div class="value-card reveal">
-          <span class="value-emoji">🌍</span>
-          <div class="value-title" data-so="Bulshada Ku Dhisan" data-en="Community Driven">Bulshada Ku Dhisan</div>
-          <p class="value-desc" data-so="Aqoon Tech waxaa dhisay bulshada Soomaalida — waxaana uga shaqeynaynaa bulshada. Akhriyayaashayaga ayaa noo sheegaya waxa ay rabaan baarteen, oo aan ku jawaabno si degdeg ah." data-en="Aqoon Tech was built by the Somali community — and we work for the community. Our readers tell us what they want to learn, and we respond quickly.">
-            Aqoon Tech waxaa dhisay bulshada Soomaalida — waxaana uga shaqeynaynaa
-            bulshada. Akhriyayaashayaga ayaa noo sheegaya waxa ay rabaan baarteen,
-            oo aan ku jawaabno si degdeg ah.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MISSION STATEMENT -->
-  <section class="section section-alt">
-    <div class="container" style="max-width:860px;">
-      <div class="section-header center" style="margin-bottom:var(--s8);">
-        <div>
-          <div class="label center" data-so="Hadafkayaga" data-en="Our Mission">Hadafkayaga</div>
-          <h2 class="h-section">
-            Aqoon Tech <span class="accent" data-so="Hadafkiisa" data-en="Mission">Hadafkiisa</span>
-          </h2>
-        </div>
-      </div>
-      <div class="mission-block reveal">
-        <div class="mission-so">
-          "Aqoon Tech waxay doonaysaa in ay keento aqoonta teknoolajiyada casriga ah gacanta
-          dadka Soomaalida ku nool adduunka oo dhan — si fudud, si hufan, oo bilaash ah —
-          in Soomaaliga kasta uu kasoo faa'iideysto fursadaha teknoolajiyada waxay
-          u furanayso."
-        </div>
-        <div class="mission-en">
-          "Aqoon Tech aims to bring modern technology knowledge to the hands of Somali people
-          worldwide — simply, accurately, and freely — so that every Somali speaker can
-          benefit from the opportunities that technology opens up."
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAM -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header center">
-        <div>
-          <div class="label center" data-so="Dadka Ka Dambeeya" data-en="The People Behind It">Dadka Ka Dambeeya</div>
-          <h2 class="h-section"><span data-so="Kooxdayada" data-en="Meet Our">Kooxdayada</span> <span class="accent" data-so="La Kulmi" data-en="Team">La Kulmi</span></h2>
-          <p class="sub-heading center" data-so="Kooxda dadaalaysa si teknoolajiyadu noqoto mid Soomaali kasta fahmi karo" data-en="The team working hard so every Somali can understand technology">
-            Kooxda dadaalaysa si teknoolajiyadu noqoto mid Soomaali kasta fahmi karo
-          </p>
-        </div>
-      </div>
-      <div class="grid grid-4 gap-md">
-        <div class="team-card reveal">
-          <div class="team-avatar"><img src="../images/avatar-abdi.png" alt="Abdi Hassan"></div>
-          <div class="team-name">Abdi Hassan</div>
-          <div class="team-role" data-so="Aasaasaha & Tifafteraha Guud" data-en="Founder & Editor-in-Chief">Aasaasaha & Tifafteraha Guud</div>
-          <p style="font-size:12.5px;color:var(--text-2);line-height:1.65;margin-top:var(--s3);margin-bottom:var(--s3);"
-             data-so="Bare teknoolajiyad leh 8+ sano oo sharaxaadda teknoolajiyada qalabka guud u sharaxaysa."
-             data-en="Technology educator with 8+ years explaining complex tech to general audiences.">
-            Bare teknoolajiyad leh 8+ sano oo sharaxaadda teknoolajiyada qalabka guud u sharaxaysa.
-          </p>
-          <div class="team-social">
-            <a href="#" title="Twitter">𝕏</a>
-            <a href="#" title="LinkedIn">in</a>
-            <a href="#" title="Email">✉</a>
-          </div>
-        </div>
-        <div class="team-card reveal">
-          <div class="team-avatar"><img src="../images/avatar-fadumo.png" alt="Fadumo Mohamed"></div>
-          <div class="team-name">Fadumo Mohamed</div>
-          <div class="team-role" data-so="Qoraaga Nuxurka Hore" data-en="Lead Content Writer">Qoraaga Nuxurka Hore</div>
-          <p style="font-size:12.5px;color:var(--text-2);line-height:1.65;margin-top:var(--s3);margin-bottom:var(--s3);"
-             data-so="Jaraa'idnimo iyo qorista teknoolajiyada, khusuusan dhigista mawduucyada adag si fudud."
-             data-en="Journalist and tech writer specialising in making complex topics simple and clear.">
-            Jaraa'idnimo iyo qorista teknoolajiyada, khusuusan dhigista mawduucyada adag si fudud.
-          </p>
-          <div class="team-social">
-            <a href="#" title="Twitter">𝕏</a>
-            <a href="#" title="LinkedIn">in</a>
-            <a href="#" title="Email">✉</a>
-          </div>
-        </div>
-        <div class="team-card reveal">
-          <div class="team-avatar"><img src="../images/avatar-omar.png" alt="Omar Ali"></div>
-          <div class="team-name">Omar Ali</div>
-          <div class="team-role" data-so="Soo-saare Muuqaal" data-en="Video Producer">Soo-saare Muuqaal</div>
-          <p style="font-size:12.5px;color:var(--text-2);line-height:1.65;margin-top:var(--s3);margin-bottom:var(--s3);"
-             data-so="Soo-saara casharro muuqaal oo dhan. Khabiir ku ah sheeko-sheegista muuqaalka waxbarashada."
-             data-en="Produces all video lessons and tutorials. Expert at visual storytelling for education.">
-            Soo-saara casharro muuqaal oo dhan. Khabiir ku ah sheeko-sheegista muuqaalka waxbarashada.
-          </p>
-          <div class="team-social">
-            <a href="#" title="YouTube">▶</a>
-            <a href="#" title="Instagram">◎</a>
-            <a href="#" title="Email">✉</a>
-          </div>
-        </div>
-        <div class="team-card reveal">
-          <div class="team-avatar"><img src="../images/avatar-hodan.png" alt="Hodan Nuur"></div>
-          <div class="team-name">Hodan Nuur</div>
-          <div class="team-role" data-so="Turjubaan Luqadda & Teknoolajiyada" data-en="Language & Tech Translator">Turjubaan Luqadda & Teknoolajiyada</div>
-          <p style="font-size:12.5px;color:var(--text-2);line-height:1.65;margin-top:var(--s3);margin-bottom:var(--s3);"
-             data-so="Waxay hubisaa in nuxurka oo dhan uu saxnahay labada Ingiriisi iyo Soomaali, iyada oo macnaha farsamada ilaalinaysa."
-             data-en="Ensures all content is accurate in both English and Somali, preserving technical meaning.">
-            Waxay hubisaa in nuxurka oo dhan uu saxnahay labada Ingiriisi iyo Soomaali, iyada oo macnaha farsamada ilaalinaysa.
-          </p>
-          <div class="team-social">
-            <a href="#" title="Twitter">𝕏</a>
-            <a href="#" title="LinkedIn">in</a>
-            <a href="#" title="Email">✉</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- JOIN CTA -->
-  <section class="section section-alt">
-    <div class="container" style="max-width:700px;text-align:center;">
-      <div class="label center" data-so="Ka Qaybgal" data-en="Get Involved">Ka Qaybgal</div>
-      <h2 class="h-section">
-        <span data-so="Ma Rabtaa inaad" data-en="Want to">Ma Rabtaa inaad</span> <span class="accent" data-so="Gacan Siiso?" data-en="Contribute?">Gacan Siiso?</span>
-      </h2>
-      <p style="font-size:15.5px;color:var(--text-2);line-height:1.85;margin-bottom:var(--s8);"
-         data-so="Haddaad leedahay aqoon teknoolajiyada ama qoraal Soomaali ah, waxaan ku soo dhawaynaa kooxda. Soo nala xiriir si aad uga qaybqaadato ujeedadayada waxbarashada."
-         data-en="If you have technology knowledge or Somali writing skills, we welcome you to the team. Contact us to participate in our educational mission.">
-        Haddaad leedahay aqoon teknoolajiyada ama qoraal Soomaali ah,
-        waxaan ku soo dhawaynaa kooxda. Soo nala xiriir si aad uga qaybqaadato
-        ujeedadayada waxbarashada.
-      </p>
-      <div style="display:flex;gap:var(--s3);justify-content:center;flex-wrap:wrap;">
-        <a href="contact.html" class="btn btn-primary btn-lg" data-so="Noogu Qor" data-en="Write for Us">Noogu Qor</a>
-        <a href="contact.html" class="btn btn-secondary btn-lg" data-so="La Xiriir Kooxda" data-en="Contact the Team">La Xiriir Kooxda</a>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- NEWSLETTER -->
-<div class="newsletter-section">
-  <div class="newsletter-inner">
-    <span class="newsletter-emoji">📬</span>
-    <h2 data-so="Raac Safarkayaga" data-en="Follow Our Journey">Raac Safarkayaga</h2>
-    <p data-so="Iska diiwaan geli oo hel maqaallo teknoolajiyad toddobaadlaha ah, wararka dambe, iyo astaamaha cusub — bilaash, had iyo jeer." data-en="Subscribe and get weekly tech articles, behind-the-scenes updates, and new features — free, forever.">
-      Iska diiwaan geli oo hel maqaallo teknoolajiyad toddobaadlaha ah, wararka dambe, iyo astaamaha cusub — bilaash, had iyo jeer.
-    </p>
-    <form class="newsletter-form" onsubmit="handleNewsletter(this); return false;">
-      <input class="newsletter-input" type="email" placeholder="email-kaaga@halkaan.com" required>
-      <button type="submit" class="newsletter-submit" data-so="Iska Diiwaan Geli" data-en="Subscribe">Iska Diiwaan Geli</button>
-    </form>
+<!-- STATS BAND HIDDEN until real numbers exist (restore later)
+<div class="stats">
+  <div class="wrap stats-in">
+    <div class="stat"><div class="stat-n">500<span>+</span></div><div class="stat-l">Maqaallo La Daabacay</div></div>
+    <div class="stat"><div class="stat-n">10K<span>+</span></div><div class="stat-l">Akhriyeyaasha Bishii</div></div>
+    <div class="stat"><div class="stat-n">50<span>+</span></div><div class="stat-l">Wadanno</div></div>
+    <div class="stat"><div class="stat-n">8</div><div class="stat-l">Noocyada Teknoolajiyada</div></div>
   </div>
 </div>
+-->
 
-<!-- FOOTER -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand-row">
-          <div class="footer-logo-icon">
-            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-              <rect x="2" y="3" width="20" height="14" rx="2.5"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/>
-            </svg>
-          </div>
-          <div><span class="footer-brand-name">AQOON <span>TECH</span></span><span class="footer-brand-tag">Technology</span></div>
-        </div>
-        <p class="footer-about" data-so="Teknoolajiyada gacanta kuu geyneysa — Aqoonta teknoolajiyada ee Af-Soomaali qof kasta adduunka." data-en="Technology brought to your doorstep — Technology knowledge in Somali for everyone worldwide.">
-          Teknoolajiyada gacanta kuu geyneysa — Aqoonta teknoolajiyada ee Af-Soomaali qof kasta adduunka.
-        </p>
-        <div class="social-links">
-          <a href="#" class="social-btn">▶</a><a href="#" class="social-btn">♪</a>
-          <a href="#" class="social-btn">◎</a><a href="#" class="social-btn">✈</a><a href="#" class="social-btn">f</a>
-        </div>
+<section class="section">
+  <div class="wrap">
+    <div style="text-align:center;max-width:40rem;margin:0 auto 3rem">
+      <span class="kicker center" data-so="Safarkeenna" data-en="Our Journey">Safarkeenna</span>
+      <h2 class="h2" data-so='Sideen u <span class="accent">bilaabannay</span>' data-en='How We <span class="accent">Began</span>'>Sideen u <span class="accent">bilaabannay</span></h2>
+      <p class="sub" data-so="Safar ku bilaabmay baahi la garwaaqsaday, una socda himilo ah in aqoonta teknoolajiyada la gaadhsiiyo Soomaalida meel kasta oo ay joogaan." data-en="A journey that began with a recognized need, moving toward a vision of bringing technology knowledge to Somalis wherever they are.">Safar ku bilaabmay baahi la garwaaqsaday, una socda himilo ah in aqoonta teknoolajiyada la gaadhsiiyo Soomaalida meel kasta oo ay joogaan.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year" data-so="2024 · FIKIRKII BILOWGA AH" data-en="2024 · THE INITIAL IDEA">2024 · FIKIRKII BILOWGA AH</div>
+        <div class="tl-h" data-so="Baahi La Garwaaqsaday" data-en="A Recognized Need">Baahi La Garwaaqsaday</div>
+        <p class="tl-x" data-so="“Baahi la garwaaqsaday waa bilowga xal.” Aasaasaheenna wuxuu arkay baahi jirta: in aqoonta teknoolajiyada ay ku yartahay Af‑Soomaali, taasoo dad badan ka hor istaagaysa fahamka iyo ka faa’iidaysiga dunida casriga ah." data-en="“A need recognized is the beginning of a solution.” Our founder saw a real gap: technology knowledge was scarce in Somali, holding many people back from understanding and benefiting from the modern world.">“Baahi la garwaaqsaday waa bilowga xal.” Aasaasaheenna wuxuu arkay baahi jirta: in aqoonta teknoolajiyada ay ku yartahay Af‑Soomaali, taasoo dad badan ka hor istaagaysa fahamka iyo ka faa’iidaysiga dunida casriga ah.</p>
       </div>
-      <div>
-        <div class="footer-col-title" data-so="Nuxurka" data-en="Content">Nuxurka</div>
-        <ul class="footer-links">
-          <li><a href="articles.html" data-so="Dhamaan Maqaallada" data-en="All Articles">Dhamaan Maqaallada</a></li>
-          <li><a href="categories.html" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a></li>
-          <li><a href="articles.html" data-so="Bilow (Fudud)" data-en="Beginner (Easy)">Bilow (Fudud)</a></li>
-        </ul>
+      <div class="tl-item">
+        <div class="tl-year" data-so="2025 · ASAASKII IYO DIYAARINTII" data-en="2025 · FOUNDATION & PREPARATION">2025 · ASAASKII IYO DIYAARINTII</div>
+        <div class="tl-h" data-so="Bilowgii iyo Nashqadayntii" data-en="Beginnings & Design">Bilowgii iyo Nashqadayntii</div>
+        <p class="tl-x" data-so="Waxaan bilownay qorshaynta, nashqadaynta, iyo dhismaha Aqoon Tech, annagoo dejinaynay himilo cad iyo jihada mashruuca." data-en="We began planning, designing, and building Aqoon Tech, setting a clear vision and direction for the project.">Waxaan bilownay qorshaynta, nashqadaynta, iyo dhismaha Aqoon Tech, annagoo dejinaynay himilo cad iyo jihada mashruuca.</p>
       </div>
-      <div>
-        <div class="footer-col-title" data-so="Barnaamijka" data-en="Platform">Barnaamijka</div>
-        <ul class="footer-links">
-          <li><a href="about.html" data-so="Nagu Saabsan" data-en="About Us">Nagu Saabsan</a></li>
-          <li><a href="contact.html" data-so="Xiriir" data-en="Contact">Xiriir</a></li>
-          <li><a href="contact.html" data-so="Noogu Qor" data-en="Write for Us">Noogu Qor</a></li>
-        </ul>
+      <div class="tl-item">
+        <div class="tl-year" data-so="2026 · FURITAANKII AQOON TECH" data-en="2026 · LAUNCH OF AQOON TECH">2026 · FURITAANKII AQOON TECH</div>
+        <div class="tl-h" data-so="Daahfurkii Aqoon Tech" data-en="The Launch of Aqoon Tech">Daahfurkii Aqoon Tech</div>
+        <p class="tl-x" data-so="Sanadkan ayaa Aqoon Tech si rasmi ah loo daahfuray, iyadoo ujeeddadeedu tahay inay bulshada Soomaaliyeed u soo gudbiso aqoon teknoolajiyadeed oo casri ah." data-en="This year Aqoon Tech was officially launched, with the goal of bringing modern technology knowledge to the Somali community.">Sanadkan ayaa Aqoon Tech si rasmi ah loo daahfuray, iyadoo ujeeddadeedu tahay inay bulshada Soomaaliyeed u soo gudbiso aqoon teknoolajiyadeed oo casri ah.</p>
       </div>
-      <div>
-        <div class="footer-col-title" data-so="Sharci" data-en="Legal">Sharci</div>
-        <ul class="footer-links">
-          <li><a href="#" data-so="Qaanuunka Xogta" data-en="Privacy Policy">Qaanuunka Xogta</a></li>
-          <li><a href="#" data-so="Shuruudaha Isticmaalka" data-en="Terms of Use">Shuruudaha Isticmaalka</a></li>
-          <li><a href="#" data-so="🇸🇴 Af-Soomaali" data-en="🇸🇴 Somali">🇸🇴 Af-Soomaali</a></li>
-        </ul>
+      <div class="tl-item">
+        <div class="tl-year" data-so="MAANTA" data-en="TODAY">MAANTA</div>
+        <div class="tl-h" data-so="Waxaan sii wadnaa" data-en="We Continue">Waxaan sii wadnaa</div>
+        <p class="tl-x" data-so='Waxaan sii wadnaa dhismaha Aqoon Tech, annagoo rajaynayna inaan mustaqbalka gaadhno Soomaalida ku nool dunida dacalladeeda. <strong style="color:var(--text);font-weight:500">Safarku weli wuu socdaa.</strong>' data-en='We continue building Aqoon Tech, hoping to reach Somalis living in every corner of the world. <strong style="color:var(--text);font-weight:500">The journey is still ongoing.</strong>'>Waxaan sii wadnaa dhismaha Aqoon Tech, annagoo rajaynayna inaan mustaqbalka gaadhno Soomaalida ku nool dunida dacalladeeda. <strong style="color:var(--text);font-weight:500">Safarku weli wuu socdaa.</strong></p>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 Aqoon Tech. <span data-so="Xuquuqda oo dhan way dhowran tahay." data-en="All rights reserved.">Xuquuqda oo dhan way dhowran tahay.</span></span>
-      <span data-so="Jacayl ❤️ bulshada Soomaalida adduunka darteed" data-en="Made with ❤️ for the Somali community worldwide">Jacayl ❤️ bulshada Soomaalida adduunka darteed</span>
+    <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem">
+      <a href="contact.html" class="btn btn-primary" data-so="Ku Biir Ujeedada" data-en="Join the Mission">Ku Biir Ujeedada</a>
+      <a href="articles.html" class="btn btn-ghost" data-so="Akhri Maqaallada" data-en="Read Articles">Akhri Maqaallada</a>
+    </div>
+  </div>
+</section>
+
+<section class="section tint-teal">
+  <div class="wrap">
+    <div style="text-align:center;max-width:40rem;margin:0 auto 3rem">
+      <span class="kicker teal center" data-so="Waxa Aan Ku Taagannahay" data-en="What We Stand For">Waxa Aan Ku Taagannahay</span>
+      <h2 class="h2" data-so="Qiyamkayaga" data-en="Our Values">Qiyamkayaga</h2>
+      <p class="sub" data-so="Aqoon, hufnaan, iyo adeeg bulshada anfaca — waa saldhigga Aqoon Tech." data-en="Knowledge, integrity, and service that benefits the community — these are the foundation of Aqoon Tech.">Aqoon, hufnaan, iyo adeeg bulshada anfaca — waa saldhigga Aqoon Tech.</p>
+    </div>
+    <div class="vals">
+      <div class="val"><div class="val-ic">📚</div><div class="val-h" data-so="Helitaan Fudud" data-en="Easy Access">Helitaan Fudud</div><p class="val-x" data-so="Ujeeddadeennu waa in aqoonta teknoolajiyada laga dhigo mid sahlan, la heli karo, oo qof kasta fahmi karo." data-en="Our goal is to make technology knowledge simple, accessible, and understandable for everyone.">Ujeeddadeennu waa in aqoonta teknoolajiyada laga dhigo mid sahlan, la heli karo, oo qof kasta fahmi karo.</p></div>
+      <div class="val"><div class="val-ic">✅</div><div class="val-h" data-so="Saxnimo & Kalsooni" data-en="Accuracy & Trust">Saxnimo & Kalsooni</div><p class="val-x" data-so="Waxbarasho wanaagsan waxay u baahan tahay xog sax ah, taasina waa wax aan mudnaan gaar ah siino." data-en="Good learning requires accurate information, and that is something we give special priority.">Waxbarasho wanaagsan waxay u baahan tahay xog sax ah, taasina waa wax aan mudnaan gaar ah siino.</p></div>
+      <div class="val"><div class="val-ic">🌍</div><div class="val-h" data-so="Bulshada ku dhisan" data-en="Community Built">Bulshada ku dhisan</div><p class="val-x" data-so="Waxaan ka shaqeynaa adeeg ku saleysan baahida bulshada, si ay u helaan wax dhab ahaan anfaca." data-en="We work to provide a service based on the community's needs, so they receive something genuinely beneficial.">Waxaan ka shaqeynaa adeeg ku saleysan baahida bulshada, si ay u helaan wax dhab ahaan anfaca.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap mission">
+    <span class="kicker center" data-so="Hadafkayaga" data-en="Our Mission">Hadafkayaga</span>
+    <p class="mission-quote" style="margin-top:1.5rem" data-so='"Aqoon Tech waxay doonaysaa inay aqoonta teknoolajiyada casriga ah ka dhigto mid la fahmi karo, la heli karo, oo Af-Soomaali ku qoran."' data-en='"Aqoon Tech aims to make modern technology knowledge understandable, accessible, and written in Somali."'>"Aqoon Tech waxay doonaysaa inay aqoonta teknoolajiyada casriga ah ka dhigto mid la fahmi karo, la heli karo, oo Af-Soomaali ku qoran."</p>
+    <p class="mission-en">"Aqoon Tech aims to bring modern technology knowledge to the hands of Somali people worldwide — simply, accurately, and freely."</p>
+  </div>
+</section>
+
+<section class="section tint">
+  <div class="wrap">
+    <div style="text-align:center;max-width:40rem;margin:0 auto 3rem">
+      <span class="kicker center" data-so="Kooxdayada" data-en="Our Team">Kooxdayada</span>
+      <h2 class="h2" data-so="La kulan dadka ka shaqeeya Aqoon Tech" data-en="Meet the People Behind Aqoon Tech">La kulan dadka ka shaqeeya Aqoon Tech</h2>
+      <p class="sub" data-so="Waxa gadaal ka socda waa koox raba in aqoonta casriga ahi noqoto mid fudud oo la jaanqaadda bulshada Soomaaliyeed." data-en="Behind it is a team that wants modern knowledge to become simple and to keep pace with the Somali community.">Waxa gadaal ka socda waa koox raba in aqoonta casriga ahi noqoto mid fudud oo la jaanqaadda bulshada Soomaaliyeed.</p>
+    </div>
+    <div class="team">
+      <div class="tm"><div class="tm-av">AH</div><div class="tm-n">Abdi Hassan</div><div class="tm-r" data-so="Aasaasaha & Tifaftire" data-en="Founder & Editor">Aasaasaha & Tifaftire</div><p class="tm-b" data-so="Bare teknoolajiyad leh 8+ sano oo waxbaridda." data-en="A technology teacher with 8+ years in education.">Bare teknoolajiyad leh 8+ sano oo waxbaridda.</p></div>
+      <div class="tm"><div class="tm-av">FM</div><div class="tm-n">Fadumo Mohamed</div><div class="tm-r" data-so="Qoraaga Hore" data-en="Lead Writer">Qoraaga Hore</div><p class="tm-b" data-so="Jaraa'id iyo qorista teknoolajiyada si fudud." data-en="Journalism and writing about technology simply.">Jaraa'id iyo qorista teknoolajiyada si fudud.</p></div>
+      <div class="tm"><div class="tm-av">OA</div><div class="tm-n">Omar Ali</div><div class="tm-r" data-so="Soo-saare Muuqaal" data-en="Video Producer">Soo-saare Muuqaal</div><p class="tm-b" data-so="Soo-saara casharrada muuqaalka ah ee dhammaan." data-en="Produces all of the video lessons.">Soo-saara casharrada muuqaalka ah ee dhammaan.</p></div>
+      <div class="tm"><div class="tm-av">HN</div><div class="tm-n">Hodan Nuur</div><div class="tm-r" data-so="Turjubaan Luqadda" data-en="Language Translator">Turjubaan Luqadda</div><p class="tm-b" data-so="Waxay hubisaa saxnimada labada luqadood." data-en="Ensures accuracy across both languages.">Waxay hubisaa saxnimada labada luqadood.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="band">
+      <span class="kicker center" style="color:#3DD4C2" data-so="Ka Qaybgal" data-en="Get Involved">Ka Qaybgal</span>
+      <h2 data-so="Ma Dooneysaa Inaad Qayb Ka Noqoto?" data-en="Want to Become Part of It?">Ma Dooneysaa Inaad Qayb Ka Noqoto?</h2>
+      <p data-so="Haddii aad leedahay aqoon teknoolajiyadeed, qoraal, ama xirfad wax nagu kordhinaysa bulshada anfacaysa, si farxad leh ayaan kuugu soo dhawaynaynaa kooxdayada." data-en="If you have technology knowledge, writing, or a skill that can benefit the community, we would be glad to welcome you to our team.">Haddii aad leedahay aqoon teknoolajiyadeed, qoraal, ama xirfad wax nagu kordhinaysa bulshada anfacaysa, si farxad leh ayaan kuugu soo dhawaynaynaa kooxdayada.</p>
+      <div class="row">
+        <a href="contact.html" class="btn btn-w" data-so="Noogu Qor" data-en="Write for Us">Noogu Qor</a>
+        <a href="contact.html" class="btn btn-o" data-so="La Xiriir Kooxda" data-en="Contact the Team">La Xiriir Kooxda</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="../index.html" class="logo">
+          <div class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2.5"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="logo-name">AQOON <span>TECH</span></div><div class="logo-tag">Technology</div></div>
+        </a>
+        <p class="foot-about" data-so="Aqoon Tech waa hoyga aqoonta teknoolajiyada Af-Soomaaliga, una taagan fududaynta fahamka dunida casriga ah." data-en="Aqoon Tech is the home of Somali-language technology knowledge, dedicated to making the modern world easier to understand.">Aqoon Tech waa hoyga aqoonta teknoolajiyada Af-Soomaaliga, una taagan fududaynta fahamka dunida casriga ah.</p>
+        <div class="foot-social"><a href="#">▶</a><a href="#">♪</a><a href="#">◎</a><a href="#">✈</a><a href="#">f</a></div>
+      </div>
+      <div class="foot-col"><h4 data-so="Nuxurka" data-en="Content">Nuxurka</h4><a href="articles.html" data-so="Dhammaan Maqaallada" data-en="All Articles">Dhammaan Maqaallada</a><a href="categories.html" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a><a href="articles.html" data-so="Bilow (Fudud)" data-en="Beginner (Easy)">Bilow (Fudud)</a></div>
+      <div class="foot-col"><h4 data-so="Barnaamijka" data-en="Platform">Barnaamijka</h4><a href="about.html" data-so="Nagu Saabsan" data-en="About Us">Nagu Saabsan</a><a href="contact.html" data-so="Xiriir" data-en="Contact">Xiriir</a><a href="contact.html" data-so="Noogu Qor" data-en="Write for Us">Noogu Qor</a></div>
+      <div class="foot-col"><h4 data-so="Sharci" data-en="Legal">Sharci</h4><a href="#" data-so="Qaanuunka Xogta" data-en="Privacy Policy">Qaanuunka Xogta</a><a href="#" data-so="Shuruudaha" data-en="Terms">Shuruudaha</a><a href="#">🇸🇴 Af-Soomaali</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span data-so="© 2026 Aqoon Tech. Xuquuqda oo dhan way dhowran tahay." data-en="© 2026 Aqoon Tech. All rights reserved.">© 2026 Aqoon Tech. Xuquuqda oo dhan way dhowran tahay.</span>
+      <span data-so="Baro, Hirgeli, Horumari – Aqoontu waa iftiin, teknoolajiyaduna waa jidka horumarka." data-en="Learn, Apply, Progress – Knowledge is light, and technology is the path to progress.">Baro, Hirgeli, Horumari – Aqoontu waa iftiin, teknoolajiyaduna waa jidka horumarka.</span>
     </div>
   </div>
 </footer>
 
-<button class="back-to-top" id="back-to-top" title="Ku noqo sare">↑</button>
-
-<!-- FLOATING LANGUAGE FAB -->
-<div class="lang-fab" role="group" aria-label="Language switcher">
-  <button class="lang-fab-btn active" id="lang-fab-so" onclick="setLang('so')" title="Af-Soomaali">SO</button>
-  <button class="lang-fab-btn"        id="lang-fab-en" onclick="setLang('en')" title="English">EN</button>
-</div>
-
-<script src="../js/theme.js"></script>
+<script>
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
+function toggleTheme(){const d=document.documentElement;const n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;localStorage.setItem('aqoon-theme',n);}
+(function(){const t=localStorage.getItem('aqoon-theme');if(t)document.documentElement.dataset.theme=t;})();
+</script>
 <script src="../js/i18n.js"></script>
+<script src="../js/newsletter.js"></script>
 </body>
 </html>

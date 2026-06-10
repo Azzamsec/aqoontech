@@ -1,446 +1,442 @@
 <!DOCTYPE html>
 <html lang="so" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Aqoon Tech — Maqaal teknoolajiyad ah">
-  <title>Maqaal — Aqoon Tech</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waa Maxay Garaad Gacmeed (AI)? Hagaha Bilowga — Aqoon Tech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12122B;--ink-2:#3A3A55;
+  --paper:#FBFBFD;--surface:#FFFFFF;--surface-2:#F4F4FA;
+  --tint-indigo:#F3F2FE;--tint-teal:#ECFAF8;
+  --text:#16162E;--text-2:#585872;--text-3:#9494A8;
+  --border:#EAEAF2;--border-2:#DADAE6;
+  --indigo:#4F46E5;--indigo-dk:#3F37C9;--indigo-lt:#EEEDFE;
+  --teal:#06B6A4;--teal-br:#0FD9C3;--teal-dk:#0F766E;--teal-lt:#E1F7F4;
+  --amber-lt:#FAEEDA;--amber-dk:#854F0B;
+  --display:'Outfit',sans-serif;--body:'DM Sans',sans-serif;
+  --ease:cubic-bezier(.4,0,.2,1);--spring:cubic-bezier(.34,1.56,.64,1);
+  --nav-h:72px;--max:1200px;
+}
+[data-theme="dark"]{
+  --ink:#EDEDF7;--ink-2:#B8B8CC;
+  --paper:#0C0C16;--surface:#13131F;--surface-2:#171725;
+  --tint-indigo:#15152A;--tint-teal:#0E1A20;
+  --text:#EDEDF7;--text-2:#A0A0B8;--text-3:#6A6A82;
+  --border:#23233A;--border-2:#2E2E48;
+  --indigo:#7C75F0;--indigo-lt:rgba(79,70,229,.16);
+  --teal:#2DD4BF;--teal-br:#2DD4BF;--teal-lt:rgba(6,182,164,.16);
+  --amber-lt:rgba(232,160,32,.16);--amber-dk:#F5C572;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--text);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+a{text-decoration:none;color:inherit}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Montserrat:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+/* reading progress */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--indigo),var(--teal-br));z-index:200;transition:width .1s linear}
 
-  <link rel="stylesheet" href="../css/variables.css">
-  <link rel="stylesheet" href="../css/base.css">
-  <link rel="stylesheet" href="../css/typography.css">
-  <link rel="stylesheet" href="../css/buttons.css">
-  <link rel="stylesheet" href="../css/cards.css">
-  <link rel="stylesheet" href="../css/navbar.css">
-  <link rel="stylesheet" href="../css/layout.css">
-  <link rel="stylesheet" href="../css/sections.css">
-  <link rel="stylesheet" href="../css/animations.css">
+.kicker{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--display);font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--indigo);padding-left:.85rem;border-left:2px solid var(--indigo)}
 
-  <style>
-    #reading-bar { position:fixed; top:0; left:0; width:0%; height:3px; background:linear-gradient(90deg,var(--blue),var(--teal)); z-index:9999; transition:width .1s linear; border-radius:0 2px 2px 0; }
-    .article-hero { width:100%; max-height:480px; object-fit:cover; display:block; }
-    .breadcrumb { display:flex; align-items:center; gap:var(--s2); font-family:var(--font-ui); font-size:12px; color:var(--text-3); margin-bottom:var(--s5); flex-wrap:wrap; }
-    .breadcrumb a { color:var(--text-3); text-decoration:none; transition:color var(--t); }
-    .breadcrumb a:hover { color:var(--blue); }
-    .breadcrumb-sep { opacity:.4; }
-    .article-header { max-width:820px; padding-top:var(--s8); padding-bottom:var(--s6); }
-    .article-title { font-family:var(--font-brand); font-size:clamp(1.75rem,3.5vw,2.8rem); line-height:1.16; color:var(--text); margin-bottom:var(--s4); letter-spacing:-.3px; }
-    .article-subtitle { font-size:17px; line-height:1.7; color:var(--text-2); margin-bottom:var(--s5); max-width:700px; }
-    .article-meta { display:flex; align-items:center; gap:var(--s4); flex-wrap:wrap; padding-block:var(--s5); border-top:1px solid var(--border); border-bottom:1px solid var(--border); margin-bottom:var(--s8); }
-    .author-chip { display:flex; align-items:center; gap:10px; }
-    .author-chip img { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid var(--blue-light); }
-    .author-name { font-family:var(--font-brand); font-size:14px; color:var(--text); }
-    .author-role { font-family:var(--font-ui); font-size:11px; color:var(--text-3); }
-    .meta-pipe { width:1px; height:22px; background:var(--border-2); flex-shrink:0; }
-    .meta-item { display:flex; align-items:center; gap:5px; font-family:var(--font-ui); font-size:12px; color:var(--text-3); }
-    .article-layout { display:grid; grid-template-columns:1fr 300px; gap:var(--s12); align-items:start; }
-    @media(max-width:1024px) { .article-layout { grid-template-columns:1fr; } .article-sidebar { display:none; } }
-    .article-sidebar { position:sticky; top:calc(var(--nav-h) + 1.5rem); display:flex; flex-direction:column; gap:var(--s5); }
-    .toc-label { font-family:var(--font-ui); font-size:10.5px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--text-3); margin-bottom:var(--s3); }
-    .toc-links { list-style:none; display:flex; flex-direction:column; gap:2px; }
-    .toc-links a { display:block; padding:7px 10px; font-family:var(--font-ui); font-size:12.5px; color:var(--text-2); text-decoration:none; border-radius:var(--r-sm); border-left:2px solid transparent; transition:all var(--t) var(--ease); }
-    .toc-links a:hover,.toc-links a.active { color:var(--blue); background:var(--blue-light); border-left-color:var(--blue); padding-left:14px; font-weight:600; }
-    [data-theme="dark"] .toc-links a:hover,[data-theme="dark"] .toc-links a.active { background:rgba(74,144,217,.08); }
-    .key-facts { background:var(--surface-2); border:1px solid var(--border); border-radius:var(--r); padding:var(--s5); }
-    .key-facts-title { font-family:var(--font-brand); font-size:13.5px; color:var(--text); margin-bottom:var(--s3); display:flex; align-items:center; gap:6px; }
-    .key-fact { display:flex; align-items:flex-start; gap:var(--s3); padding-block:var(--s2); border-bottom:1px solid var(--border); font-size:12.5px; color:var(--text-2); line-height:1.5; }
-    .key-fact:last-child { border-bottom:none; }
-    .key-fact-icon { font-size:14px; flex-shrink:0; margin-top:1px; }
-    .summary-box { background:linear-gradient(135deg,var(--blue-deeper),var(--charcoal)); border-radius:var(--r-lg); padding:clamp(1.5rem,4vw,2.5rem); margin-top:var(--s10); position:relative; overflow:hidden; }
-    .summary-box::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 70% 30%,rgba(74,144,217,.25) 0%,transparent 65%); pointer-events:none; }
-    .summary-box > * { position:relative; z-index:1; }
-    .summary-box h3 { font-family:var(--font-brand); font-size:1.2rem; color:#fff; margin-bottom:var(--s4); }
-    .share-section { margin-top:var(--s10); padding-top:var(--s6); border-top:1px solid var(--border); }
-    .share-label { font-family:var(--font-ui); font-size:12px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:var(--text-3); margin-bottom:var(--s3); }
-    .share-buttons { display:flex; gap:var(--s2); flex-wrap:wrap; }
-    .share-btn { display:inline-flex; align-items:center; gap:6px; padding:9px 16px; font-family:var(--font-ui); font-size:12.5px; font-weight:600; border:1.5px solid var(--border); border-radius:var(--r-full); background:var(--surface); color:var(--text-2); cursor:pointer; transition:all var(--t) var(--ease-spring); text-decoration:none; }
-    .share-btn:hover { transform:translateY(-2px); }
-    .share-btn.whatsapp:hover { background:#25D366; color:#fff; border-color:#25D366; box-shadow:0 4px 14px rgba(37,211,102,.3); }
-    .share-btn.telegram:hover { background:#2AABEE; color:#fff; border-color:#2AABEE; }
-    .share-btn.facebook:hover { background:#1877F2; color:#fff; border-color:#1877F2; }
-    .share-btn.twitter:hover  { background:#111; color:#fff; border-color:#111; }
-    .share-btn.copy-link:hover { background:var(--charcoal); color:#fff; border-color:var(--charcoal); }
-    .related-section { margin-top:var(--s10); padding-top:var(--s8); border-top:1px solid var(--border); }
-    .related-label { font-family:var(--font-brand); font-size:1.1rem; color:var(--text); margin-bottom:var(--s5); }
-    .article-body h2 { scroll-margin-top:calc(var(--nav-h) + 1.5rem); }
-  </style>
+/* NAV */
+nav.bar{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,3rem);background:color-mix(in srgb,var(--paper) 85%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:height .35s var(--ease)}
+nav.bar.scrolled{height:64px;box-shadow:0 4px 24px rgba(18,18,43,.06)}
+.logo{display:flex;align-items:center;gap:.7rem}
+.logo-mark{width:38px;height:38px;border-radius:11px;background:var(--ink);display:grid;place-items:center;box-shadow:0 4px 14px rgba(18,18,43,.18)}
+.logo-name{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.3px;color:var(--text);line-height:1}
+.logo-name span{color:var(--indigo)}
+.logo-tag{font-family:var(--body);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-3)}
+.links{display:flex;gap:2rem;align-items:center}
+.links a{font-family:var(--display);font-size:14.5px;font-weight:500;color:var(--text-2);transition:color .2s;position:relative}
+.links a:hover,.links a.on{color:var(--text)}
+.links a.on::after{content:'';position:absolute;left:0;right:0;bottom:-22px;height:2px;background:var(--indigo)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.lang{display:flex;border:1px solid var(--border-2);border-radius:99px;overflow:hidden;background:var(--surface)}
+.lang button{border:none;background:transparent;font-family:var(--display);font-size:11px;font-weight:600;padding:6px 12px;cursor:pointer;color:var(--text-3);transition:.2s}
+.lang button.active{background:var(--indigo);color:#fff}
+.icon-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--border-2);background:var(--surface);cursor:pointer;font-size:15px;display:grid;place-items:center;transition:.2s}
+.icon-btn:hover{border-color:var(--indigo)}
+.cta{font-family:var(--display);font-weight:600;font-size:14px;background:var(--ink);color:#fff;padding:10px 20px;border-radius:11px;transition:transform .15s var(--spring),box-shadow .2s;box-shadow:0 4px 16px rgba(18,18,43,.16)}
+.cta:hover{transform:translateY(-2px)}
+
+/* ARTICLE HEADER */
+.art-head{padding-top:calc(var(--nav-h) + clamp(2rem,5vw,3.5rem));padding-bottom:2rem;position:relative;overflow:hidden}
+.art-head::before{content:'';position:absolute;top:0;right:-5%;width:45%;height:100%;background:radial-gradient(ellipse at center,var(--tint-indigo) 0%,transparent 65%);opacity:.8;pointer-events:none}
+.crumb{position:relative;display:flex;align-items:center;gap:.5rem;font-family:var(--display);font-size:12.5px;color:var(--text-3);margin-bottom:1.6rem}
+.crumb a:hover{color:var(--indigo)}
+.crumb .sep{opacity:.4}
+.crumb .cur{color:var(--indigo);font-weight:500}
+.art-head-grid{position:relative;max-width:780px}
+.tagrow{display:flex;gap:.5rem;margin-bottom:1.3rem}
+.tag{display:inline-block;font-family:var(--display);font-size:11px;font-weight:600;padding:5px 11px;border-radius:7px}
+.tag-indigo{background:var(--indigo-lt);color:var(--indigo-dk)}
+.tag-teal{background:var(--teal-lt);color:var(--teal-dk)}
+.art-title{font-family:var(--display);font-weight:700;font-size:clamp(2.1rem,4.4vw,3.3rem);line-height:1.08;letter-spacing:-1.3px;color:var(--ink);margin-bottom:1.1rem}
+.art-sub{font-size:18px;color:var(--text-2);line-height:1.65;font-weight:300;max-width:42rem;margin-bottom:2rem}
+.art-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding-block:1.3rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.author{display:flex;align-items:center;gap:.7rem}
+.author-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--indigo),var(--teal));display:grid;place-items:center;color:#fff;font-family:var(--display);font-weight:600;font-size:16px}
+.author-n{font-family:var(--display);font-weight:600;font-size:14.5px;color:var(--text);line-height:1.2}
+.author-r{font-size:11.5px;color:var(--text-3)}
+.meta-pipe{width:1px;height:24px;background:var(--border-2)}
+.meta-i{display:flex;align-items:center;gap:.4rem;font-family:var(--display);font-size:12.5px;color:var(--text-3)}
+
+/* HERO IMG */
+.art-hero-img{position:relative;height:clamp(220px,38vw,420px);border-radius:20px;margin:2.5rem 0;display:grid;place-items:center;font-size:5rem;background:linear-gradient(135deg,#EEEDFE,#E1F7F4);border:1px solid var(--border);overflow:hidden}
+[data-theme="dark"] .art-hero-img{background:var(--surface-2)}
+
+/* LAYOUT */
+.art-layout{display:grid;grid-template-columns:1fr 260px;gap:clamp(2rem,5vw,4rem);align-items:start;padding-bottom:4rem}
+.art-body{max-width:720px;font-size:17px;line-height:1.85;color:var(--text)}
+.art-body p{margin-bottom:1.5rem;color:var(--text-2)}
+.art-body h2{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,2.6vw,2rem);letter-spacing:-.6px;color:var(--ink);margin:2.8rem 0 1.1rem;scroll-margin-top:90px;display:flex;align-items:baseline;gap:.85rem}
+.art-body h2 .n{color:var(--indigo);font-weight:700;font-size:.7em;letter-spacing:.05em;flex-shrink:0}
+.art-body strong{color:var(--text);font-weight:600}
+.art-body ul{margin:0 0 1.5rem 0;padding-left:0;list-style:none}
+.art-body ul li{position:relative;padding-left:1.6rem;margin-bottom:.7rem;color:var(--text-2)}
+.art-body ul li::before{content:'';position:absolute;left:0;top:.65em;width:7px;height:7px;border-radius:2px;background:var(--teal)}
+.art-body blockquote{margin:2rem 0;padding:1.3rem 1.6rem;background:var(--tint-indigo);border-left:3px solid var(--indigo);border-radius:0 12px 12px 0;font-size:18px;font-style:italic;color:var(--ink-2)}
+.callout{display:flex;gap:.9rem;margin:2rem 0;padding:1.2rem 1.4rem;background:var(--tint-teal);border:1px solid var(--teal-lt);border-radius:14px;font-size:15px;color:var(--text-2);line-height:1.6}
+.callout .ic{font-size:20px;flex-shrink:0}
+.callout strong{color:var(--teal-dk)}
+
+/* video embed */
+.video-wrap{margin:2.5rem 0}
+.video-label{display:flex;align-items:center;gap:.5rem;font-family:var(--display);font-size:13px;font-weight:600;color:var(--teal-dk);margin-bottom:.9rem}
+.video-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,var(--ink),#1f1f3d);display:grid;place-items:center;border:1px solid var(--border);cursor:pointer;transition:transform .25s var(--ease)}
+.video-frame:hover{transform:translateY(-3px)}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.play-btn{width:68px;height:68px;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center;box-shadow:0 8px 30px rgba(0,0,0,.3);z-index:2}
+.play-btn::after{content:'';border-left:20px solid var(--ink);border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px}
+.video-caption{position:absolute;bottom:16px;left:18px;z-index:2;color:#fff;font-family:var(--display);font-weight:600;font-size:15px;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.video-sub{position:absolute;bottom:16px;left:18px;z-index:2}
+.video-link-row{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;margin-top:1rem}
+.video-link-btn{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--display);font-weight:600;font-size:13px;color:var(--indigo);background:var(--indigo-lt);padding:9px 14px;border-radius:10px;border:1px solid var(--indigo-lt);transition:.2s}
+.video-link-btn:hover{transform:translateY(-2px);border-color:var(--indigo)}
+.video-link-note{font-size:13px;color:var(--text-3)}
+
+.knowledge-wrap{margin-top:3rem}
+.knowledge-title{margin-bottom:1rem}
+.knowledge-title p{margin-top:.4rem;color:var(--text-2);font-size:14.5px}
+.knowledge-list{display:grid;gap:.8rem}
+.knowledge-item{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:box-shadow .2s,border-color .2s}
+.knowledge-item[open]{border-color:var(--indigo)}
+.knowledge-item summary{list-style:none;cursor:pointer;padding:1rem 1.1rem;font-family:var(--display);font-weight:600;font-size:15.5px;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.knowledge-item summary::-webkit-details-marker{display:none}
+.knowledge-item summary::after{content:'+';font-size:20px;color:var(--indigo);flex-shrink:0;transition:transform .2s}
+.knowledge-item[open] summary::after{transform:rotate(45deg)}
+.knowledge-body{padding:0 1.1rem 1rem;color:var(--text-2);font-size:14.5px;line-height:1.75}
+
+/* sidebar author card */
+.side-author{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.3rem;text-align:center}
+.side-author .av{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--indigo),var(--teal));display:grid;place-items:center;color:#fff;font-family:var(--display);font-weight:600;font-size:20px;margin:0 auto .8rem}
+.side-author .nm{font-family:var(--display);font-weight:600;font-size:15px;color:var(--text)}
+.side-author .rl{font-size:11.5px;color:var(--text-3);margin-bottom:.7rem}
+.side-author .bio{font-size:12px;color:var(--text-2);line-height:1.55}
+
+/* article newsletter */
+.art-nl{background:var(--ink);border-radius:20px;padding:clamp(2rem,4vw,3rem);text-align:center;position:relative;overflow:hidden;margin-top:3rem}
+.art-nl::after{content:'';position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:70%;height:90%;background:radial-gradient(ellipse,rgba(79,70,229,.3),transparent 65%)}
+.art-nl>*{position:relative;z-index:1}
+.art-nl h3{font-family:var(--display);font-weight:700;color:#fff;font-size:clamp(1.4rem,2.6vw,1.9rem);letter-spacing:-.5px;margin-bottom:.7rem}
+.art-nl p{color:rgba(255,255,255,.7);font-size:14.5px;font-weight:300;max-width:30rem;margin:0 auto 1.6rem}
+.art-nl form{display:flex;gap:.6rem;max-width:24rem;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.art-nl input{flex:1;min-width:190px;font-family:var(--body);font-size:14px;padding:12px 17px;border-radius:11px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff}
+.art-nl input::placeholder{color:rgba(255,255,255,.45)}
+.art-nl button{font-family:var(--display);font-weight:600;font-size:14px;background:#fff;color:var(--ink);border:none;padding:12px 22px;border-radius:11px;cursor:pointer;transition:transform .15s var(--spring)}
+.art-nl button:hover{transform:translateY(-2px)}
+
+/* SIDEBAR */
+.art-side{position:sticky;top:90px;display:flex;flex-direction:column;gap:1.5rem}
+.toc-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.3rem}
+.toc-label{font-family:var(--display);font-size:10.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--text-3);margin-bottom:.9rem}
+.toc a{display:block;font-size:13px;color:var(--text-2);padding:6px 10px;border-radius:8px;border-left:2px solid transparent;transition:.2s;margin-bottom:2px}
+.toc a:hover,.toc a.on{color:var(--indigo);background:var(--indigo-lt);border-left-color:var(--indigo)}
+.share-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.3rem}
+.share-btns{display:flex;flex-direction:column;gap:.5rem}
+.sh{display:flex;align-items:center;gap:.6rem;font-family:var(--display);font-size:13px;font-weight:500;padding:9px 12px;border:1px solid var(--border-2);border-radius:10px;background:var(--surface);cursor:pointer;color:var(--text-2);transition:.2s}
+.sh:hover{transform:translateY(-2px);color:var(--text);border-color:var(--indigo)}
+
+/* SUMMARY */
+.summary{background:var(--ink);border-radius:20px;padding:2rem;margin-top:3rem;position:relative;overflow:hidden}
+.summary::after{content:'';position:absolute;bottom:-50%;right:-10%;width:60%;height:100%;background:radial-gradient(ellipse,rgba(6,182,164,.2),transparent 65%)}
+.summary>*{position:relative;z-index:1}
+.summary h3{font-family:var(--display);font-weight:700;color:#fff;font-size:1.2rem;margin-bottom:1rem}
+.summary li{color:rgba(255,255,255,.72);font-size:14.5px;padding-left:1.6rem;position:relative;margin-bottom:.6rem;list-style:none}
+.summary li::before{content:'';position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--teal-br)}
+.summary .btn{display:inline-block;margin-top:1.2rem;background:#fff;color:var(--ink);font-family:var(--display);font-weight:600;font-size:14px;padding:11px 22px;border-radius:11px;transition:transform .15s var(--spring)}
+.summary .btn:hover{transform:translateY(-2px)}
+
+/* RELATED */
+.related{border-top:1px solid var(--border);padding:3.5rem 0}
+.related h3{font-family:var(--display);font-weight:700;font-size:1.4rem;color:var(--ink);margin-bottom:1.6rem;letter-spacing:-.4px}
+.rel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+.rel-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.3rem;display:flex;gap:1rem;align-items:center;transition:.25s;cursor:pointer}
+.rel-card:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(18,18,43,.12)}
+.rel-ic{width:54px;height:54px;border-radius:12px;display:grid;place-items:center;font-size:24px;background:var(--tint-teal);flex-shrink:0}
+.rel-h{font-family:var(--display);font-weight:600;font-size:14.5px;color:var(--text);line-height:1.3;margin-bottom:.3rem}
+.rel-m{font-size:12px;color:var(--text-3)}
+
+footer{border-top:1px solid var(--border);background:var(--surface);padding-block:3rem 1.8rem}
+.foot-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:2rem}
+.foot-brand .logo{margin-bottom:1rem}
+.foot-about{font-size:13px;color:var(--text-2);line-height:1.65;font-weight:300;max-width:20rem;margin-bottom:1.1rem}
+.foot-social{display:flex;gap:.5rem}
+.foot-social a{width:34px;height:34px;border-radius:9px;border:1px solid var(--border-2);display:grid;place-items:center;font-size:13px;color:var(--text-2);transition:.2s}
+.foot-social a:hover{border-color:var(--indigo);color:var(--indigo);transform:translateY(-2px)}
+.foot-col h4{font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:.9rem}
+.foot-col a{display:block;font-size:13.5px;color:var(--text-2);padding:.32rem 0;transition:color .2s}
+.foot-col a:hover{color:var(--indigo)}
+.foot-bottom{display:flex;justify-content:space-between;margin-top:2.3rem;padding-top:1.4rem;border-top:1px solid var(--border);font-size:12.5px;color:var(--text-3);flex-wrap:wrap;gap:.5rem}
+
+@media(max-width:900px){
+  .links{display:none}
+  .art-layout{grid-template-columns:1fr}
+  .art-side{display:none}
+  .rel-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}
+}
+</style>
 </head>
 <body>
+<div id="progress"></div>
 
-<div id="reading-bar"></div>
-<div id="progress-bar"></div>
-
-<!-- NAVBAR -->
-<nav class="navbar" id="navbar">
-  <a href="../index.html" class="nav-logo">
-    <div class="logo-mark">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A90D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2" y="3" width="20" height="14" rx="2.5"/><path d="M8 21h8M12 17v4"/>
-        <circle cx="12" cy="10" r="3.2"/><path d="M12 6.8V6M12 13.2V14M8.8 10H8M15.2 10H16" stroke-width="1.5"/>
-      </svg>
-    </div>
-    <div class="logo-text"><span class="logo-name">AQOON <span>TECH</span></span><span class="logo-tagline">Technology</span></div>
+<nav class="bar" id="nav">
+  <a href="../index.html" class="logo">
+    <div class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2.5"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg></div>
+    <div><div class="logo-name">AQOON <span>TECH</span></div><div class="logo-tag">Technology</div></div>
   </a>
-  <div class="nav-links">
-    <a href="../index.html"   class="nav-link" data-so="Hoyga"        data-en="Home">Hoyga</a>
-    <a href="articles.html"   class="nav-link active" data-so="Maqaallada"   data-en="Articles">Maqaallada</a>
-    <a href="categories.html" class="nav-link" data-so="Mawduucyada"  data-en="Categories">Mawduucyada</a>
-    <a href="about.html"      class="nav-link" data-so="Nagu Saabsan" data-en="About">Nagu Saabsan</a>
-    <a href="contact.html"    class="nav-link" data-so="Xiriir"       data-en="Contact">Xiriir</a>
-  </div>
-  <div class="nav-actions">
-    <div class="lang-switch">
-      <button class="lang-btn active" id="lang-so" onclick="setLang('so')">SO</button>
-      <button class="lang-btn"        id="lang-en" onclick="setLang('en')">EN</button>
-    </div>
-    <button class="btn-theme" id="theme-toggle" onclick="toggleTheme()">🌙</button>
-    <a href="contact.html" class="nav-cta" data-so="Nala Soo Xiriir" data-en="Get in Touch">Nala Soo Xiriir</a>
-    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+  <div class="links"><a href="../index.html" data-so="Hoyga" data-en="Home">Hoyga</a><a href="articles.html" class="on" data-so="Maqaallada" data-en="Articles">Maqaallada</a><a href="categories.html" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a><a href="about.html" data-so="Nagu Saabsan" data-en="About">Nagu Saabsan</a><a href="contact.html" data-so="Xiriir" data-en="Contact">Xiriir</a></div>
+  <div class="nav-right">
+    <div class="lang"><button id="lang-so" class="active" onclick="setLang('so')">SO</button><button id="lang-en" onclick="setLang('en')">EN</button></div>
+    <button class="icon-btn" onclick="toggleTheme()">◐</button>
+    <a href="contact.html" class="cta" data-so="Nala Soo Xiriir" data-en="Get in Touch">Nala Soo Xiriir</a>
   </div>
 </nav>
-<nav class="mobile-nav" id="mobile-nav">
-  <a href="../index.html"   class="mobile-link" data-so="🏠 Hoyga"        data-en="🏠 Home">🏠 Hoyga</a>
-  <a href="articles.html"   class="mobile-link" data-so="📰 Maqaallada"   data-en="📰 Articles">📰 Maqaallada</a>
-  <a href="categories.html" class="mobile-link" data-so="📂 Mawduucyada"  data-en="📂 Categories">📂 Mawduucyada</a>
-  <div class="mobile-divider"></div>
-  <a href="about.html"      class="mobile-link" data-so="ℹ️ Nagu Saabsan" data-en="ℹ️ About">ℹ️ Nagu Saabsan</a>
-  <a href="contact.html"    class="mobile-link" data-so="✉️ Xiriir"       data-en="✉️ Contact">✉️ Xiriir</a>
-</nav>
 
-<main>
-  <img src="../images/hero-ai.png" alt="" class="article-hero" id="article-hero-img" loading="eager">
-
-  <section class="section">
-    <div class="container">
-
-      <div class="article-header">
-        <nav class="breadcrumb">
-          <a href="../index.html" data-so="Hoyga" data-en="Home">Hoyga</a>
-          <span class="breadcrumb-sep">›</span>
-          <a href="articles.html" data-so="Maqaallada" data-en="Articles">Maqaallada</a>
-          <span class="breadcrumb-sep">›</span>
-          <span id="breadcrumb-cat" class="breadcrumb-current" style="color:var(--blue);"></span>
-        </nav>
-
-        <div class="badge-row" style="margin-bottom:var(--s4);">
-          <span id="article-cat-badge" class="badge badge-blue"></span>
-          <span id="article-diff-badge" class="badge badge-easy" style="display:none;">Fudud</span>
-        </div>
-
-        <h1 class="article-title" id="article-title"></h1>
-        <p class="article-subtitle" id="article-subtitle"></p>
-      </div>
-
-      <div class="article-meta">
-        <div class="author-chip">
-          <img id="author-avatar" src="../images/avatar-abdi.png" alt="">
-          <div>
-            <div class="author-name" id="author-name"></div>
-            <div class="author-role" id="author-role"></div>
-          </div>
-        </div>
+<header class="art-head">
+  <div class="wrap">
+    <nav class="crumb"><a href="../index.html" data-so="Hoyga" data-en="Home">Hoyga</a><span class="sep">›</span><a href="articles.html" data-so="Maqaallada" data-en="Articles">Maqaallada</a><span class="sep">›</span><span class="cur">Garaad Gacmeed (AI)</span></nav>
+    <div class="art-head-grid">
+      <div class="tagrow"><span class="tag tag-indigo" data-so="Garaad Gacmeed (AI)" data-en="Artificial Intelligence (AI)">Garaad Gacmeed (AI)</span><span class="tag tag-teal" data-so="Hagaha Bilowga" data-en="Beginner's Guide">Hagaha Bilowga</span></div>
+      <h1 class="art-title" data-so="Waa Maxay Garaad Gacmeed (AI)? Hagaha Bilowga" data-en="What Is Artificial Intelligence (AI)? A Beginner's Guide">Waa Maxay Garaad Gacmeed (AI)? Hagaha Bilowga</h1>
+      <p class="art-sub" data-so="Maqaalkan wuxuu si deggan kuugu sharxayaa waxa Garaad Gacmeedku yahay, sida uu u shaqeeyo, meesha aad maalin kasta kaga kulanto, iyo sababta uu maanta muhiim u yahay." data-en="This article calmly walks you through what AI is, how it works, where you meet it every day, and why it matters now.">Maqaalkan wuxuu si deggan kuugu sharxayaa waxa Garaad Gacmeedku yahay, sida uu u shaqeeyo, meesha aad maalin kasta kaga kulanto, iyo sababta uu maanta muhiim u yahay.</p>
+      <div class="art-meta">
+        <div class="author"><div class="author-av">AT</div><div><div class="author-n">Aqoon Tech</div><div class="author-r" data-so="Kooxda Tifaftirka" data-en="Editorial Team">Kooxda Tifaftirka</div></div></div>
         <span class="meta-pipe"></span>
-        <span class="meta-item">📅 <span id="article-date"></span></span>
+        <span class="meta-i" data-so="📅 Juun 1, 2026" data-en="📅 June 1, 2026">📅 Juun 1, 2026</span>
         <span class="meta-pipe"></span>
-        <span class="meta-item">⏱ <span id="article-readtime"></span></span>
+        <span class="meta-i" data-so="⏱ 8–10 daqiiqo akhrinta" data-en="⏱ 8–10 min read">⏱ 8–10 daqiiqo akhrinta</span>
         <span class="meta-pipe"></span>
-        <span class="meta-item">👁 <span id="article-reads"></span> <span data-so="jeer la akhriyay" data-en="reads">jeer la akhriyay</span></span>
+        <span class="meta-i" data-so="🏷️ Garaad Gacmeed" data-en="🏷️ Artificial Intelligence">🏷️ Garaad Gacmeed</span>
       </div>
-
-      <div class="article-layout">
-
-        <!-- ARTICLE BODY -->
-        <article class="article-body">
-          <div id="article-body-content"></div>
-
-          <!-- SUMMARY -->
-          <div class="summary-box" id="article-summary" style="display:none;">
-            <h3 data-so="📝 Soo koobka Maqaalka" data-en="📝 Article Summary">📝 Soo koobka Maqaalka</h3>
-            <div id="summary-points" style="margin-bottom:var(--s6);"></div>
-            <a href="articles.html" class="btn btn-primary" data-so="← Dib u soo noqo Maqaallada" data-en="← Back to Articles">← Dib u soo noqo Maqaallada</a>
-          </div>
-
-          <!-- SHARE -->
-          <div class="share-section">
-            <div class="share-label" data-so="U QAYBI MAQAALKAN" data-en="SHARE THIS ARTICLE">U QAYBI MAQAALKAN</div>
-            <div class="share-buttons">
-              <button class="share-btn whatsapp" onclick="shareWhatsApp()">📱 WhatsApp</button>
-              <button class="share-btn telegram" onclick="shareTelegram()">✈ Telegram</button>
-              <button class="share-btn facebook" onclick="shareFacebook()">Facebook</button>
-              <button class="share-btn twitter"  onclick="shareTwitter()">𝕏 Twitter</button>
-              <button class="share-btn copy-link" onclick="copyLink(this)">🔗 <span data-so="Koobiy Xiriirka" data-en="Copy Link">Koobiy Xiriirka</span></button>
-            </div>
-          </div>
-
-          <!-- RELATED -->
-          <div class="related-section" id="related-section" style="display:none;">
-            <div class="related-label" data-so="📰 Maqaallada La Xiriira" data-en="📰 Related Articles">📰 Maqaallada La Xiriira</div>
-            <div class="grid grid-2 gap-md" id="related-grid"></div>
-          </div>
-        </article>
-
-        <!-- SIDEBAR -->
-        <aside class="article-sidebar">
-          <div class="sidebar-widget">
-            <div class="toc-label" data-so="TUSMADA MAQAALKA" data-en="TABLE OF CONTENTS">TUSMADA MAQAALKA</div>
-            <ul class="toc-links" id="toc">
-              <li><a href="#" style="color:var(--text-3);font-style:italic;" data-so="Waxaa la rarayo..." data-en="Loading...">Waxaa la rarayo...</a></li>
-            </ul>
-          </div>
-
-          <div class="key-facts" id="key-facts-box" style="display:none;">
-            <div class="key-facts-title">⚡ <span data-so="Xaqiiqooyinka Muhiimka" data-en="Key Facts">Xaqiiqooyinka Muhiimka</span></div>
-            <div id="article-key-facts"></div>
-          </div>
-
-          <div class="sidebar-widget">
-            <div class="sidebar-widget-head" data-so="👤 Qoraaga" data-en="👤 About the Author">👤 Qoraaga</div>
-            <div class="sidebar-widget-body" style="padding-top:var(--s4);text-align:center;">
-              <img id="author-avatar-2" src="../images/avatar-abdi.png" alt=""
-                   style="width:60px;height:60px;border-radius:50%;margin:0 auto var(--s3);display:block;border:2px solid var(--blue-light);">
-              <div id="author-name-2" style="font-family:var(--font-brand);font-size:14px;color:var(--text);margin-bottom:3px;"></div>
-              <div id="author-role-2" style="font-family:var(--font-ui);font-size:11px;color:var(--text-3);"></div>
-            </div>
-          </div>
-        </aside>
-      </div>
-
-    </div>
-  </section>
-</main>
-
-<!-- NEWSLETTER -->
-<div class="newsletter-section">
-  <div class="newsletter-inner">
-    <span class="newsletter-emoji">📬</span>
-    <h2 data-so="Maqaalkan Ma Jeceshahay?<br>Iska Diiwaan Geli Dheeraad ah"
-        data-en="Enjoy this article?<br>Subscribe for more">
-      Maqaalkan Ma Jeceshahay?<br>Iska Diiwaan Geli Dheeraad ah
-    </h2>
-    <p data-so="Hel maqaallada teknoolajiyada toddobaadlaha ah Af-Soomaali — bilaash had iyo jeer."
-       data-en="Get weekly tech articles in Somali — free forever.">
-      Hel maqaallada teknoolajiyada toddobaadlaha ah Af-Soomaali — bilaash had iyo jeer.
-    </p>
-    <form class="newsletter-form" onsubmit="handleNewsletter(this);return false;">
-      <input class="newsletter-input" type="email" placeholder="email-kaaga@halkaan.com" required>
-      <button type="submit" class="newsletter-submit" data-so="Iska Diiwaan Geli" data-en="Subscribe">Iska Diiwaan Geli</button>
-    </form>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand-row">
-          <div class="footer-logo-icon"><svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2.5"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <div><span class="footer-brand-name">AQOON <span>TECH</span></span><span class="footer-brand-tag">Technology</span></div>
-        </div>
-        <p class="footer-about" data-so="Teknoolajiyada gacanta kuu geyneysa." data-en="Technology brought to your doorstep.">Teknoolajiyada gacanta kuu geyneysa.</p>
-        <div class="social-links"><a href="#" class="social-btn">▶</a><a href="#" class="social-btn">♪</a><a href="#" class="social-btn">◎</a><a href="#" class="social-btn">✈</a><a href="#" class="social-btn">f</a></div>
-      </div>
-      <div>
-        <div class="footer-col-title" data-so="Nuxurka" data-en="Content">Nuxurka</div>
-        <ul class="footer-links"><li><a href="articles.html" data-so="Dhamaan Maqaallada" data-en="All Articles">Dhamaan Maqaallada</a></li><li><a href="categories.html" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a></li></ul>
-      </div>
-      <div>
-        <div class="footer-col-title" data-so="Barnaamijka" data-en="Platform">Barnaamijka</div>
-        <ul class="footer-links"><li><a href="about.html" data-so="Nagu Saabsan" data-en="About Us">Nagu Saabsan</a></li><li><a href="contact.html" data-so="Xiriir" data-en="Contact">Xiriir</a></li></ul>
-      </div>
-      <div>
-        <div class="footer-col-title" data-so="Sharci" data-en="Legal">Sharci</div>
-        <ul class="footer-links"><li><a href="#" data-so="Qaanuunka Xogta" data-en="Privacy Policy">Qaanuunka Xogta</a></li></ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Aqoon Tech.</span>
-      <span data-so="Jacayl ❤️ bulshada Soomaalida" data-en="Made with ❤️ for Somali communities">Jacayl ❤️ bulshada Soomaalida</span>
     </div>
   </div>
-</footer>
+</header>
 
-<button class="back-to-top" id="back-to-top">↑</button>
-
-<div class="lang-fab" role="group" aria-label="Language switcher">
-  <button class="lang-fab-btn active" id="lang-fab-so" onclick="setLang('so')" title="Af-Soomaali">SO</button>
-  <button class="lang-fab-btn"        id="lang-fab-en" onclick="setLang('en')" title="English">EN</button>
+<div class="wrap">
+  <div class="art-hero-img">🤖</div>
 </div>
 
-<script src="../js/theme.js"></script>
-<script src="../js/i18n.js"></script>
-<script src="../js/article-renderer.js"></script>
-<script>
-/* ── Load article data from URL param: ?article=slug ── */
-(async function() {
-  const params = new URLSearchParams(window.location.search);
-  const slug   = params.get('article');
-  if (!slug) { window.location.href = 'articles.html'; return; }
+<div class="wrap art-layout">
+  <article class="art-body">
+    <p data-so="Teknoolajiyada maanta si degdeg ah ayay isu beddelaysaa. Waxa ka mid ah horumarrada ugu waaweyn waxa loo yaqaan <strong>Garaad Gacmeed (Artificial Intelligence – AI)</strong>. Ereygan waxaad ku arkaysaa wararka, baraha bulshada, telefoonnada casriga ah, iyo adeegyo badan oo internetka ah. Si kastaba ha ahaatee, dad badan waxay weli rabaan in si deggan oo sahlan loogu sharxo waxa uu dhab ahaan yahay." data-en="Technology is changing fast these days. One of the biggest advances is what we call <strong>Artificial Intelligence (AI)</strong>. You see the term everywhere — in the news, on social media, on modern phones, and across countless online services. Yet many people still want a calm, simple explanation of what it actually is.">Teknoolajiyada maanta si degdeg ah ayay isu beddelaysaa. Waxa ka mid ah horumarrada ugu waaweyn waxa loo yaqaan <strong>Garaad Gacmeed (Artificial Intelligence – AI)</strong>. Ereygan waxaad ku arkaysaa wararka, baraha bulshada, telefoonnada casriga ah, iyo adeegyo badan oo internetka ah. Si kastaba ha ahaatee, dad badan waxay weli rabaan in si deggan oo sahlan loogu sharxo waxa uu dhab ahaan yahay.</p>
+    <p data-so="Qormadan waxaan ku soconnaa si tartiib ah: waxa uu yahay Garaad Gacmeedku, sida uu u shaqeeyo, meesha aad maalin kasta kaga kulanto, iyo sababta uu u noqday mid muhiim u ah nolosha casriga ah." data-en="In this article we take it step by step: what AI is, how it works, where you meet it every day, and why it has become so important to modern life.">Qormadan waxaan ku soconnaa si tartiib ah: waxa uu yahay Garaad Gacmeedku, sida uu u shaqeeyo, meesha aad maalin kasta kaga kulanto, iyo sababta uu u noqday mid muhiim u ah nolosha casriga ah.</p>
 
-  try {
-    const res  = await fetch('../pages/articles/' + slug + '.html');
-    const text = await res.text();
+    <div class="callout" data-so="<span class=&quot;ic&quot;>🎯</span><div><strong>Maxaad ka faa&#39;iidi doontaa maqaalkan?</strong><br>Waxaad fahmi doontaa waxa uu yahay Garaad Gacmeedku, sida uu u shaqeeyo, halka lagu isticmaalo, iyo sababta uu maanta qof kasta ugu habboon yahay inuu aasaaskiisa barto.</div>" data-en='<span class="ic">🎯</span><div><strong>What will you get from this article?</strong><br>You will come away understanding what AI is, how it works, where it is used, and why it makes sense for everyone today to learn its basics.</div>'><span class="ic">🎯</span><div><strong>Maxaad ka faa'iidi doontaa maqaalkan?</strong><br>Waxaad fahmi doontaa waxa uu yahay Garaad Gacmeedku, sida uu u shaqeeyo, halka lagu isticmaalo, iyo sababta uu maanta qof kasta ugu habboon yahay inuu aasaaskiisa barto.</div></div>
 
-    /* Extract YAML frontmatter between --- markers */
-    const match = text.match(/^---\n([\s\S]+?)\n---/);
-    if (!match) throw new Error('No frontmatter found');
+    <h2 id="s1" data-so='<span class="n">01</span>Waa Maxay Garaad Gacmeed (AI)?' data-en='<span class="n">01</span>What Is Artificial Intelligence (AI)?'><span class="n">01</span>Waa Maxay Garaad Gacmeed (AI)?</h2>
+    <p data-so="Garaad Gacmeedku waa teknoolajiyad u oggolaanaysa kombiyuutarka ama nidaam dijitaal ah inuu xog barto, qaabab ka dhex helo, kadibna uu ku saleynayo jawaabo ama go'aanno. Mararka qaarkood wuxuu qabtaa hal shaqo oo gaar ah; mararka qaarkoodna wuxuu fududeeyaa hawlo badan oo waqti badan qaadan lahaa." data-en="AI is technology that lets a computer or digital system learn from data, find patterns in it, and then base answers or decisions on what it has learned. Sometimes it handles one specific task; other times it simplifies many jobs that would otherwise take a lot of time.">Garaad Gacmeedku waa teknoolajiyad u oggolaanaysa kombiyuutarka ama nidaam dijitaal ah inuu xog barto, qaabab ka dhex helo, kadibna uu ku saleynayo jawaabo ama go'aanno. Mararka qaarkood wuxuu qabtaa hal shaqo oo gaar ah; mararka qaarkoodna wuxuu fududeeyaa hawlo badan oo waqti badan qaadan lahaa.</p>
+    <p data-so="Waxaa muhiim ah in la fahmo in AI uusan had iyo jeer noqon robot la arki karo. Badanaa waa software ku dhex jira adeegyada aad isticmaasho maalin kasta." data-en="It helps to remember that AI is not always a robot you can see. More often it is software living quietly inside the services you use every day.">Waxaa muhiim ah in la fahmo in AI uusan had iyo jeer noqon robot la arki karo. Badanaa waa software ku dhex jira adeegyada aad isticmaasho maalin kasta.</p>
 
-    const data = parseSimpleYaml(match[1]);
-    renderArticle(data);
+    <blockquote data-so="Garaad Gacmeedku ma aha wax sixir ah; waa teknoolajiyad ku dhisan xog, tababar, iyo habab si tartiib tartiib ah u hagaaga." data-en="AI is not magic. It is technology built on data, training, and methods that improve it gradually, step by step.">Garaad Gacmeedku ma aha wax sixir ah; waa teknoolajiyad ku dhisan xog, tababar, iyo habab si tartiib tartiib ah u hagaaga.</blockquote>
 
-    /* Sync author sidebar */
-    const a2 = AUTHOR_DATA[data.author] || AUTHOR_DATA.abdi;
-    const av2 = document.getElementById('author-avatar-2');
-    const n2  = document.getElementById('author-name-2');
-    const r2  = document.getElementById('author-role-2');
-    const lang = localStorage.getItem('aqoon-lang') || 'so';
-    if (av2) { av2.src = a2.avatar; av2.alt = a2.name; }
-    if (n2)  n2.textContent = a2.name;
-    if (r2)  { r2.setAttribute('data-so', a2.role_so); r2.setAttribute('data-en', a2.role_en); r2.textContent = lang === 'so' ? a2.role_so : a2.role_en; }
+    <h2 id="s2" data-so='<span class="n">02</span>Sidee Ayuu U Shaqeeyaa?' data-en='<span class="n">02</span>How Does It Work?'><span class="n">02</span>Sidee Ayuu U Shaqeeyaa?</h2>
+    <p data-so="Marka si fudud loo sharxo, AI waxaa lagu tababaraa xog badan. Waxa la tusaa tusaalooyin, kadibna wuxuu bilaabaa inuu barto qaababka ku jira xogtaas. Markii uu xog cusub helo, wuxuu isku dayaa inuu saadaaliyo waxa ugu dhow ee saxda ah." data-en="Put simply, AI is trained on large amounts of data. It is shown examples, then it begins to learn the patterns within them. When it later meets new information, it tries to predict the answer that is most likely correct.">Marka si fudud loo sharxo, AI waxaa lagu tababaraa xog badan. Waxa la tusaa tusaalooyin, kadibna wuxuu bilaabaa inuu barto qaababka ku jira xogtaas. Markii uu xog cusub helo, wuxuu isku dayaa inuu saadaaliyo waxa ugu dhow ee saxda ah.</p>
+    <p data-so="Habkani wuxuu la mid yahay qof wax baranaya: marka hore wuu ku celceliyaa, kadib wuu gartaa, ugu dambaynna wuu si dhaqso leh u falanqeeyaa. Farqigu waa in AI uu ku tiirsan yahay xog iyo xisaab, halka bini'aadamku leeyahay faham, waayo-aragnimo, iyo dareen ka ballaaran." data-en="This is much like a person learning: first you repeat, then you understand, and eventually you analyze quickly. The difference is that AI relies on data and math, while a human brings understanding, experience, and a far wider sense of the world.">Habkani wuxuu la mid yahay qof wax baranaya: marka hore wuu ku celceliyaa, kadib wuu gartaa, ugu dambaynna wuu si dhaqso leh u falanqeeyaa. Farqigu waa in AI uu ku tiirsan yahay xog iyo xisaab, halka bini'aadamku leeyahay faham, waayo-aragnimo, iyo dareen ka ballaaran.</p>
 
-    /* Show key facts box */
-    if (data.key_facts && data.key_facts.length) {
-      document.getElementById('key-facts-box').style.display = 'block';
-    }
+    <div class="video-wrap">
+      <div class="video-label" data-so="🎬 Daawo: Sharaxaad muuqaal ah (2 daqiiqo)" data-en="🎬 Watch: A video explanation (2 min)">🎬 Daawo: Sharaxaad muuqaal ah (2 daqiiqo)</div>
+      <div class="video-frame" aria-label="Video placeholder for AI explanation">
+        <div class="play-btn"></div>
+        <div class="video-sub"><span class="video-caption" data-so="Garaad Gacmeed (AI) — Sharaxaad muuqaal ah" data-en="Artificial Intelligence (AI) — A video explanation">Garaad Gacmeed (AI) — Sharaxaad muuqaal ah</span></div>
+      </div>
+    </div>
 
-    /* Related articles */
-    if (data.related && data.related.length) {
-      const sec  = document.getElementById('related-section');
-      const grid = document.getElementById('related-grid');
-      if (sec && grid) {
-        sec.style.display = 'block';
-        grid.innerHTML = data.related.map(r => `
-          <article class="card">
-            <div class="card-body">
-              <h3 class="h-card" style="font-size:14px;"><a href="${r.url}">${r.title}</a></h3>
-              <div class="card-meta"><span>${r.mins} daqiiqo</span></div>
-            </div>
-          </article>`).join('');
-      }
-    }
+    <h2 id="s3" data-so='<span class="n">03</span>Noocyada Garaad Gacmeedka' data-en='<span class="n">03</span>The Types of AI'><span class="n">03</span>Noocyada Garaad Gacmeedka</h2>
+    <ul>
+      <li data-so="<strong>AI Xadidan (Narrow AI):</strong> Waxay qabataa hal shaqo oo gaar ah, sida aqoonsiga wejiga, turjumaadda, ama talo bixinta waxyaabaha aad jeceshahay. Kani waa nooca maanta ugu badan." data-en="<strong>Narrow AI:</strong> It handles one specific task — like face recognition, translation, or recommending things you might like. This is by far the most common type today."><strong>AI Xadidan (Narrow AI):</strong> Waxay qabataa hal shaqo oo gaar ah, sida aqoonsiga wejiga, turjumaadda, ama talo bixinta waxyaabaha aad jeceshahay. Kani waa nooca maanta ugu badan.</li>
+      <li data-so="<strong>AI Guud (General AI):</strong> Waa nooc fikradeed ah oo qaban kara hawlo kala duwan sida bini'aadamka. Weli ma jiro nooc si buuxda loo hirgeliyey." data-en="<strong>General AI:</strong> A theoretical kind that could handle many different tasks the way a human does. It does not yet fully exist."><strong>AI Guud (General AI):</strong> Waa nooc fikradeed ah oo qaban kara hawlo kala duwan sida bini'aadamka. Weli ma jiro nooc si buuxda loo hirgeliyey.</li>
+      <li data-so="<strong>AI Sare (Super AI):</strong> Waa aragti mustaqbalka lagu qeexo AI ka garaad badan bini'aadamka. Arrintan weli waxaa ku socda dood iyo cilmi-baaris badan." data-en="<strong>Super AI:</strong> A future idea describing an AI more intelligent than humans. It remains the subject of much debate and research."><strong>AI Sare (Super AI):</strong> Waa aragti mustaqbalka lagu qeexo AI ka garaad badan bini'aadamka. Arrintan weli waxaa ku socda dood iyo cilmi-baaris badan.</li>
+    </ul>
 
-  } catch(e) {
-    console.error('Article load error:', e);
-    document.getElementById('article-title').textContent = 'Maqaalka lama helin';
-    document.getElementById('article-body-content').innerHTML =
-      '<p><a href="articles.html">← Dib u soo noqo maqaallada</a></p>';
-  }
-})();
+    <h2 id="s4" data-so='<span class="n">04</span>AI-da Aad Maalin Walba Isticmaasho' data-en='<span class="n">04</span>The AI You Use Every Day'><span class="n">04</span>AI-da Aad Maalin Walba Isticmaasho</h2>
+    <p data-so="Waxaa laga yaabaa inaad AI la kulanto adigoon magacaas xitaa ka fikirin. Marka aad furto YouTube oo laguu soo jeediyo muuqaallo, marka Google Maps uu kuu sameeyo jidka ugu habboon, ama marka Gmail uu si toos ah u kala saaro farriimaha spam-ka ah — dhammaantood waxaa ku jira qaabab AI ah." data-en="You probably meet AI without ever thinking of the name. When YouTube suggests videos for you, when Google Maps finds you the best route, or when Gmail automatically filters out spam — all of these have AI working behind them.">Waxaa laga yaabaa inaad AI la kulanto adigoon magacaas xitaa ka fikirin. Marka aad furto YouTube oo laguu soo jeediyo muuqaallo, marka Google Maps uu kuu sameeyo jidka ugu habboon, ama marka Gmail uu si toos ah u kala saaro farriimaha spam-ka ah — dhammaantood waxaa ku jira qaabab AI ah.</p>
+    <p data-so="Sidoo kale, adeegyada sida Face ID, tarjumaadda tooska ah, iyo chatbot-yada internetka waxay dhammaantood ku tiirsan yihiin nidaamyo wax barata oo xog ku shaqeeya." data-en="Likewise, services like Face ID, live translation, and online chatbots all rely on systems that learn and run on data.">Sidoo kale, adeegyada sida Face ID, tarjumaadda tooska ah, iyo chatbot-yada internetka waxay dhammaantood ku tiirsan yihiin nidaamyo wax barata oo xog ku shaqeeya.</p>
 
-/* ── Minimal YAML parser (handles strings, numbers, lists, nested) ── */
-function parseSimpleYaml(yaml) {
-  const obj = {};
-  const lines = yaml.split('\n');
-  let i = 0;
-  while (i < lines.length) {
-    const line = lines[i];
-    const kv = line.match(/^(\w+):\s*(.*)$/);
-    if (!kv) { i++; continue; }
-    const key = kv[1];
-    let val = kv[2].trim();
+    <h2 id="s5" data-so="<span class=&quot;n&quot;>05</span>Faa&#39;iidooyinka AI" data-en='<span class="n">05</span>The Benefits of AI'><span class="n">05</span>Faa'iidooyinka AI</h2>
+    <p data-so="<strong>Waxbarashada.</strong> AI wuxuu ardayda ka caawin karaa sharaxaad dheeraad ah, turjumaad, soo koobid qoraallo, iyo helitaanka tusaalooyin fudud oo mawduuc adag ka dhigaya mid la fahmi karo." data-en="<strong>Education.</strong> AI can help students with extra explanations, translation, summarizing texts, and finding simple examples that turn a hard subject into something understandable."><strong>Waxbarashada.</strong> AI wuxuu ardayda ka caawin karaa sharaxaad dheeraad ah, turjumaad, soo koobid qoraallo, iyo helitaanka tusaalooyin fudud oo mawduuc adag ka dhigaya mid la fahmi karo.</p>
+    <p data-so="<strong>Caafimaadka.</strong> Qalabka AI ku shaqeeya wuxuu ka caawin karaa xirfadlayaasha caafimaadka falanqaynta xogta iyo abaabulka macluumaadka, taas oo dedejisa hawlo badan." data-en="<strong>Healthcare.</strong> AI-powered tools can help medical professionals analyze data and organize information, speeding up many tasks."><strong>Caafimaadka.</strong> Qalabka AI ku shaqeeya wuxuu ka caawin karaa xirfadlayaasha caafimaadka falanqaynta xogta iyo abaabulka macluumaadka, taas oo dedejisa hawlo badan.</p>
+    <p data-so="<strong>Ganacsiga.</strong> Ganacsiyadu waxay AI uga faa'iidaystaan adeegga macaamiisha, falanqaynta xogta, iyo fahamka waxa dadka ay xiiseynayaan." data-en="<strong>Business.</strong> Companies use AI for customer service, data analysis, and understanding what people are interested in."><strong>Ganacsiga.</strong> Ganacsiyadu waxay AI uga faa'iidaystaan adeegga macaamiisha, falanqaynta xogta, iyo fahamka waxa dadka ay xiiseynayaan.</p>
+    <p data-so="<strong>Beeraha.</strong> AI wuxuu gacan ka geysan karaa la socodka xogta cimilada iyo qorshaynta wax-soo-saarka, gaar ahaan marka xogtu badato." data-en="<strong>Agriculture.</strong> AI can help track weather data and plan production, especially when there is a lot of data to work through."><strong>Beeraha.</strong> AI wuxuu gacan ka geysan karaa la socodka xogta cimilada iyo qorshaynta wax-soo-saarka, gaar ahaan marka xogtu badato.</p>
+    <p data-so="<strong>Gaadiidka.</strong> Khariidadaha casriga ah iyo nidaamyada taraafikada waxay adeegsadaan AI si ay u soo jeediyaan waddooyin fiican oo waqti kaydiya." data-en="<strong>Transport.</strong> Modern maps and traffic systems use AI to suggest better routes that save you time."><strong>Gaadiidka.</strong> Khariidadaha casriga ah iyo nidaamyada taraafikada waxay adeegsadaan AI si ay u soo jeediyaan waddooyin fiican oo waqti kaydiya.</p>
 
-    if (val === '|' || val === '>') {
-      /* Multi-line block */
-      const indent = line.search(/\S/);
-      let block = '';
-      i++;
-      while (i < lines.length) {
-        const bl = lines[i];
-        if (bl.trim() === '' || bl.search(/\S/) > indent) {
-          block += (bl.trim() === '' ? '\n' : bl.trim()) + '\n';
-          i++;
-        } else break;
-      }
-      obj[key] = block.trim();
-    } else if (val === '') {
-      /* Check if next lines are list items */
-      const listItems = [];
-      i++;
-      while (i < lines.length && /^\s+-/.test(lines[i])) {
-        const li = lines[i].trim().replace(/^-\s*/, '');
-        /* Check if it's a key:value list item */
-        if (li.includes(':')) {
-          const subObj = {};
-          const subLines = [li];
-          i++;
-          while (i < lines.length && /^\s{4,}/.test(lines[i])) {
-            subLines.push(lines[i].trim());
-            i++;
-          }
-          subLines.forEach(sl => {
-            const m = sl.match(/^(\w+):\s*(.+)$/);
-            if (m) subObj[m[1]] = isNaN(m[2]) ? m[2].replace(/^["']|["']$/g, '') : Number(m[2]);
-          });
-          listItems.push(subObj);
-        } else {
-          listItems.push(li.replace(/^["']|["']$/g, ''));
-          i++;
-        }
-      }
-      obj[key] = listItems;
-    } else {
-      /* Simple scalar */
-      val = val.replace(/^["']|["']$/g, '');
-      obj[key] = isNaN(val) || val === '' ? val : Number(val);
-      i++;
-    }
-  }
-  return obj;
-}
+    <h2 id="s6" data-so='<span class="n">06</span>Caqabadaha iyo Khataraha AI' data-en='<span class="n">06</span>The Challenges and Risks of AI'><span class="n">06</span>Caqabadaha iyo Khataraha AI</h2>
+    <p data-so="Inkastoo AI faa'iido badan leeyahay, haddana ma aha mid mar walba sax ah. Mararka qaarkood wuxuu soo saari karaa jawaabo aan dhammaystirnayn ama xog aan si buuxda loo hubin. Sidaas darteed, macluumaadka muhiimka ah waa in mar walba la xaqiijiyaa." data-en="As useful as AI is, it is not always right. Sometimes it produces incomplete answers or information that has not been fully verified. For that reason, important details should always be double-checked.">Inkastoo AI faa'iido badan leeyahay, haddana ma aha mid mar walba sax ah. Mararka qaarkood wuxuu soo saari karaa jawaabo aan dhammaystirnayn ama xog aan si buuxda loo hubin. Sidaas darteed, macluumaadka muhiimka ah waa in mar walba la xaqiijiyaa.</p>
+    <p data-so="Waxaa kale oo jira arrimo la xiriira xogta gaarka ah, xog khaldan oo la faafin karo, iyo ku tiirsanaan xad-dhaaf ah. Sidaas awgeed, AI waa in loo adeegsadaa si masuuliyad leh." data-en="There are also concerns around personal data, the spread of false information, and over-reliance. Because of this, AI should be used responsibly.">Waxaa kale oo jira arrimo la xiriira xogta gaarka ah, xog khaldan oo la faafin karo, iyo ku tiirsanaan xad-dhaaf ah. Sidaas awgeed, AI waa in loo adeegsadaa si masuuliyad leh.</p>
 
-/* ── Reading progress bar ── */
-(function() {
-  const bar     = document.getElementById('reading-bar');
-  const content = document.getElementById('article-body-content');
-  if (!bar || !content) return;
-  window.addEventListener('scroll', function() {
-    const rect  = content.getBoundingClientRect();
-    const total = content.offsetHeight - window.innerHeight;
-    const pct   = Math.min(Math.max(-rect.top / total, 0), 1) * 100;
-    bar.style.width = pct + '%';
-  }, { passive: true });
-})();
+    <h2 id="s7" data-so='<span class="n">07</span>AI iyo Bulshada Casriga Ah' data-en='<span class="n">07</span>AI and Modern Society'><span class="n">07</span>AI iyo Bulshada Casriga Ah</h2>
+    <p data-so="Maanta Garaad Gacmeedku wuxuu si tartiib tartiib ah uga mid noqonayaa nolol maalmeedka dadka dunida oo dhan. Laga bilaabo waxbarashada ilaa ganacsiga, AI wuxuu noqday qalab fududeynaya hawlo badan oo hore waqti iyo dadaal badan qaadan jiray." data-en="Today AI is gradually becoming part of daily life for people all over the world. From education to business, it has become a tool that simplifies many tasks that once took a lot of time and effort.">Maanta Garaad Gacmeedku wuxuu si tartiib tartiib ah uga mid noqonayaa nolol maalmeedka dadka dunida oo dhan. Laga bilaabo waxbarashada ilaa ganacsiga, AI wuxuu noqday qalab fududeynaya hawlo badan oo hore waqti iyo dadaal badan qaadan jiray.</p>
+    <p data-so="Bulshooyinka Af-Soomaaliga ku hadla sidoo kale way ka faa'iidaysan karaan. Haddii la fahmo aasaaska AI, waxaa fududaanaya tarjumaadda, raadinta macluumaadka, iyo isticmaalka adeegyada dijitaalka ah ee casriga ah." data-en="Somali-speaking communities can benefit too. Once you understand the basics of AI, it becomes easier to translate, find information, and make use of modern digital services.">Bulshooyinka Af-Soomaaliga ku hadla sidoo kale way ka faa'iidaysan karaan. Haddii la fahmo aasaaska AI, waxaa fududaanaya tarjumaadda, raadinta macluumaadka, iyo isticmaalka adeegyada dijitaalka ah ee casriga ah.</p>
 
-/* ── Active TOC highlight ── */
-(function() {
-  setTimeout(() => {
-    const headings = document.querySelectorAll('#article-body-content h2[id]');
-    const links    = document.querySelectorAll('#toc a');
-    if (!headings.length) return;
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          links.forEach(l => l.classList.remove('active'));
-          const a = document.querySelector('#toc a[href="#' + e.target.id + '"]');
-          if (a) a.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-20% 0px -70% 0px' });
-    headings.forEach(h => obs.observe(h));
-  }, 500);
-})();
+    <h2 id="s8" data-so='<span class="n">08</span>Mustaqbalka AI' data-en='<span class="n">08</span>The Future of AI'><span class="n">08</span>Mustaqbalka AI</h2>
+    <p data-so="AI wuxuu sii ahaan doonaa qayb muhiim ah oo ka mid ah waxbarashada, caafimaadka, ganacsiga, gaadiidka, iyo adeegyada kale ee bulshada. Qofka maanta fahma aasaaska Garaad Gacmeedka wuxuu si fiican ugu diyaar garoobayaa dunida berri." data-en="AI will keep being an important part of education, healthcare, business, transport, and other services in society. Anyone who understands its basics today is preparing themselves well for the world of tomorrow.">AI wuxuu sii ahaan doonaa qayb muhiim ah oo ka mid ah waxbarashada, caafimaadka, ganacsiga, gaadiidka, iyo adeegyada kale ee bulshada. Qofka maanta fahma aasaaska Garaad Gacmeedka wuxuu si fiican ugu diyaar garoobayaa dunida berri.</p>
+    <p data-so="Taasi micnaheedu ma aha in qof kasta uu noqdo khabiir. Waxay micnaheedu tahay in qof kasta oo casri ah ay faa'iido u leedahay inuu fahmo waxa AI yahay, waxa uu qaban karo, iyo halka ay xadidiisu jirto." data-en="That does not mean everyone must become an expert. It means anyone living in the modern world benefits from understanding what AI is, what it can do, and where its limits lie.">Taasi micnaheedu ma aha in qof kasta uu noqdo khabiir. Waxay micnaheedu tahay in qof kasta oo casri ah ay faa'iido u leedahay inuu fahmo waxa AI yahay, waxa uu qaban karo, iyo halka ay xadidiisu jirto.</p>
 
-/* ── Read counter ── */
-document.getElementById('article-reads').textContent =
-  (Math.floor(Math.random() * 3000) + 800).toLocaleString();
+    <h2 id="s9" data-so='<span class="n">09</span>Gabagabo' data-en='<span class="n">09</span>Conclusion'><span class="n">09</span>Gabagabo</h2>
+    <p data-so="Garaad Gacmeedku ma aha wax laga baqo. Waa qalab. Qiimihiisu wuxuu ku xidhanyahay sida aan u dooranno in aan u isticmaalno. Haddii si sax ah loo fahmo, wuxuu noqon karaa saaxiib waxbarasho, shaqo, iyo horumarba." data-en="AI is nothing to fear. It is a tool. Its value depends on how we choose to use it. Understood well, it can become a companion in learning, in work, and in progress.">Garaad Gacmeedku ma aha wax laga baqo. Waa qalab. Qiimihiisu wuxuu ku xidhanyahay sida aan u dooranno in aan u isticmaalno. Haddii si sax ah loo fahmo, wuxuu noqon karaa saaxiib waxbarasho, shaqo, iyo horumarba.</p>
 
-/* ── Share functions ── */
-function shareWhatsApp() { window.open('https://wa.me/?text=' + encodeURIComponent(document.title + ' ' + location.href), '_blank'); }
-function shareTelegram() { window.open('https://t.me/share/url?url=' + encodeURIComponent(location.href) + '&text=' + encodeURIComponent(document.title), '_blank'); }
-function shareFacebook() { window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href), '_blank'); }
-function shareTwitter()  { window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + '&url=' + encodeURIComponent(location.href), '_blank'); }
-function copyLink(btn) {
-  navigator.clipboard.writeText(location.href).then(() => {
-    const orig = btn.innerHTML;
-    btn.innerHTML = '✓ La koobiyeeyay!';
-    btn.style.cssText = 'background:var(--green);color:#fff;border-color:var(--green);';
-    setTimeout(() => { btn.innerHTML = orig; btn.style.cssText = ''; }, 2200);
-  });
-}
+    <div class="summary">
+      <h3 data-so="📝 Soo koobka Maqaalka" data-en="📝 Article Summary">📝 Soo koobka Maqaalka</h3>
+      <ul style="padding:0">
+        <li data-so="Garaad Gacmeedku waa teknoolajiyad xog baranaysa oo falanqayn karta." data-en="AI is technology that learns from data and can analyze it.">Garaad Gacmeedku waa teknoolajiyad xog baranaysa oo falanqayn karta.</li>
+        <li data-so="Wuxuu ku shaqeeyaa xog, tababar, iyo qaabab uu barto." data-en="It works through data, training, and patterns it learns.">Wuxuu ku shaqeeyaa xog, tababar, iyo qaabab uu barto.</li>
+        <li data-so="Waxaad maalin kasta kula kulantaa adeegyo badan oo dijitaal ah." data-en="You meet it every day across many digital services.">Waxaad maalin kasta kula kulantaa adeegyo badan oo dijitaal ah.</li>
+        <li data-so="Wuxuu leeyahay faa'iidooyin, caqabado, iyo mustaqbal ballaaran." data-en="It has real benefits, real challenges, and a wide future ahead.">Wuxuu leeyahay faa'iidooyin, caqabado, iyo mustaqbal ballaaran.</li>
+      </ul>
+      <a href="articles.html" class="btn" data-so="← Dib ugu Noqo Maqaallada" data-en="← Back to Articles">← Dib ugu Noqo Maqaallada</a>
+    </div>
+
+    <section class="knowledge-wrap" id="learn-more">
+      <div class="knowledge-title">
+        <span class="kicker" data-so="Waxyaabo Muhiim Ah Inaad Ogaato" data-en="Things Worth Knowing">Waxyaabo Muhiim Ah Inaad Ogaato</span>
+        <p data-so="Riix su'aal kasta si aad u hesho sharaxaad gaaban oo cad." data-en="Tap any question to get a short, clear explanation.">Riix su'aal kasta si aad u hesho sharaxaad gaaban oo cad.</p>
+      </div>
+      <div class="knowledge-list">
+        <details class="knowledge-item">
+          <summary data-so="AI ma yahay robot?" data-en="Is AI a robot?">AI ma yahay robot?</summary>
+          <div class="knowledge-body">
+            <span data-so="Dad badan marka ay maqlaan AI waxay maskaxda ku sawiraan robot. Laakiin xaqiiqdu sidaas ma aha. AI badanaa waa software ama nidaam dijitaal ah oo xog barta, falanqeeya, ama go'aan ka caawiya. Robot-ku wuxuu isticmaali karaa AI, balse AI laftiisu kuma koobna robot keliya." data-en="Many people picture a robot when they hear AI, but that is not really the case. AI is usually software or a digital system that learns from data, analyzes it, or helps make decisions. A robot can use AI, but AI itself is not limited to robots.">Dad badan marka ay maqlaan AI waxay maskaxda ku sawiraan robot. Laakiin xaqiiqdu sidaas ma aha. AI badanaa waa software ama nidaam dijitaal ah oo xog barta, falanqeeya, ama go'aan ka caawiya. Robot-ku wuxuu isticmaali karaa AI, balse AI laftiisu kuma koobna robot keliya.</span>
+          </div>
+        </details>
+        <details class="knowledge-item">
+          <summary data-so="ChatGPT ma ka mid yahay Garaad Gacmeedka?" data-en="Is ChatGPT a form of AI?">ChatGPT ma ka mid yahay Garaad Gacmeedka?</summary>
+          <div class="knowledge-body">
+            <span data-so="Haa. ChatGPT waa adeeg ku shaqeeya Garaad Gacmeed. Wuxuu fahmaa qoraalka aad geliso, kadibna wuxuu isku dayaa inuu kuugu jawaabo si dabiici ah. Waa qalab faa'iido leh, balse weli wuxuu ku tiirsan yahay xog iyo tababar hore." data-en="Yes. ChatGPT is a service powered by AI. It understands the text you type, then tries to respond in a natural way. It is a useful tool, but it still depends on data and prior training.">Haa. ChatGPT waa adeeg ku shaqeeya Garaad Gacmeed. Wuxuu fahmaa qoraalka aad geliso, kadibna wuxuu isku dayaa inuu kuugu jawaabo si dabiici ah. Waa qalab faa'iido leh, balse weli wuxuu ku tiirsan yahay xog iyo tababar hore.</span>
+          </div>
+        </details>
+        <details class="knowledge-item">
+          <summary data-so="AI mar walba ma saxnaadaa?" data-en="Is AI always correct?">AI mar walba ma saxnaadaa?</summary>
+          <div class="knowledge-body">
+            <span data-so="Maya. AI mararka qaarkood wuu khaldami karaa ama wuxuu soo saari karaa xog aan dhammaystirnayn. Sidaas darteed, waxyaabaha muhiimka ah waa in la hubiyaa, gaar ahaan haddii ay la xiriiraan caafimaad, waxbarasho, ama go'aan shaqo." data-en="No. AI can sometimes be wrong or produce incomplete information. That is why important matters should be verified — especially anything involving health, education, or a work decision.">Maya. AI mararka qaarkood wuu khaldami karaa ama wuxuu soo saari karaa xog aan dhammaystirnayn. Sidaas darteed, waxyaabaha muhiimka ah waa in la hubiyaa, gaar ahaan haddii ay la xiriiraan caafimaad, waxbarasho, ama go'aan shaqo.</span>
+          </div>
+        </details>
+        <details class="knowledge-item">
+          <summary data-so="AI ma beddeli doonaa shaqooyinka dadka?" data-en="Will AI replace people's jobs?">AI ma beddeli doonaa shaqooyinka dadka?</summary>
+          <div class="knowledge-body">
+            <span data-so="AI wuxuu beddeli karaa habka shaqooyinka loo qabto, gaar ahaan hawlaha soo noqnoqda. Si kastaba ha ahaatee, waxaa weli muhiim ah xirfadaha bini'aadamka sida fikirka, hal-abuurka, iyo go'aan qaadashada. Sida ugu fiican, AI waa in loo arkaa qalab caawiya dadka, halkii laga arki lahaa wax gebi ahaanba beddelaya." data-en="AI can change how work gets done, especially repetitive tasks. Even so, human strengths like thinking, creativity, and judgment still matter. It is best to see AI as a tool that helps people, rather than something that replaces them entirely.">AI wuxuu beddeli karaa habka shaqooyinka loo qabto, gaar ahaan hawlaha soo noqnoqda. Si kastaba ha ahaatee, waxaa weli muhiim ah xirfadaha bini'aadamka sida fikirka, hal-abuurka, iyo go'aan qaadashada. Sida ugu fiican, AI waa in loo arkaa qalab caawiya dadka, halkii laga arki lahaa wax gebi ahaanba beddelaya.</span>
+          </div>
+        </details>
+        <details class="knowledge-item">
+          <summary data-so="Sideen ku bilaabi karaa barashada AI?" data-en="How can I start learning about AI?">Sideen ku bilaabi karaa barashada AI?</summary>
+          <div class="knowledge-body">
+            <span data-so="Ku bilow fahamka aasaaska: waxa uu yahay, sida uu u shaqeeyo, iyo meelaha lagu isticmaalo. Kadib waxaad si tartiib ah u baran kartaa qalab fudud oo maalin kasta la adeegsan karo. Aqoon yari halkan ka billaaban maayo; waxa ugu muhiimsan waa inaad si deggan u fahanto tallaabada koowaad." data-en="Start with the basics: what it is, how it works, and where it is used. Then you can gradually try simple tools you can use day to day. There is no shame in starting small — what matters most is calmly understanding that first step.">Ku bilow fahamka aasaaska: waxa uu yahay, sida uu u shaqeeyo, iyo meelaha lagu isticmaalo. Kadib waxaad si tartiib ah u baran kartaa qalab fudud oo maalin kasta la adeegsan karo. Aqoon yari halkan ka billaaban maayo; waxa ugu muhiimsan waa inaad si deggan u fahanto tallaabada koowaad.</span>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <div class="art-nl">
+      <h3 data-so="Ha Moogaan Maqaalada Cusub" data-en="Never Miss a New Article">Ha Moogaan Maqaalada Cusub</h3>
+      <p data-so="Hel maqaallo, casharro, iyo aqoon cusub oo Af-Soomaali ah si toos ah sanduuqa emaylkaaga." data-en="Get new articles, lessons, and fresh knowledge in Somali — straight to your inbox.">Hel maqaallo, casharro, iyo aqoon cusub oo Af-Soomaali ah si toos ah sanduuqa emaylkaaga.</p>
+      <form class="newsletter-form" onsubmit="handleNewsletter(this);return false"><input type="email" required placeholder="email-kaaga@halkaan.com" data-ph-so="email-kaaga@halkaan.com" data-ph-en="your-email@example.com"><button type="submit" data-so="Ku Biir Maqaalgayska" data-en="Join the Newsletter">Ku Biir Maqaalgayska</button></form>
+    </div>
+  </article>
+
+  <aside class="art-side">
+    <div class="side-author">
+      <div class="av">AT</div>
+      <div class="nm">Aqoon Tech</div>
+      <div class="rl" data-so="Kooxda Tifaftirka" data-en="Editorial Team">Kooxda Tifaftirka</div>
+      <div class="bio" data-so="Aqoon Tech waa hoyga aqoonta teknoolajiyada Af-Soomaaliga, waxaana u heellannahay in fikradaha casriga ahi noqdaan kuwo qof kasta si deggan u fahmi karo." data-en="Aqoon Tech is the home of Somali-language technology knowledge, dedicated to making modern ideas something anyone can understand with ease.">Aqoon Tech waa hoyga aqoonta teknoolajiyada Af-Soomaaliga, waxaana u heellannahay in fikradaha casriga ahi noqdaan kuwo qof kasta si deggan u fahmi karo.</div>
+    </div>
+    <div class="toc-box">
+      <div class="toc-label" data-so="Tusmada Maqaalka" data-en="Article Contents">Tusmada Maqaalka</div>
+      <nav class="toc" id="toc">
+        <a href="#s1" class="on" data-so="Waa Maxay AI?" data-en="What Is AI?">Waa Maxay AI?</a>
+        <a href="#s2" data-so="Sida Ayuu U Shaqeeyaa" data-en="How It Works">Sida Ayuu U Shaqeeyaa</a>
+        <a href="#s3" data-so="Noocyada AI" data-en="Types of AI">Noocyada AI</a>
+        <a href="#s4" data-so="AI-da Maalinlaha" data-en="Everyday AI">AI-da Maalinlaha</a>
+        <a href="#s5" data-so="Faa'iidooyinka" data-en="Benefits">Faa'iidooyinka</a>
+        <a href="#s6" data-so="Caqabadaha" data-en="Challenges">Caqabadaha</a>
+        <a href="#s7" data-so="Bulshada Casriga Ah" data-en="Modern Society">Bulshada Casriga Ah</a>
+        <a href="#s8" data-so="Mustaqbalka AI" data-en="The Future of AI">Mustaqbalka AI</a>
+        <a href="#s9" data-so="Gabagabo" data-en="Conclusion">Gabagabo</a>
+      </nav>
+    </div>
+    <div class="share-box">
+      <div class="toc-label" data-so="U Qaybi" data-en="Share">U Qaybi</div>
+      <div class="share-btns">
+        <button class="sh">📘 Facebook</button>
+        <button class="sh">📱 WhatsApp</button>
+        <button class="sh">✈ Telegram</button>
+        <button class="sh">𝕏 X</button>
+        <button class="sh">💼 LinkedIn</button>
+        <button class="sh" data-so="🔗 Koobiy Xiriirka" data-en="🔗 Copy Link">🔗 Koobiy Xiriirka</button>
+      </div>
+    </div>
+  </aside>
+</div><section class="related">
+  <div class="wrap">
+    <h3 data-so="Maqaallo La Xiriira" data-en="Related Articles">Maqaallo La Xiriira</h3>
+    <div class="rel-grid">
+      <a class="rel-card"><div class="rel-ic">💬</div><div><div class="rel-h" data-so="Sida ChatGPT u Shaqeeyo" data-en="How ChatGPT Works">Sida ChatGPT u Shaqeeyo</div><div class="rel-m" data-so="6 daqiiqo · AI & Mustaqbalka" data-en="6 min · AI & Future">6 daqiiqo · AI & Mustaqbalka</div></div></a>
+      <a class="rel-card"><div class="rel-ic">🤖</div><div><div class="rel-h" data-so="Waa Maxay Machine Learning?" data-en="What Is Machine Learning?">Waa Maxay Machine Learning?</div><div class="rel-m" data-so="7 daqiiqo · AI & Mustaqbalka" data-en="7 min · AI & Future">7 daqiiqo · AI & Mustaqbalka</div></div></a>
+    </div>
+  </div>
+</section><footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="../index.html" class="logo">
+          <div class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2.5"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="logo-name">AQOON <span>TECH</span></div><div class="logo-tag">Technology</div></div>
+        </a>
+        <p class="foot-about" data-so="Aqoon Tech waa hoyga aqoonta teknoolajiyada Af-Soomaaliga, una taagan fududaynta fahamka dunida casriga ah." data-en="Aqoon Tech is the home of Somali-language technology knowledge, dedicated to making the modern world easier to understand.">Aqoon Tech waa hoyga aqoonta teknoolajiyada Af-Soomaaliga, una taagan fududaynta fahamka dunida casriga ah.</p>
+        <div class="foot-social"><a href="#">▶</a><a href="#">♪</a><a href="#">◎</a><a href="#">✈</a><a href="#">f</a></div>
+      </div>
+      <div class="foot-col"><h4 data-so="Nuxurka" data-en="Content">Nuxurka</h4><a href="articles.html" data-so="Dhammaan Maqaallada" data-en="All Articles">Dhammaan Maqaallada</a><a href="categories.html" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a><a href="#" data-so="Bilow (Fudud)" data-en="Start Here">Bilow (Fudud)</a></div>
+      <div class="foot-col"><h4 data-so="Barnaamijka" data-en="Program">Barnaamijka</h4><a href="about.html" data-so="Nagu Saabsan" data-en="About">Nagu Saabsan</a><a href="contact.html" data-so="Xiriir" data-en="Contact">Xiriir</a><a href="#" data-so="Noogu Qor" data-en="Write for Us">Noogu Qor</a></div>
+      <div class="foot-col"><h4 data-so="Sharci" data-en="Legal">Sharci</h4><a href="#" data-so="Qaanuunka Xogta" data-en="Privacy Policy">Qaanuunka Xogta</a><a href="#" data-so="Shuruudaha" data-en="Terms">Shuruudaha</a><a href="#">🇸🇴 Af-Soomaali</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span data-so="© 2026 Aqoon Tech. Xuquuqda oo dhan way dhowran tahay." data-en="© 2026 Aqoon Tech. All rights reserved.">© 2026 Aqoon Tech. Xuquuqda oo dhan way dhowran tahay.</span>
+      <span data-so="Baro, Hirgeli, Horumari – Aqoontu waa iftiin, teknoolajiyaduna waa jidka horumarka." data-en="Learn, Apply, Progress – Knowledge is light, and technology is the path to progress.">Baro, Hirgeli, Horumari – Aqoontu waa iftiin, teknoolajiyaduna waa jidka horumarka.</span>
+    </div>
+  </div>
+</footer><script>
+const nav=document.getElementById('nav');
+const prog=document.getElementById('progress');
+const body=document.querySelector('.art-body');
+const heads=[...document.querySelectorAll('.art-body h2[id]')];
+const tocLinks=[...document.querySelectorAll('#toc a')];
+addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>20);
+  if(body){const r=body.getBoundingClientRect();const total=body.offsetHeight-innerHeight;const p=Math.min(Math.max(-r.top/total,0),1)*100;prog.style.width=p+'%';}
+  let cur=heads[0]?.id;
+  for(const h of heads){if(h.getBoundingClientRect().top<120)cur=h.id;}
+  tocLinks.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+cur));
+},{passive:true});
 </script>
+<script>
+function toggleTheme(){const d=document.documentElement;const n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;localStorage.setItem('aqoon-theme',n);}
+(function(){const t=localStorage.getItem('aqoon-theme');if(t)document.documentElement.dataset.theme=t;})();
+</script>
+<script src="../js/i18n.js"></script>
+<script src="../js/newsletter.js"></script>
 </body>
 </html>

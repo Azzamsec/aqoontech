@@ -1,559 +1,288 @@
 <!DOCTYPE html>
 <html lang="so" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contact Aqoon Tech — get in touch, write for us, or ask a question. We'd love to hear from you.">
-  <title>Contact Us — Aqoon Tech</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Montserrat:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/variables.css">
-  <link rel="stylesheet" href="../css/base.css">
-  <link rel="stylesheet" href="../css/typography.css">
-  <link rel="stylesheet" href="../css/buttons.css">
-  <link rel="stylesheet" href="../css/cards.css">
-  <link rel="stylesheet" href="../css/navbar.css">
-  <link rel="stylesheet" href="../css/layout.css">
-  <link rel="stylesheet" href="../css/forms.css">
-  <link rel="stylesheet" href="../css/hero.css">
-  <link rel="stylesheet" href="../css/sections.css">
-  <link rel="stylesheet" href="../css/animations.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nala Soo Xiriir — Aqoon Tech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12122B;--ink-2:#3A3A55;
+  --paper:#FBFBFD;--surface:#FFFFFF;--surface-2:#F4F4FA;
+  --tint-indigo:#F3F2FE;--tint-teal:#ECFAF8;
+  --text:#16162E;--text-2:#585872;--text-3:#9494A8;
+  --border:#EAEAF2;--border-2:#DADAE6;
+  --indigo:#4F46E5;--indigo-dk:#3F37C9;--indigo-lt:#EEEDFE;
+  --teal:#06B6A4;--teal-br:#0FD9C3;--teal-dk:#0F766E;--teal-lt:#E1F7F4;
+  --amber-lt:#FAEEDA;--amber-dk:#854F0B;
+  --display:'Outfit',sans-serif;--body:'DM Sans',sans-serif;
+  --ease:cubic-bezier(.4,0,.2,1);--spring:cubic-bezier(.34,1.56,.64,1);
+  --nav-h:72px;--max:1200px;
+}
+[data-theme="dark"]{
+  --ink:#EDEDF7;--ink-2:#B8B8CC;
+  --paper:#0C0C16;--surface:#13131F;--surface-2:#171725;
+  --tint-indigo:#15152A;--tint-teal:#0E1A20;
+  --text:#EDEDF7;--text-2:#A0A0B8;--text-3:#6A6A82;
+  --border:#23233A;--border-2:#2E2E48;
+  --indigo:#7C75F0;--indigo-lt:rgba(79,70,229,.16);
+  --teal:#2DD4BF;--teal-br:#2DD4BF;--teal-lt:rgba(6,182,164,.16);
+  --amber-lt:rgba(232,160,32,.16);--amber-dk:#F5C572;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--text);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+a{text-decoration:none;color:inherit}
+.kicker{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--display);font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--indigo);padding-left:.85rem;border-left:2px solid var(--indigo)}
+.kicker.center{border-left:none;padding-left:0;justify-content:center}
+.kicker.teal{color:var(--teal-dk);border-color:var(--teal)}
 
-  <style>
-    /* ── Contact page specific layout ── */
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 4rem;
-      align-items: start;
-    }
+nav.bar{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,3rem);background:color-mix(in srgb,var(--paper) 85%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:height .35s var(--ease)}
+nav.bar.scrolled{height:64px;box-shadow:0 4px 24px rgba(18,18,43,.06)}
+.logo{display:flex;align-items:center;gap:.7rem}
+.logo-mark{width:38px;height:38px;border-radius:11px;background:var(--ink);display:grid;place-items:center;box-shadow:0 4px 14px rgba(18,18,43,.18)}
+.logo-name{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.3px;color:var(--text);line-height:1}
+.logo-name span{color:var(--indigo)}
+.logo-tag{font-family:var(--body);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-3)}
+.links{display:flex;gap:2rem;align-items:center}
+.links a{font-family:var(--display);font-size:14.5px;font-weight:500;color:var(--text-2);transition:color .2s;position:relative}
+.links a:hover,.links a.on{color:var(--text)}
+.links a.on::after{content:'';position:absolute;left:0;right:0;bottom:-22px;height:2px;background:var(--indigo)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.lang{display:flex;border:1px solid var(--border-2);border-radius:99px;overflow:hidden;background:var(--surface)}
+.lang button{border:none;background:transparent;font-family:var(--display);font-size:11px;font-weight:600;padding:6px 12px;cursor:pointer;color:var(--text-3);transition:.2s}
+.lang button.active{background:var(--indigo);color:#fff}
+.icon-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--border-2);background:var(--surface);cursor:pointer;font-size:15px;display:grid;place-items:center;transition:.2s}
+.icon-btn:hover{border-color:var(--indigo)}
+.cta{font-family:var(--display);font-weight:600;font-size:14px;background:var(--ink);color:#fff;padding:10px 20px;border-radius:11px;transition:transform .15s var(--spring);box-shadow:0 4px 16px rgba(18,18,43,.16)}
+.cta:hover{transform:translateY(-2px)}
 
-    /* ── FAQ accordion ── */
-    .faq-item {
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      overflow: hidden;
-      transition: border-color var(--t) var(--ease);
-      background: var(--surface);
-    }
-    .faq-item:hover { border-color: var(--blue-mid); }
-    .faq-question {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: var(--s4) var(--s5);
-      cursor: pointer;
-      font-family: var(--font-ui);
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text);
-      background: none;
-      border: none;
-      width: 100%;
-      text-align: left;
-      gap: var(--s3);
-      transition: background var(--t) var(--ease), color var(--t) var(--ease);
-    }
-    .faq-question:hover { background: var(--blue-light); color: var(--blue); }
-    [data-theme="dark"] .faq-question:hover { background: rgba(74,144,217,.08); }
-    .faq-chevron {
-      font-size: 18px;
-      color: var(--text-3);
-      transition: transform var(--t) var(--ease-spring);
-      flex-shrink: 0;
-    }
-    .faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--blue); }
-    .faq-answer {
-      display: none;
-      padding: 0 var(--s5) var(--s4);
-      font-size: 14px;
-      color: var(--text-2);
-      line-height: 1.75;
-    }
-    .faq-item.open .faq-answer { display: block; animation: fadeDown .18s var(--ease-out) both; }
+.page-hero{padding-top:calc(var(--nav-h) + clamp(2.5rem,6vw,4rem));padding-bottom:clamp(1.5rem,4vw,2.5rem);text-align:center;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:55%;height:130%;background:radial-gradient(ellipse at center,var(--tint-teal) 0%,transparent 60%);opacity:.8;pointer-events:none}
+.page-hero .inner{position:relative;max-width:42rem;margin:0 auto}
+.page-h1{font-family:var(--display);font-weight:700;font-size:clamp(2.4rem,5vw,3.6rem);line-height:1.06;letter-spacing:-1.3px;color:var(--ink);margin:1.2rem 0 1rem}
+.page-h1 .accent{color:var(--indigo)}
+.page-lead{font-size:17px;color:var(--text-2);line-height:1.7;font-weight:300;max-width:34rem;margin:0 auto}
 
-    /* ── Write for us card ── */
-    .write-card {
-      background: linear-gradient(135deg, var(--charcoal) 0%, #1a2040 100%);
-      border-radius: var(--r-lg);
-      padding: clamp(2rem, 4vw, 3rem);
-      position: relative;
-      overflow: hidden;
-    }
-    .write-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 70% 30%, rgba(74,144,217,.2) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .write-card > * { position: relative; z-index: 1; }
-    .write-card h2  { color: #fff; font-family: var(--font-brand); font-size: clamp(1.4rem,2.5vw,1.9rem); margin-bottom: var(--s4); }
-    .write-card p   { color: rgba(255,255,255,.55); font-size: 14.5px; line-height: 1.8; margin-bottom: var(--s6); }
-    .write-perks    { display: flex; flex-direction: column; gap: var(--s3); margin-bottom: var(--s6); }
-    .write-perk {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--s3);
-      font-size: 13.5px;
-      color: rgba(255,255,255,.65);
-    }
-    .write-perk-dot {
-      width: 22px; height: 22px;
-      border-radius: 50%;
-      background: rgba(74,144,217,.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 11px;
-    }
+.section{padding-block:clamp(2.5rem,6vw,4.5rem)}
+.section.tint{background:var(--surface-2)}
 
-    @media (max-width: 960px) {
-      .contact-layout { grid-template-columns: 1fr; }
-    }
-  </style>
+/* contact grid */
+.contact-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(2rem,5vw,3.5rem);align-items:start}
+.form-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:clamp(1.5rem,3vw,2.3rem)}
+.form-card h3{font-family:var(--display);font-weight:700;font-size:1.4rem;color:var(--ink);margin-bottom:.4rem;letter-spacing:-.4px}
+.form-card .desc{font-size:14px;color:var(--text-2);font-weight:300;margin-bottom:1.6rem}
+.field{margin-bottom:1.1rem}
+.field label{display:block;font-family:var(--display);font-size:12.5px;font-weight:500;color:var(--text-2);margin-bottom:.45rem}
+.field input,.field select,.field textarea{width:100%;font-family:var(--body);font-size:14.5px;padding:12px 15px;border:1px solid var(--border-2);border-radius:11px;background:var(--paper);color:var(--text);transition:border-color .2s,box-shadow .2s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--indigo);box-shadow:0 0 0 3px var(--indigo-lt)}
+.field textarea{resize:vertical;min-height:120px}
+.submit{width:100%;font-family:var(--display);font-weight:600;font-size:15px;background:var(--indigo);color:#fff;border:none;padding:14px;border-radius:12px;cursor:pointer;transition:transform .15s var(--spring),box-shadow .2s;box-shadow:0 6px 20px rgba(79,70,229,.3)}
+.submit:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(79,70,229,.4)}
+
+/* contact channels */
+.channels{display:flex;flex-direction:column;gap:1rem}
+.chan{display:flex;align-items:center;gap:1rem;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.2rem 1.3rem;transition:transform .2s var(--ease),border-color .2s}
+.chan:hover{transform:translateY(-3px);border-color:var(--indigo)}
+.chan-ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:20px;flex-shrink:0;background:var(--indigo-lt)}
+.chan:nth-child(2) .chan-ic{background:var(--teal-lt)}
+.chan:nth-child(3) .chan-ic{background:var(--amber-lt)}
+.chan-h{font-family:var(--display);font-weight:600;font-size:14.5px;color:var(--text)}
+.chan-x{font-size:12.5px;color:var(--text-3)}
+
+/* contribute band */
+.contrib{background:var(--ink);border-radius:24px;padding:clamp(2rem,4vw,3.2rem);position:relative;overflow:hidden}
+.contrib::after{content:'';position:absolute;top:-30%;right:-10%;width:55%;height:90%;background:radial-gradient(ellipse,rgba(6,182,164,.22),transparent 65%)}
+.contrib>*{position:relative;z-index:1}
+.contrib-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
+.contrib h2{font-family:var(--display);font-weight:700;color:#fff;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.6px;margin:.9rem 0 .8rem;line-height:1.15}
+.contrib p{color:rgba(255,255,255,.72);font-size:14.5px;font-weight:300;line-height:1.7;margin-bottom:1.5rem}
+.contrib-list{list-style:none}
+.contrib-list li{display:flex;align-items:center;gap:.7rem;color:rgba(255,255,255,.85);font-size:14px;padding:.5rem 0}
+.contrib-list .ck{width:22px;height:22px;border-radius:7px;background:rgba(6,182,164,.2);display:grid;place-items:center;color:var(--teal-br);font-size:12px;flex-shrink:0}
+.contrib .btn-w{display:inline-block;background:#fff;color:var(--ink);font-family:var(--display);font-weight:600;font-size:14px;padding:12px 24px;border-radius:11px;transition:transform .15s var(--spring)}
+.contrib .btn-w:hover{transform:translateY(-2px)}
+
+/* faq */
+.faq{max-width:46rem;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border);padding:1.2rem 0;cursor:pointer}
+.faq-q{display:flex;justify-content:space-between;align-items:center;gap:1rem;font-family:var(--display);font-weight:600;font-size:16px;color:var(--text)}
+.faq-q .plus{color:var(--indigo);font-size:20px;transition:transform .25s var(--ease);flex-shrink:0}
+.faq-item.open .plus{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s var(--ease);font-size:14.5px;color:var(--text-2);line-height:1.7;font-weight:300}
+.faq-item.open .faq-a{max-height:200px;padding-top:.8rem}
+
+footer{border-top:1px solid var(--border);background:var(--surface);padding-block:3rem 1.8rem}
+.foot-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:2rem}
+.foot-brand .logo{margin-bottom:1rem}
+.foot-about{font-size:13px;color:var(--text-2);line-height:1.65;font-weight:300;max-width:20rem;margin-bottom:1.1rem}
+.foot-social{display:flex;gap:.5rem}
+.foot-social a{width:34px;height:34px;border-radius:9px;border:1px solid var(--border-2);display:grid;place-items:center;font-size:13px;color:var(--text-2);transition:.2s}
+.foot-social a:hover{border-color:var(--indigo);color:var(--indigo);transform:translateY(-2px)}
+.foot-col h4{font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:.9rem}
+.foot-col a{display:block;font-size:13.5px;color:var(--text-2);padding:.32rem 0;transition:color .2s}
+.foot-col a:hover{color:var(--indigo)}
+.foot-bottom{display:flex;justify-content:space-between;margin-top:2.3rem;padding-top:1.4rem;border-top:1px solid var(--border);font-size:12.5px;color:var(--text-3);flex-wrap:wrap;gap:.5rem}
+@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
+
+.rv{opacity:0;transform:translateY(20px);animation:rvin .7s var(--ease) forwards}
+@keyframes rvin{to{opacity:1;transform:none}}
+.d1{animation-delay:.05s}.d2{animation-delay:.13s}.d3{animation-delay:.21s}
+
+@media(max-width:900px){
+  .links{display:none}
+  .contact-grid{grid-template-columns:1fr}
+  .contrib-grid{grid-template-columns:1fr;gap:1.5rem}
+}
+</style>
 </head>
 <body>
 
-<div id="progress-bar"></div>
-
-<!-- ═══ NAVBAR ═══ -->
-<nav class="navbar" id="navbar">
-  <a href="../index.html" class="nav-logo">
-    <div class="logo-mark">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-           stroke="#4A90D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2" y="3" width="20" height="14" rx="2.5"/>
-        <path d="M8 21h8M12 17v4"/>
-        <circle cx="12" cy="10" r="3.2"/>
-        <path d="M12 6.8V6M12 13.2V14M8.8 10H8M15.2 10H16" stroke-width="1.5"/>
-      </svg>
-    </div>
-    <div class="logo-text">
-      <span class="logo-name">AQOON <span>TECH</span></span>
-      <span class="logo-tagline">Technology</span>
-    </div>
+<nav class="bar" id="nav">
+  <a href="../index.html" class="logo">
+    <div class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2.5"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg></div>
+    <div><div class="logo-name">AQOON <span>TECH</span></div><div class="logo-tag">Technology</div></div>
   </a>
-
-  <div class="nav-links">
-    <a href="../index.html"   class="nav-link" data-so="Hoyga" data-en="Home">Hoyga</a>
-    <a href="articles.html"   class="nav-link" data-so="Maqaallada" data-en="Articles">Maqaallada</a>
-    <a href="categories.html" class="nav-link" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a>
-    <a href="about.html"      class="nav-link" data-so="Nagu Saabsan" data-en="About">Nagu Saabsan</a>
-    <a href="contact.html"    class="nav-link active" data-so="Xiriir" data-en="Contact">Xiriir</a>
-  </div>
-
-  <div class="nav-actions">
-    <div class="lang-switch">
-      <button class="lang-btn active" id="lang-so" onclick="setLang('so')">SO</button>
-      <button class="lang-btn"        id="lang-en" onclick="setLang('en')">EN</button>
-    </div>
-    <button class="btn-theme" id="theme-toggle" onclick="toggleTheme()">🌙</button>
-    <a href="contact.html" class="nav-cta" data-so="Nala Soo Xiriir" data-en="Get in Touch">Nala Soo Xiriir</a>
-    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()">
-      <span></span><span></span><span></span>
-    </button>
+  <div class="links"><a href="../index.html" data-so="Hoyga" data-en="Home">Hoyga</a><a href="articles.html" data-so="Maqaallada" data-en="Articles">Maqaallada</a><a href="categories.html" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a><a href="about.html" data-so="Nagu Saabsan" data-en="About">Nagu Saabsan</a><a href="contact.html" class="on" data-so="Xiriir" data-en="Contact">Xiriir</a></div>
+  <div class="nav-right">
+    <div class="lang"><button id="lang-so" class="active" onclick="setLang('so')">SO</button><button id="lang-en" onclick="setLang('en')">EN</button></div>
+    <button class="icon-btn" onclick="toggleTheme()">◐</button>
+    <a href="contact.html" class="cta" data-so="Nala Soo Xiriir" data-en="Get in Touch">Nala Soo Xiriir</a>
   </div>
 </nav>
 
-<nav class="mobile-nav" id="mobile-nav">
-  <a href="../index.html"   class="mobile-link" data-so="🏠 Hoyga" data-en="🏠 Home">🏠 Hoyga</a>
-  <a href="articles.html"   class="mobile-link" data-so="📰 Maqaallada" data-en="📰 Articles">📰 Maqaallada</a>
-  <a href="categories.html" class="mobile-link" data-so="📂 Mawduucyada" data-en="📂 Categories">📂 Mawduucyada</a>
-  <div class="mobile-divider"></div>
-  <a href="about.html"      class="mobile-link" data-so="ℹ️ Nagu Saabsan" data-en="ℹ️ About">ℹ️ Nagu Saabsan</a>
-  <a href="contact.html"    class="mobile-link" data-so="✉️ Xiriir" data-en="✉️ Contact">✉️ Xiriir</a>
-</nav>
-
-<main>
-
-  <!-- ═══ PAGE HERO BAND ═══ -->
-  <div class="page-band">
-    <div class="container">
-      <div class="label center" data-so="Salaan" data-en="Say Hello">Salaan</div>
-      <h1 class="h-page">
-        Contact <span style="color:var(--blue);">Aqoon Tech</span>
-      </h1>
-      <p style="font-size:15px;color:var(--text-2);max-width:520px;margin:0 auto;">
-        Su'aal ma qabtaa? Waxaad rabtaa inaan ku barano? Ama waxaad doonaysaa inaad noogu qorto?
-        Nala soo xiriir — waxaan ka jawaabaa 24 saacadood gudahood.
-      </p>
-    </div>
+<section class="page-hero">
+  <div class="inner">
+    <span class="kicker center rv d1" data-so="Nala Soo Xiriir" data-en="Get in Touch">Nala Soo Xiriir</span>
+    <h1 class="page-h1 rv d2" data-so='Fikraddaadu Waa <span class="accent">Muhiim</span>' data-en='Your Voice <span class="accent">Matters</span>'>Fikraddaadu Waa <span class="accent">Muhiim</span></h1>
+    <p class="page-lead rv d3" data-so="Haddii aad qabto su'aal, talo, ama fikrad aad nala wadaagto, waan ku farxi doonaa inaan kaa maqalno." data-en="Whether you have a question, a suggestion, or an idea to share, we would love to hear from you.">Haddii aad qabto su'aal, talo, ama fikrad aad nala wadaagto, waan ku farxi doonaa inaan kaa maqalno.</p>
   </div>
+</section>
 
-  <!-- ═══ CONTACT INFO CARDS ═══ -->
-  <section class="section-sm">
-    <div class="container">
-      <div class="grid grid-4 gap-md">
-
-        <div class="info-card reveal">
-          <div class="info-card-icon">✉️</div>
-          <div>
-            <div class="info-card-label">Email</div>
-            <div class="info-card-value">hello@aqoontech.com</div>
-            <div class="info-card-sub">Reply within 24 hours</div>
-          </div>
+<section class="section">
+  <div class="wrap contact-grid">
+    <div class="form-card">
+      <h3 data-so="Nala Wadaag Fikradaada" data-en="Share Your Thoughts">Nala Wadaag Fikradaada</h3>
+      <p class="desc" data-so="Fadlan buuxi foomkan, waxaanan dadaal ku bixin doonaa inaan kuugu soo jawaabno sida ugu dhakhsaha badan. Jawaabtu waxay qaadan kartaa 2 ilaa 5 maalmood oo xiliga shaqada." data-en="Fill out the form below and we will do our best to reply as quickly as we can. A response may take 2 to 5 business days.">Fadlan buuxi foomkan, waxaanan dadaal ku bixin doonaa inaan kuugu soo jawaabno sida ugu dhakhsaha badan. Jawaabtu waxay qaadan kartaa 2 ilaa 5 maalmood oo xiliga shaqada.</p>
+      <form onsubmit="handleContact(this);return false">
+        <div class="field"><label data-so="Magacaaga" data-en="Your Name">Magacaaga</label><input type="text" placeholder="Magacaaga oo buuxa" data-ph-so="Magacaaga oo buuxa" data-ph-en="Your full name"></div>
+        <div class="field"><label data-so="Email-kaaga" data-en="Your Email">Email-kaaga</label><input type="email" placeholder="email-kaaga@halkaan.com" data-ph-so="email-kaaga@halkaan.com" data-ph-en="your-email@example.com"></div>
+        <div class="field"><label data-so="Maxay ku saabsan tahay?" data-en="What is it about?">Maxay ku saabsan tahay?</label>
+          <select>
+            <option data-so="Dooro Mawduuca" data-en="Choose a Topic">Dooro Mawduuca</option>
+            <option data-so="Su'aal Guud" data-en="General Question">Su'aal Guud</option>
+            <option data-so="Noogu Qor" data-en="Write for Us">Noogu Qor</option>
+            <option data-so="Iskaashi" data-en="Partnership">Iskaashi</option>
+            <option data-so="Technical Issue / Dhibaato Farsamo" data-en="Technical Issue">Technical Issue / Dhibaato Farsamo</option>
+            <option data-so="Talo Maqaal" data-en="Article Suggestion">Talo Maqaal</option>
+            <option data-so="Wax Kale" data-en="Something Else">Wax Kale</option>
+          </select>
         </div>
-
-        <div class="info-card reveal">
-          <div class="info-card-icon">✈</div>
-          <div>
-            <div class="info-card-label">Telegram</div>
-            <div class="info-card-value">@AqoonTech</div>
-            <div class="info-card-sub">Fastest response</div>
-          </div>
-        </div>
-
-        <div class="info-card reveal">
-          <div class="info-card-icon">▶</div>
-          <div>
-            <div class="info-card-label">YouTube</div>
-            <div class="info-card-value">Aqoon Tech</div>
-            <div class="info-card-sub">200+ video lessons</div>
-          </div>
-        </div>
-
-        <div class="info-card reveal">
-          <div class="info-card-icon">◎</div>
-          <div>
-            <div class="info-card-label">Instagram</div>
-            <div class="info-card-value">@aqoontech</div>
-            <div class="info-card-sub">Daily tech tips</div>
-          </div>
-        </div>
-
-      </div>
+        <div class="field"><label data-so="Farriintaada" data-en="Your Message">Farriintaada</label><textarea placeholder="Noo qor farriintaada halkan..." data-ph-so="Noo qor farriintaada halkan..." data-ph-en="Write your message here..."></textarea></div>
+        <button class="submit" data-so="Farriinta Dir →" data-en="Send Message →">Farriinta Dir →</button>
+      </form>
     </div>
-  </section>
 
-  <!-- ═══ CONTACT FORM + SIDEBAR ═══ -->
-  <section class="section">
-    <div class="container">
-      <div class="contact-layout">
-
-        <!-- ── Left: Contact form ── -->
-        <div>
-          <div class="label">Send a Message</div>
-          <h2 class="h-section">
-            Noogu <span class="accent">Qor</span>
-          </h2>
-          <p style="font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:var(--s8);">
-            Fariintaada noogu soo dir — waxaan u jawaabaa si degdeg ah.
-            Su'aalo, talo, ama cawaan — dhammaan waxaa nala soo diri kartaa.
-          </p>
-
-          <div class="contact-form-card reveal">
-            <form onsubmit="handleContact(event)">
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label" for="cf-name">
-                    Full Name <span class="required">*</span>
-                  </label>
-                  <input class="form-input" id="cf-name" type="text"
-                         placeholder="Magacaaga / Your name" required>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="cf-email">
-                    Email Address <span class="required">*</span>
-                  </label>
-                  <input class="form-input" id="cf-email" type="email"
-                         placeholder="you@email.com" required>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="cf-subject">Subject</label>
-                <select class="form-input form-select" id="cf-subject">
-                  <option value="">Dooro — Choose a topic</option>
-                  <option>General Question / Su'aal Guud</option>
-                  <option>Write for Us / Noogu Qor</option>
-                  <option>Partnership / Iskaashi</option>
-                  <option>Technical Issue / Dhibaato Tigniko</option>
-                  <option>Content Suggestion / Talo Maqaal</option>
-                  <option>Other / Wax Kale</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="cf-message">
-                  Message <span class="required">*</span>
-                </label>
-                <textarea class="form-input form-textarea" id="cf-message"
-                          placeholder="Fariintaada / Your message here..."
-                          required></textarea>
-              </div>
-
-              <div class="form-group">
-                <label class="form-check">
-                  <input type="checkbox" required>
-                  <span class="form-check-label">
-                    I agree to Aqoon Tech's
-                    <a href="#" style="color:var(--blue);text-decoration:underline;" data-so="Qaanuunka Xogta" data-en="Privacy Policy">Qaanuunka Xogta</a>
-                    and consent to being contacted.
-                  </span>
-                </label>
-              </div>
-
-              <button type="submit" class="form-submit">
-                Send Message →
-              </button>
-
-            </form>
-          </div>
-        </div>
-
-        <!-- ── Right sidebar ── -->
-        <div style="display:flex;flex-direction:column;gap:var(--s6);">
-
-          <!-- Response time card -->
-          <div class="sidebar-widget reveal">
-            <div class="sidebar-widget-head">⏱ Response Times</div>
-            <div class="sidebar-widget-body" style="padding-top:var(--s4);">
-              <div style="display:flex;flex-direction:column;gap:var(--s4);">
-                <div style="display:flex;justify-content:space-between;align-items:center;">
-                  <span style="font-size:13.5px;color:var(--text-2);">✈ Telegram</span>
-                  <span class="badge badge-green">Under 2 hours</span>
-                </div>
-                <div style="display:flex;justify-content:space-between;align-items:center;">
-                  <span style="font-size:13.5px;color:var(--text-2);">✉️ Email</span>
-                  <span class="badge badge-soft-blue">Within 24 hours</span>
-                </div>
-                <div style="display:flex;justify-content:space-between;align-items:center;">
-                  <span style="font-size:13.5px;color:var(--text-2);">🗂 Contact form</span>
-                  <span class="badge badge-soft-blue">Within 24 hours</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- FAQ accordion -->
-          <div class="reveal">
-            <div class="label" style="margin-bottom:var(--s4);">FAQ</div>
-            <div style="display:flex;flex-direction:column;gap:var(--s2);">
-
-              <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                  Maqaallada ma bilaash baa?
-                  <span class="faq-chevron">⌄</span>
-                </button>
-                <div class="faq-answer">
-                  Haa — dhammaan maqaallada Aqoon Tech waa bilaash oo weligaa bilaash ahaan
-                  doona. Ujeedadayadu waa in aqoonta teknoolajiyada la helo si xor ah.
-                </div>
-              </div>
-
-              <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                  Can I write an article for Aqoon Tech?
-                  <span class="faq-chevron">⌄</span>
-                </button>
-                <div class="faq-answer">
-                  Yes! We welcome contributions from anyone who can write clearly about
-                  technology in Somali or English. Fill in the form above and choose
-                  "Write for Us" as your subject.
-                </div>
-              </div>
-
-              <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                  Ma jiraa app Aqoon Tech?
-                  <span class="faq-chevron">⌄</span>
-                </button>
-                <div class="faq-answer">
-                  Hadda ma jirto app gaar ah, laakiin websaydkayagu wuxuu si fiican uga
-                  shaqeynayaa telefoonka. Waxaan ka shaqeynaynaa app-ka mustaqbalka
-                  ah — subscribe si aad u ogaato.
-                </div>
-              </div>
-
-              <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                  How do I suggest a topic or article idea?
-                  <span class="faq-chevron">⌄</span>
-                </button>
-                <div class="faq-answer">
-                  Use the contact form above and select "Content Suggestion". We read
-                  every suggestion and many of our most popular articles came directly
-                  from reader ideas!
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- Follow us card -->
-          <div class="sidebar-widget reveal">
-            <div class="sidebar-widget-head">🌐 Follow Aqoon Tech</div>
-            <div class="sidebar-widget-body" style="padding-top:var(--s4);">
-              <div style="display:flex;flex-direction:column;gap:var(--s3);">
-                <a href="#" style="display:flex;align-items:center;gap:var(--s3);text-decoration:none;padding:var(--s3) 0;border-bottom:1px solid var(--border);transition:color .2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color=''">
-                  <span style="font-size:1.2rem;">▶</span>
-                  <div><div style="font-size:13.5px;font-weight:500;color:var(--text);">YouTube</div><div style="font-size:11.5px;color:var(--text-3);">200+ video lessons</div></div>
-                </a>
-                <a href="#" style="display:flex;align-items:center;gap:var(--s3);text-decoration:none;padding:var(--s3) 0;border-bottom:1px solid var(--border);transition:color .2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color=''">
-                  <span style="font-size:1.2rem;">✈</span>
-                  <div><div style="font-size:13.5px;font-weight:500;color:var(--text);">Telegram Channel</div><div style="font-size:11.5px;color:var(--text-3);">Daily updates</div></div>
-                </a>
-                <a href="#" style="display:flex;align-items:center;gap:var(--s3);text-decoration:none;padding:var(--s3) 0;transition:color .2s;" onmouseover="this.style.color='#4A90D9'" onmouseout="this.style.color=''">
-                  <span style="font-size:1.2rem;">f</span>
-                  <div><div style="font-size:13.5px;font-weight:500;color:var(--text);">Facebook Page</div><div style="font-size:11.5px;color:var(--text-3);">Community &amp; articles</div></div>
-                </a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ WRITE FOR US ═══ -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="write-card reveal">
-        <div style="max-width:700px;">
-          <div style="display:inline-flex;align-items:center;gap:var(--s2);background:rgba(74,144,217,.2);color:var(--blue);font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:var(--r-full);margin-bottom:var(--s5);">✍️ Write for Us</div>
-          <h2>Share Your Knowledge<br>with the Somali World</h2>
-          <p>
-            Haddaad leedahay aqoon teknoolajiyada — ha ahaatee ardayga, xirfadlaha, ama
-            qofka xiisaha leh — waxaan ku soo dhawaynaa inaan wada shaqeyno.
-            Qormadaada ayaa gaadheysa malaayiin Soomaali ah ee adduunka ku fida.
-          </p>
-          <div class="write-perks">
-            <div class="write-perk">
-              <div class="write-perk-dot">✓</div>
-              <span>Your article reaches 10,000+ monthly readers across the Somali diaspora</span>
-            </div>
-            <div class="write-perk">
-              <div class="write-perk-dot">✓</div>
-              <span>Full author bio, photo, and links back to your work</span>
-            </div>
-            <div class="write-perk">
-              <div class="write-perk-dot">✓</div>
-              <span>Editorial team helps polish your writing before publishing</span>
-            </div>
-            <div class="write-perk">
-              <div class="write-perk-dot">✓</div>
-              <span>Shared on our Telegram, YouTube, and social channels</span>
-            </div>
-          </div>
-          <a href="#cf-subject" class="btn btn-white btn-lg"
-             onclick="document.getElementById('cf-subject').value='Write for Us / Noogu Qor';
-                      document.getElementById('cf-subject').closest('form').scrollIntoView({behavior:'smooth'});">
-            Apply to Write →
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- ═══ NEWSLETTER ═══ -->
-<div class="newsletter-section">
-  <div class="newsletter-inner">
-    <span class="newsletter-emoji">📬</span>
-    <h2>Stay in the Loop</h2>
-    <p>
-      Subscribe to our weekly Somali tech newsletter —
-      new articles, tips, and updates every week. Free forever.
-    </p>
-    <form class="newsletter-form" onsubmit="handleNewsletter(this); return false;">
-      <input class="newsletter-input" type="email"
-             placeholder="email-kaaga@halkaan.com" required>
-      <button type="submit" class="newsletter-submit" data-so="Iska Diiwaan Geli" data-en="Subscribe">Iska Diiwaan Geli</button>
-    </form>
-  </div>
+    <div>
+      <span class="kicker" style="margin-bottom:1.2rem" data-so="Goorta Aad Nala Soo Xiriiri Karto" data-en="How to Reach Us">Goorta Aad Nala Soo Xiriiri Karto</span>
+      <div class="channels" style="margin-top:1.2rem">
+        <a class="chan"><div class="chan-ic">✉️</div><div><div class="chan-h">Email</div><div class="chan-x">info@aqoontech.com</div></div></a>
+        <a class="chan"><div class="chan-ic">✈️</div><div><div class="chan-h">Telegram</div><div class="chan-x">@aqoontech</div></div></a>
+        <a class="chan"><div class="chan-ic">📱</div><div><div class="chan-h">Social Media</div><div class="chan-x" data-so="@aqoontech — meel kasta" data-en="@aqoontech — everywhere">@aqoontech — meel kasta</div></div></a>
+      
+<div class="chan">
+<div class="chan-ic">🕒</div>
+<div>
+<div class="chan-h" data-so="Saacadaha Shaqada" data-en="Working Hours">Saacadaha Shaqada</div>
+<div class="chan-x" data-so="Axad – Khamiis<br>8:00 subaxnimo – 5:00 galabnimo<br><br>Fariintaada jawaabteedu waxay qaadan kartaa 2 ilaa 5 maalmood oo xiliga shaqada." data-en="Sunday – Thursday<br>8:00 AM – 5:00 PM<br><br>A reply to your message may take 2 to 5 business days.">Axad – Khamiis<br>8:00 subaxnimo – 5:00 galabnimo<br><br>Fariintaada jawaabteedu waxay qaadan kartaa 2 ilaa 5 maalmood oo xiliga shaqada.</div>
+</div>
 </div>
 
-<!-- ═══ FOOTER ═══ -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand-row">
-          <div class="footer-logo-icon">
-            <svg width="22" height="22" fill="none" stroke="white" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-              <rect x="2" y="3" width="20" height="14" rx="2.5"/>
-              <path d="M8 21h8M12 17v4"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
-          </div>
-          <div>
-            <span class="footer-brand-name">AQOON <span>TECH</span></span>
-            <span class="footer-brand-tag">Technology</span>
-          </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="contrib">
+      <div class="contrib-grid">
+        <div>
+          <span class="kicker" style="color:#3DD4C2;border-color:#3DD4C2" data-so="Ka Qayb Qaado" data-en="Get Involved">Ka Qayb Qaado</span>
+          <h2 data-so="Noqo Qayb Ka Mid Ah Safarka Aqoon Tech" data-en="Become Part of the Aqoon Tech Journey">Noqo Qayb Ka Mid Ah Safarka Aqoon Tech</h2>
+          <p data-so="Haddii aad leedahay aqoon, xirfad, ama fikrad bulshada anfici karta, si farxad leh ayaan kuugu soo dhowaynaynaa inaad qayb ka noqoto himiladeenna." data-en="If you have knowledge, a skill, or an idea that can benefit the community, we would be glad to welcome you into our mission.">Haddii aad leedahay aqoon, xirfad, ama fikrad bulshada anfici karta, si farxad leh ayaan kuugu soo dhowaynaynaa inaad qayb ka noqoto himiladeenna.</p>
+          <a href="contact.html" class="btn-w" data-so="Ka Bilow Halkan →" data-en="Start Here →">Ka Bilow Halkan →</a>
         </div>
-        <p class="footer-about">
-          Teknoolajiyada gacanta kuu geyneysa — Technology knowledge
-          for every Somali speaker, everywhere in the world.
-        </p>
-        <div class="social-links">
-          <a href="#" class="social-btn">▶</a>
-          <a href="#" class="social-btn">♪</a>
-          <a href="#" class="social-btn">◎</a>
-          <a href="#" class="social-btn">✈</a>
-          <a href="#" class="social-btn">f</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-col-title" data-so="Nuxurka" data-en="Content">Nuxurka</div>
-        <ul class="footer-links">
-          <li><a href="articles.html" data-so="Dhamaan Maqaallada" data-en="All Articles">Dhamaan Maqaallada</a></li>
-          <li><a href="categories.html" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a></li>
-          <li><a href="articles.html" data-so="Bilow (Fudud)" data-en="Beginner (Easy)">Bilow (Fudud)</a></li>
-          <li><a href="articles.html" data-so="Ugu Badan Toddobaadkan" data-en="Popular This Week">Ugu Badan Toddobaadkan</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title" data-so="Barnaamijka" data-en="Platform">Barnaamijka</div>
-        <ul class="footer-links">
-          <li><a href="about.html" data-so="Nagu Saabsan" data-en="About Us">Nagu Saabsan</a></li>
-          <li><a href="contact.html" data-so="Xiriir" data-en="Contact">Xiriir</a></li>
-          <li><a href="contact.html" data-so="Noogu Qor" data-en="Write for Us">Noogu Qor</a></li>
-          <li><a href="about.html" data-so="Kooxdayada" data-en="Our Team">Kooxdayada</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title" data-so="Sharci" data-en="Legal">Sharci</div>
-        <ul class="footer-links">
-          <li><a href="#" data-so="Qaanuunka Xogta" data-en="Privacy Policy">Qaanuunka Xogta</a></li>
-          <li><a href="#" data-so="Shuruudaha Isticmaalka" data-en="Terms of Use">Shuruudaha Isticmaalka</a></li>
-          <li><a href="#" data-so="Qaanuunka Cookie" data-en="Cookie Policy">Qaanuunka Cookie</a></li>
-          <li><a href="#">🇸🇴 Af-Soomaali</a></li>
+        <ul class="contrib-list">
+          <li data-so='<span class="ck">✓</span> Qorista Maqaallada' data-en='<span class="ck">✓</span> Writing Articles'><span class="ck">✓</span> Qorista Maqaallada</li>
+          <li data-so='<span class="ck">✓</span> Tafatir iyo Hubin' data-en='<span class="ck">✓</span> Editing & Review'><span class="ck">✓</span> Tafatir iyo Hubin</li>
+          <li data-so='<span class="ck">✓</span> Soo Saarista Muuqaallada' data-en='<span class="ck">✓</span> Video Production'><span class="ck">✓</span> Soo Saarista Muuqaallada</li>
+          <li data-so='<span class="ck">✓</span> Turjumaadda iyo Hagaajinta Luqadda' data-en='<span class="ck">✓</span> Translation & Language Polish'><span class="ck">✓</span> Turjumaadda iyo Hagaajinta Luqadda</li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 Aqoon Tech. Xuquuqda oo dhan way dhowran tahay.</span>
-      <span>Jacayl ❤️ bulshada Soomaalida adduunka darteed</span>
+  </div>
+</section>
+
+<section class="section tint">
+  <div class="wrap">
+    <div style="text-align:center;max-width:38rem;margin:0 auto 2.5rem">
+      <span class="kicker center" data-so="Su'aalo Inta Badan La Is Weydiiyo" data-en="Frequently Asked Questions">Su'aalo Inta Badan La Is Weydiiyo</span>
+      <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,3vw,2.3rem);color:var(--ink);letter-spacing:-.6px;margin-top:.7rem" data-so="Su'aalo iyo Jawaabahooda" data-en="Questions & Answers">Su'aalo iyo Jawaabahooda</h2>
+    </div>
+    <div class="faq">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q" data-so='Aqoon Tech ma bilaash baa?<span class="plus">+</span>' data-en='Is Aqoon Tech free?<span class="plus">+</span>'>Aqoon Tech ma bilaash baa?<span class="plus">+</span></div>
+        <div class="faq-a" data-so="Haa — dhammaan maqaallada iyo casharrada waa bilaash. Hadafkayagu waa in aqoonta teknoolajiyada loo helo qof kasta, lacag la'aan." data-en="Yes — all articles and lessons are free. Our goal is for technology knowledge to reach everyone, at no cost.">Haa — dhammaan maqaallada iyo casharrada waa bilaash. Hadafkayagu waa in aqoonta teknoolajiyada loo helo qof kasta, lacag la'aan.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q" data-so='Sideen maqaal ugu soo gudbiyaa?<span class="plus">+</span>' data-en='How do I submit an article?<span class="plus">+</span>'>Sideen maqaal ugu soo gudbiyaa?<span class="plus">+</span></div>
+        <div class="faq-a" data-so='Buuxi foomka kor ku yaal, dooro "Waxaan rabaa inaan maqaal qoro", waxaana kula soo xiriiri doonnaa tilmaamaha.' data-en='Fill out the form above, choose "Write for Us", and we will reach out to you with the guidelines.'>Buuxi foomka kor ku yaal, dooro "Waxaan rabaa inaan maqaal qoro", waxaana kula soo xiriiri doonnaa tilmaamaha.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q" data-so='Ma heli karaa maqaallada Ingiriisi?<span class="plus">+</span>' data-en='Can I read the articles in English?<span class="plus">+</span>'>Ma heli karaa maqaallada Ingiriisi?<span class="plus">+</span></div>
+        <div class="faq-a" data-so='Haa — guji badhanka "EN" ee kor ku yaal si aad u beddesho luqadda. Maqaallo badan waxay ku diyaar yihiin labada luqadood.' data-en='Yes — tap the "EN" button at the top to switch languages. Many articles are available in both languages.'>Haa — guji badhanka "EN" ee kor ku yaal si aad u beddesho luqadda. Maqaallo badan waxay ku diyaar yihiin labada luqadood.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q" data-so='Goorma ayaad maqaallo cusub daabacdaan?<span class="plus">+</span>' data-en='How often do you publish new articles?<span class="plus">+</span>'>Goorma ayaad maqaallo cusub daabacdaan?<span class="plus">+</span></div>
+        <div class="faq-a" data-so="Waxaan si joogto ah u daabacnaa maqaallo iyo casharro cusub marka ay diyaar noqdaan." data-en="We publish new articles and lessons regularly, as soon as they are ready.">Waxaan si joogto ah u daabacnaa maqaallo iyo casharro cusub marka ay diyaar noqdaan.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="../index.html" class="logo">
+          <div class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2.5"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="logo-name">AQOON <span>TECH</span></div><div class="logo-tag">Technology</div></div>
+        </a>
+        <p class="foot-about" data-so="Aqoon Tech waa hoyga aqoonta teknoolajiyada Af-Soomaaliga, una taagan fududaynta fahamka dunida casriga ah." data-en="Aqoon Tech is the home of Somali-language technology knowledge, dedicated to making the modern world easier to understand.">Aqoon Tech waa hoyga aqoonta teknoolajiyada Af-Soomaaliga, una taagan fududaynta fahamka dunida casriga ah.</p>
+        <div class="foot-social"><a href="#">▶</a><a href="#">♪</a><a href="#">◎</a><a href="#">✈</a><a href="#">f</a></div>
+      </div>
+      <div class="foot-col"><h4 data-so="Nuxurka" data-en="Content">Nuxurka</h4><a href="articles.html" data-so="Dhammaan Maqaallada" data-en="All Articles">Dhammaan Maqaallada</a><a href="categories.html" data-so="Mawduucyada" data-en="Categories">Mawduucyada</a><a href="articles.html" data-so="Bilow (Fudud)" data-en="Beginner (Easy)">Bilow (Fudud)</a></div>
+      <div class="foot-col"><h4 data-so="Barnaamijka" data-en="Platform">Barnaamijka</h4><a href="about.html" data-so="Nagu Saabsan" data-en="About Us">Nagu Saabsan</a><a href="contact.html" data-so="Xiriir" data-en="Contact">Xiriir</a><a href="contact.html" data-so="Noogu Qor" data-en="Write for Us">Noogu Qor</a></div>
+      <div class="foot-col"><h4 data-so="Sharci" data-en="Legal">Sharci</h4><a href="#" data-so="Qaanuunka Xogta" data-en="Privacy Policy">Qaanuunka Xogta</a><a href="#" data-so="Shuruudaha" data-en="Terms">Shuruudaha</a><a href="#">🇸🇴 Af-Soomaali</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span data-so="© 2026 Aqoon Tech. Xuquuqda oo dhan way dhowran tahay." data-en="© 2026 Aqoon Tech. All rights reserved.">© 2026 Aqoon Tech. Xuquuqda oo dhan way dhowran tahay.</span>
+      <span data-so="Baro, Hirgeli, Horumari – Aqoontu waa iftiin, teknoolajiyaduna waa jidka horumarka." data-en="Learn, Apply, Progress – Knowledge is light, and technology is the path to progress.">Baro, Hirgeli, Horumari – Aqoontu waa iftiin, teknoolajiyaduna waa jidka horumarka.</span>
     </div>
   </div>
 </footer>
 
-
-<!-- FLOATING LANGUAGE FAB -->
-<div class="lang-fab" role="group" aria-label="Language switcher">
-  <button class="lang-fab-btn active" id="lang-fab-so" onclick="setLang('so')" title="Af-Soomaali">SO</button>
-  <button class="lang-fab-btn"        id="lang-fab-en" onclick="setLang('en')" title="English">EN</button>
-</div>
-
-<button class="back-to-top" id="back-to-top" title="Back to top">↑</button>
-
-<script src="../js/theme.js"></script>
-<script src="../js/i18n.js"></script>
 <script>
-  /* ── FAQ toggle ── */
-  function toggleFaq(btn) {
-    const item = btn.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  }
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
+function toggleTheme(){const d=document.documentElement;const n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;localStorage.setItem('aqoon-theme',n);}
+(function(){const t=localStorage.getItem('aqoon-theme');if(t)document.documentElement.dataset.theme=t;})();
+function handleContact(f){const b=f.querySelector('.submit');b.textContent='✅ Waa la diray';b.style.background='#16a34a';}
 </script>
+<script src="../js/i18n.js"></script>
+<script src="../js/newsletter.js"></script>
 </body>
 </html>
