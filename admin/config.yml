@@ -1,155 +1,215 @@
-# ============================================================
-#  AQOON TECH — Decap CMS Configuration
-#  This file tells the admin what fields to show when
-#  you write a new article. Edit field labels freely.
-# ============================================================
-
 backend:
   name: git-gateway
-  branch: main          # must match your Netlify branch
+  branch: main
 
-# Where uploaded images get stored
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-# Show a live preview of the article while you write
-show_preview_links: true
+# ============================================================
+#  AQOON TECH — Flexible CMS
+#  Collections: Articles (flexible blocks) + Team (managed)
+# ============================================================
 
 collections:
+  # ----------------------------------------------------------
+  #  TEAM MEMBERS — manage your writers/editors/etc here
+  # ----------------------------------------------------------
+  - name: "team"
+    label: "👥 Kooxda (Team)"
+    label_singular: "Xubin Cusub (Team Member)"
+    folder: "data/team"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{name}} — {{role_so}}"
+    fields:
+      - { label: "Magaca (Full Name)", name: "name", widget: "string", hint: "Tusaale: Abdi Hassan" }
+      - { label: "Shaqada — Af-Soomaali (Role)", name: "role_so", widget: "string", hint: "Tusaale: Tifaftiraha Guud" }
+      - { label: "Role — English", name: "role_en", widget: "string", required: false, hint: "Example: Chief Editor" }
+      - label: "Nooca Shaqada (Job Type)"
+        name: "job_type"
+        widget: "select"
+        default: "writer"
+        options:
+          - { label: "✍️ Qoraa (Writer)", value: "writer" }
+          - { label: "📝 Tifaftire (Editor)", value: "editor" }
+          - { label: "🎬 Soo-saare Muuqaal (Video Producer)", value: "video" }
+          - { label: "🌐 Turjubaan (Translator)", value: "translator" }
+          - { label: "👑 Maamule (Admin/Founder)", value: "admin" }
+      - { label: "Bio — Af-Soomaali", name: "bio_so", widget: "text", required: false }
+      - { label: "Bio — English", name: "bio_en", widget: "text", required: false }
+      - { label: "Sawirka (Photo)", name: "photo", widget: "image", required: false, hint: "Haddii la'aan, waxaa la isticmaali doonaa xarfaha magaca" }
+      - label: "Midabka Avatar (Accent Color)"
+        name: "accent"
+        widget: "select"
+        default: "indigo-teal"
+        options:
+          - { label: "Indigo → Teal", value: "indigo-teal" }
+          - { label: "Teal → Bright", value: "teal-bright" }
+          - { label: "Amber → Gold", value: "amber-gold" }
+          - { label: "Indigo → Violet", value: "indigo-violet" }
+      - { label: "Email (optional)", name: "email", widget: "string", required: false }
+      - { label: "Social Link (optional)", name: "social", widget: "string", required: false }
 
-  # ── ARTICLES ──────────────────────────────────────────────
+  # ----------------------------------------------------------
+  #  ARTICLES — flexible, block-based, bilingual-optional
+  # ----------------------------------------------------------
   - name: "articles"
     label: "📰 Maqaallada (Articles)"
-    label_singular: "Maqaal"
+    label_singular: "Maqaal Cusub (New Article)"
     folder: "pages/articles"
     create: true
-    slug: "{{slug}}"          # filename = article title (auto)
-    extension: "html"
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
     format: "frontmatter"
-
-    # ── Editor fields (what you fill in when writing) ──────
+    summary: "{{title_so}}"
     fields:
+      # --- Language the article is written in ---
+      - label: "Luqadda Maqaalka (Article Language)"
+        name: "primary_lang"
+        widget: "select"
+        default: "so"
+        hint: "Dooro luqadda aad ku qoreyso. Haddaad labadaba qori karto, dooro 'Labada'."
+        options:
+          - { label: "🇸🇴 Af-Soomaali kaliya (Somali only)", value: "so" }
+          - { label: "🇬🇧 English only", value: "en" }
+          - { label: "🌍 Labada / Both", value: "both" }
 
-      # Core info
-      - { label: "Cinwaanka Soomaaliga (Somali Title)",
-          name: "title_so",
-          widget: "string",
-          hint: "Cinwaanka buuxa ee maqaalka — Af-Soomaali" }
+      # --- Titles ---
+      - { label: "Cinwaanka — Af-Soomaali (Somali Title)", name: "title_so", widget: "string", required: false }
+      - { label: "Title — English", name: "title_en", widget: "string", required: false }
+      - { label: "Sharaxaad Gaaban — Af-Soomaali (Subtitle)", name: "subtitle_so", widget: "text", required: false }
+      - { label: "Subtitle — English", name: "subtitle_en", widget: "text", required: false }
 
-      - { label: "Cinwaanka Ingiriisiga (English Title)",
-          name: "title_en",
-          widget: "string",
-          hint: "Full article title in English" }
-
-      - { label: "Sharaxaad Gaaban — Soomaali (Short Description SO)",
-          name: "subtitle_so",
-          widget: "string",
-          hint: "1-2 jumlood oo maqaalka ka warrameysa — Af-Soomaali" }
-
-      - { label: "Sharaxaad Gaaban — English (Short Description EN)",
-          name: "subtitle_en",
-          widget: "string",
-          hint: "1-2 sentences describing the article in English" }
-
-      # Category & difficulty
-      - label: "Nooca Maqaalka (Category)"
+      # --- Meta ---
+      - label: "Nooca (Category)"
         name: "category"
         widget: "select"
         options:
-          - { label: "💻 Aasaaska Teknoolajiyada (Tech Basics)",   value: "tech-basics" }
-          - { label: "🌐 Internet & Shabakadaha (Internet)",        value: "internet" }
-          - { label: "📱 Mobilada & Qalabka (Mobile & Devices)",   value: "mobile" }
-          - { label: "🔒 Amniga Dijitaalka (Cybersecurity)",        value: "cybersecurity" }
-          - { label: "🤖 AI & Teknoolajiyada Mustaqbalka (AI)",     value: "ai" }
-          - { label: "💼 Xirfadaha Dijitaalka (Digital Skills)",   value: "digital-skills" }
-          - { label: "⚙️ Barnaamijyada & Abka (Software & Apps)",  value: "software" }
-          - { label: "📊 Teknoolajiyada Ganacsiga (Business Tech)", value: "business-tech" }
-
+          - { label: "💻 Aasaaska Teknoolajiyada", value: "tech-basics" }
+          - { label: "🌐 Internet & Shabakadaha", value: "internet" }
+          - { label: "📱 Mobilada & Qalabka", value: "mobile" }
+          - { label: "🔒 Amniga Dijitaalka", value: "cybersecurity" }
+          - { label: "🤖 AI & Teknoolajiyada", value: "ai" }
+          - { label: "💼 Xirfadaha Dijitaalka", value: "digital-skills" }
+          - { label: "⚙️ Barnaamijyada & Abka", value: "software" }
+          - { label: "📊 Teknoolajiyada Ganacsiga", value: "business-tech" }
       - label: "Heerka (Difficulty)"
         name: "difficulty"
         widget: "select"
         default: "fudud"
         options:
-          - { label: "🟢 Fudud (Beginner)",      value: "fudud" }
-          - { label: "🟡 Dhexdhexaad (Medium)",  value: "dhexdhexaad" }
-          - { label: "🔴 Adag (Advanced)",        value: "adag" }
-
-      # Author
+          - { label: "🟢 Fudud (Beginner)", value: "fudud" }
+          - { label: "🟡 Dhexdhexaad (Medium)", value: "dhexdhexaad" }
+          - { label: "🔴 Adag (Advanced)", value: "adag" }
       - label: "Qoraaga (Author)"
         name: "author"
-        widget: "select"
-        default: "abdi"
-        options:
-          - { label: "Abdi Hassan",    value: "abdi" }
-          - { label: "Fadumo Mohamed", value: "fadumo" }
-          - { label: "Omar Ali",       value: "omar" }
-          - { label: "Hodan Nuur",     value: "hodan" }
+        widget: "relation"
+        collection: "team"
+        search_fields: ["name"]
+        value_field: "name"
+        display_fields: ["name"]
+        hint: "Dooro qoraaga — kuwa ku jira Kooxda ayaa halkan ka soo muuqda."
+      - { label: "Daqiiqo Akhrinta (Read Time, min)", name: "read_time", widget: "number", default: 5 }
+      - { label: "Taariikhda (Date)", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Astaanta / Emoji (Hero Icon)", name: "hero_emoji", widget: "string", default: "📄", required: false, hint: "Hal emoji, tusaale: 🤖 🔒 📱" }
+      - { label: "Sawirka Maqaalka (Hero Image, optional)", name: "hero_image", widget: "image", required: false }
 
-      # Read time
-      - { label: "Wakhti Akhrinta (Read Time) — e.g. 5",
-          name: "read_time",
-          widget: "number",
-          default: 5,
-          value_type: "int",
-          min: 1,
-          max: 60 }
-
-      # Date (auto-filled)
-      - { label: "Taariikhda (Date)",
-          name: "date",
-          widget: "datetime",
-          date_format: "YYYY-MM-DD",
-          time_format: false,
-          default: "" }
-
-      # Hero image
-      - { label: "Sawirka Maqaalka (Hero Image)",
-          name: "hero_image",
-          widget: "image",
-          required: false,
-          hint: "Sawirka ugu weyn ee maqaalka. PNG ama JPG, 1200×600px ugu yaraan." }
-
-      # SEO description
-      - { label: "SEO Description (for Google)",
-          name: "seo_description",
-          widget: "string",
-          required: false,
-          hint: "Short description for search engines (150 chars max)" }
-
-      # ── ARTICLE BODY (Somali) ────────────────────────────
-      - label: "Qoraalka Maqaalka — Af-Soomaali (Article Body Somali)"
-        name: "body_so"
-        widget: "markdown"
-        hint: "Qor maqaalkaaga oo dhan halkan — Af-Soomaali"
-        modes: ["rich_text", "raw"]
-
-      # ── ARTICLE BODY (English) ──────────────────────────
-      - label: "Article Body — English (Qoraalka Ingiriisiga)"
-        name: "body_en"
-        widget: "markdown"
-        required: false
-        hint: "Write the full English version here (optional but recommended)"
-        modes: ["rich_text", "raw"]
-
-      # Key facts for sidebar
-      - label: "Xaqiiqooyinka Muhiimka (Key Facts — sidebar)"
-        name: "key_facts"
+      # --- The flexible body: add blocks in any order ---
+      - label: "Qaybaha Maqaalka (Article Sections)"
+        name: "sections"
         widget: "list"
-        required: false
-        max: 5
-        field:
-          { label: "Xaqiiqada (Fact)",
-            name: "fact",
-            widget: "string" }
-
-      # Related articles
-      - label: "Maqaallada La Xiriira (Related Articles)"
-        name: "related"
-        widget: "list"
-        required: false
-        max: 3
-        fields:
-          - { label: "Cinwaanka (Title)", name: "title", widget: "string" }
-          - { label: "Xiriirka (URL)",    name: "url",   widget: "string" }
-          - { label: "Daqiiqo (Minutes)", name: "mins",  widget: "number", default: 5 }
-
+        label_singular: "Qayb Cusub (Add Section)"
+        hint: "Ku dar qaybaha aad rabto, nidaamka aad rabto. Riix '+' si aad ugu darto qayb cusub."
+        types:
+          # Heading
+          - label: "📌 Cinwaan (Heading)"
+            name: "heading"
+            widget: "object"
+            fields:
+              - { label: "Cinwaan — Soomaali", name: "so", widget: "string", required: false }
+              - { label: "Heading — English", name: "en", widget: "string", required: false }
+          # Paragraph
+          - label: "📝 Qoraal (Paragraph)"
+            name: "paragraph"
+            widget: "object"
+            fields:
+              - { label: "Qoraal — Soomaali", name: "so", widget: "markdown", required: false }
+              - { label: "Paragraph — English", name: "en", widget: "markdown", required: false }
+          # Callout / Tip
+          - label: "💡 Sanduuq Talo (Callout / Tip)"
+            name: "callout"
+            widget: "object"
+            fields:
+              - { label: "Astaan (Emoji)", name: "icon", widget: "string", default: "💡" }
+              - { label: "Talo — Soomaali", name: "so", widget: "text", required: false }
+              - { label: "Tip — English", name: "en", widget: "text", required: false }
+          # Quote
+          - label: "❝ Quote (Oraah)"
+            name: "quote"
+            widget: "object"
+            fields:
+              - { label: "Quote — Soomaali", name: "so", widget: "text", required: false }
+              - { label: "Quote — English", name: "en", widget: "text", required: false }
+          # Bullet list
+          - label: "• Liis (Bullet List)"
+            name: "list"
+            widget: "object"
+            fields:
+              - { label: "Liis — Soomaali (hal sadar = hal qodob)", name: "so", widget: "text", required: false, hint: "Mid kasta sadar gaar ah" }
+              - { label: "List — English (one item per line)", name: "en", widget: "text", required: false }
+          # Numbered steps
+          - label: "1. Tallaabooyin (Numbered Steps)"
+            name: "steps"
+            widget: "object"
+            fields:
+              - { label: "Tallaabooyin — Soomaali (hal sadar = hal tallaabo)", name: "so", widget: "text", required: false }
+              - { label: "Steps — English (one per line)", name: "en", widget: "text", required: false }
+          # Code / example box
+          - label: "</> Sanduuq Tusaale (Code / Example)"
+            name: "code"
+            widget: "object"
+            fields:
+              - { label: "Koodhka / Tusaalaha (Code/Example)", name: "code", widget: "text" }
+              - { label: "Sharaxaad — Soomaali (optional)", name: "so", widget: "string", required: false }
+              - { label: "Caption — English (optional)", name: "en", widget: "string", required: false }
+          # Warning box
+          - label: "⚠️ Digniin (Warning Box)"
+            name: "warning"
+            widget: "object"
+            fields:
+              - { label: "Digniin — Soomaali", name: "so", widget: "text", required: false }
+              - { label: "Warning — English", name: "en", widget: "text", required: false }
+          # Did you know
+          - label: "🎯 Ma Ogtahay? (Did You Know)"
+            name: "didyouknow"
+            widget: "object"
+            fields:
+              - { label: "Xog — Soomaali", name: "so", widget: "text", required: false }
+              - { label: "Fact — English", name: "en", widget: "text", required: false }
+          # Video
+          - label: "🎬 Muuqaal (Video)"
+            name: "video"
+            widget: "object"
+            fields:
+              - { label: "YouTube Link", name: "url", widget: "string", hint: "Ku dheji linkiga YouTube-ka oo dhan" }
+              - { label: "Cinwaan — Soomaali", name: "so", widget: "string", required: false }
+              - { label: "Caption — English", name: "en", widget: "string", required: false }
+          # Image
+          - label: "🖼️ Sawir (Image)"
+            name: "image"
+            widget: "object"
+            fields:
+              - { label: "Sawirka (Image)", name: "image", widget: "image" }
+              - { label: "Sharaxaad — Soomaali (Caption)", name: "so", widget: "string", required: false }
+              - { label: "Caption — English", name: "en", widget: "string", required: false }
+          # Summary
+          - label: "📋 Soo Koobid (Summary Box)"
+            name: "summary"
+            widget: "object"
+            fields:
+              - { label: "Qodobbada — Soomaali (hal sadar = hal qodob)", name: "so", widget: "text", required: false }
+              - { label: "Key points — English (one per line)", name: "en", widget: "text", required: false }
