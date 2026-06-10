@@ -114,10 +114,6 @@ nav.bar.scrolled{height:64px;box-shadow:0 4px 24px rgba(18,18,43,.06)}
 .play-btn::after{content:'';border-left:20px solid var(--ink);border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px}
 .video-caption{position:absolute;bottom:16px;left:18px;z-index:2;color:#fff;font-family:var(--display);font-weight:600;font-size:15px;text-shadow:0 2px 10px rgba(0,0,0,.5)}
 .video-sub{position:absolute;bottom:16px;left:18px;z-index:2}
-.video-link-row{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;margin-top:1rem}
-.video-link-btn{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--display);font-weight:600;font-size:13px;color:var(--indigo);background:var(--indigo-lt);padding:9px 14px;border-radius:10px;border:1px solid var(--indigo-lt);transition:.2s}
-.video-link-btn:hover{transform:translateY(-2px);border-color:var(--indigo)}
-.video-link-note{font-size:13px;color:var(--text-3)}
 
 .knowledge-wrap{margin-top:3rem}
 .knowledge-title{margin-bottom:1rem}
@@ -353,7 +349,7 @@ footer{border-top:1px solid var(--border);background:var(--surface);padding-bloc
     <div class="art-nl">
       <h3 data-so="Ha Moogaan Maqaalada Cusub" data-en="Never Miss a New Article">Ha Moogaan Maqaalada Cusub</h3>
       <p data-so="Hel maqaallo, casharro, iyo aqoon cusub oo Af-Soomaali ah si toos ah sanduuqa emaylkaaga." data-en="Get new articles, lessons, and fresh knowledge in Somali — straight to your inbox.">Hel maqaallo, casharro, iyo aqoon cusub oo Af-Soomaali ah si toos ah sanduuqa emaylkaaga.</p>
-      <form class="newsletter-form" onsubmit="handleNewsletter(this);return false"><input type="email" required placeholder="email-kaaga@halkaan.com" data-ph-so="email-kaaga@halkaan.com" data-ph-en="your-email@example.com"><button type="submit" data-so="Ku Biir Maqaalgayska" data-en="Join the Newsletter">Ku Biir Maqaalgayska</button></form>
+      <form onsubmit="handleNewsletter(this);return false"><input type="email" required placeholder="email-kaaga@halkaan.com" data-ph-so="email-kaaga@halkaan.com" data-ph-en="your-email@example.com"><button type="submit" data-so="Ku Biir Maqaalgayska" data-en="Join the Newsletter">Ku Biir Maqaalgayska</button></form>
     </div>
   </article>
 
